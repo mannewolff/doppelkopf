@@ -1,0 +1,867 @@
+{
+  "metadata": {
+    "name": "Doppelkopf Regelwerk und Essener System",
+    "description": "Umfassendes maschinenlesbares Regelwerk basierend auf DDV Turnier-Spielregeln (TSR Stand 21.02.2026) und dem Essener System",
+    "version": "1.0.0",
+    "sources": [
+      "Turnier-Spielregeln des Deutschen Doppelkopf-Verbandes (TSR Stand 21.02.2026)",
+      "Das Essener System - Systematische Kommunikation beim Doppelkopf"
+    ],
+    "lastUpdated": "2026-05-12"
+  },
+
+  "basics": {
+    "game": {
+      "name": "Doppelkopf",
+      "players": 4,
+      "playerVariants": [5, 6, 7],
+      "description": "Kartenpiel für vier Spieler in zwei Parteien",
+      "maxCardsPerSuit": 12,
+      "totalCards": 48,
+      "totalEyes": 240,
+      "handSize": 12
+    },
+
+    "suits": {
+      "clubs": { "name": "Kreuz", "symbol": "♣", "id": "clubs" },
+      "spades": { "name": "Pik", "symbol": "♠", "id": "spades" },
+      "hearts": { "name": "Herz", "symbol": "♥", "id": "hearts" },
+      "diamonds": { "name": "Karo", "symbol": "♦", "id": "diamonds" }
+    },
+
+    "ranks": {
+      "ace": { "name": "Ass", "abbreviation": "As", "eyes": 11, "position": 1 },
+      "ten": { "name": "Zehn", "abbreviation": "10", "eyes": 10, "position": 2 },
+      "king": { "name": "König", "abbreviation": "K", "eyes": 4, "position": 3 },
+      "queen": { "name": "Dame", "abbreviation": "D", "eyes": 3, "position": 4 },
+      "jack": { "name": "Bube", "abbreviation": "B", "eyes": 2, "position": 5 },
+      "nine": { "name": "Neun", "abbreviation": "9", "eyes": 0, "position": 6 }
+    },
+
+    "cardRanking": {
+      "allCards": [
+        { "suit": "hearts", "rank": "ten", "name": "Herz 10", "position": 1, "eyes": 10 },
+        { "suit": "clubs", "rank": "queen", "name": "Kreuz Dame", "position": 2, "eyes": 3 },
+        { "suit": "spades", "rank": "queen", "name": "Pik Dame", "position": 3, "eyes": 3 },
+        { "suit": "hearts", "rank": "queen", "name": "Herz Dame", "position": 4, "eyes": 3 },
+        { "suit": "diamonds", "rank": "queen", "name": "Karo Dame", "position": 5, "eyes": 3 },
+        { "suit": "clubs", "rank": "jack", "name": "Kreuz Bube", "position": 6, "eyes": 2 },
+        { "suit": "spades", "rank": "jack", "name": "Pik Bube", "position": 7, "eyes": 2 },
+        { "suit": "hearts", "rank": "jack", "name": "Herz Bube", "position": 8, "eyes": 2 },
+        { "suit": "diamonds", "rank": "jack", "name": "Karo Bube", "position": 9, "eyes": 2 },
+        { "suit": "diamonds", "rank": "ace", "name": "Karo Ass", "position": 10, "eyes": 11 },
+        { "suit": "diamonds", "rank": "ten", "name": "Karo 10", "position": 11, "eyes": 10 },
+        { "suit": "diamonds", "rank": "king", "name": "Karo König", "position": 12, "eyes": 4 },
+        { "suit": "diamonds", "rank": "nine", "name": "Karo Neun", "position": 13, "eyes": 0 }
+      ]
+    }
+  },
+
+  "gameTypes": {
+    "normalspiel": {
+      "id": "normalspiel",
+      "name": "Normalspiel",
+      "description": "Standard-Spielart ohne Solo. Parteien werden durch Kreuz Damen gebildet.",
+      "parties": 2,
+      "partyDistribution": "Player mit Kreuz Damen bilden Re-Partei",
+      "trumpCards": 26,
+      "missingCards": 22,
+      "specialRules": {
+        "hochzeit": "Wenn ein Spieler beide Kreuz Damen hat, kann eine Hochzeit gespielt werden"
+      }
+    },
+
+    "solo": {
+      "id": "solo",
+      "name": "Solo",
+      "description": "Ein Spieler spielt allein gegen die anderen drei",
+      "parties": 2,
+      "partyDistribution": "Solospieler = Re-Partei, andere drei = Kontra-Partei",
+      "types": {
+        "colorSolo": {
+          "id": "farbsolo",
+          "name": "Farbsolo",
+          "description": "Eine Farbe wird zur Trumpffarbe gewählt",
+          "variants": ["clubs", "spades", "hearts", "diamonds"],
+          "trumpCount": {
+            "clubs": 26,
+            "spades": 26,
+            "hearts": 24,
+            "diamonds": 26
+          }
+        },
+        "queenSolo": {
+          "id": "damensolo",
+          "name": "Damensolo",
+          "description": "Nur Damen sind Trumpf",
+          "trumpCards": 8,
+          "missingCards": 40
+        },
+        "jackSolo": {
+          "id": "bubensolo",
+          "name": "Bubensolo",
+          "description": "Nur Buben sind Trumpf",
+          "trumpCards": 8,
+          "missingCards": 40
+        },
+        "aceSolo": {
+          "id": "asse-solo",
+          "name": "Fleischlos (Asse-Solo)",
+          "description": "Keine Trumpf, nur Asse sind besonders wertvoll",
+          "trumpCards": 0,
+          "missingCards": 48
+        }
+      }
+    },
+
+    "hochzeit": {
+      "id": "hochzeit",
+      "name": "Hochzeit",
+      "description": "Spieler mit beiden Kreuz Damen sucht sich einen Partner",
+      "types": {
+        "angemeldeteHochzeit": {
+          "name": "Angemeldete Hochzeit",
+          "description": "Hochzeiter meldet an, Partner wird durch Klärungsstich ermittelt",
+          "klarungsstich": "Erster Stich (außer vom Hochzeiter) in den ersten drei Stiches ist der Klärungsstich",
+          "continuation": {
+            "asNormalspiel": "Wenn Partner den Stich macht: Spiel wird als Normalspiel fortgesetzt",
+            "asSoloKaro": "Wenn Hochzeiter alle drei Stiche macht: Spiel wird als Karo-Solo fortgesetzt, Hochzeiter ist Alleinspieler"
+          }
+        },
+        "stilleHochzeit": {
+          "name": "Stille Hochzeit",
+          "description": "Hochzeiter meldet nicht an und spielet als Farbsolo Karo",
+          "condition": "Hochzeiter meldet keinen Vorbehalt oder verliert durch Regel-Fehler die Meldung",
+          "billing": "Wird wie Solo abgerechnet, ersetzt aber kein Pflichtsolo"
+        }
+      }
+    }
+  },
+
+  "gameFlow": {
+    "preparation": {
+      "step1_seating": {
+        "description": "Spieler werden ausgelost. Position 4 ist der Listenführer.",
+        "positions": {
+          "1": "Gibt Karten",
+          "2": "Links vom Geber",
+          "3": "Gegenüber vom Geber",
+          "4": "Rechts vom Geber, Listenführer"
+        }
+      },
+      "step2_dealing": {
+        "description": "Geber mischt und gibt Karten",
+        "rules": [
+          "Karten müssen gründlich gemischt werden",
+          "Rechter Nachbar muss abheben (min. 3 Karten oben oder unten)",
+          "Jeder Spieler erhält 4x 3 Karten = 12 Karten insgesamt",
+          "Startet beim linken Nachbarn des Gebers",
+          "Karten müssen verdeckt gegeben werden"
+        ],
+        "errors": [
+          "Beim Mischen 'gestochen' oder 'geblättert' -> vor Abheben nochmal durchmischen",
+          "Abheben ist Pflicht",
+          "Bei Kartenverteilungsfehlern kann Spieler sofort reklamieren, bevor er seine Karten aufnimmt"
+        ]
+      }
+    },
+
+    "finding": {
+      "vorbehalt": {
+        "description": "Bestimmung des Spieltyps vor dem ersten Stich",
+        "sequence": "Reihum ab linkem Nachbarn des Gebers",
+        "answers": {
+          "gesund": "Kein Vorbehalt",
+          "vorbehalt": "Spieler meldet Pflichtsolo, Lustsolo oder Hochzeit an"
+        },
+        "priority": ["Pflichtsolo", "Lustsolo", "Hochzeit"],
+        "cancellation": {
+          "position1_2_3": "Kann zurücknehmen, wenn nächster Spieler sich noch nicht geäußert hat",
+          "position4": "Kann nur zurücknehmen, wenn keine Karte aufgespielt wurde und keine Ansage erfolgte"
+        }
+      },
+
+      "pflichtsolo": {
+        "description": "Jeder Spieler muss ein Pflichtsolo in jeder Runde spielen",
+        "solospieler": "Hat Aufspielpflicht zum ersten Stich",
+        "reshuffling": "Nach Pflichtsolo werden Karten vom gleichen Geber nochmal gegeben",
+        "vorfuhrung": "Wenn Spieler am Zug, dem Solo fehlt, wird er zwangsweise 'vorgeführt'",
+        "vorfuhrung_dealer": "Nächster Geber ist trotz Vorführung derjenige, der geben würde"
+      },
+
+      "lustsolo": {
+        "description": "Freiwilliges Solo nach eigenem Pflichtsolo",
+        "starter": "Linker Nachbar des Gebers spielt zum ersten Stich auf",
+        "notation": "Wird in Normalspiel-Rubrik notiert"
+      }
+    },
+
+    "play": {
+      "aufspiel": {
+        "description": "Erste Karte eines Stiches",
+        "firstStich": "Linker Nachbar des Gebers (oder Solospieler)",
+        "followingStiche": "Spieler, der vorherigen Stich gewonnen hat"
+      },
+
+      "bedienen": {
+        "description": "Beibringungspflicht nach Aufspiel",
+        "rules": {
+          "fehlfarbe": "Muss Fehlfarbe bedienen, wenn vorhanden",
+          "trumpf_gefordert": "Muss Trumpf bedienen, wenn Trumpf aufgespielt",
+          "kann_nicht_bedienen": {
+            "fehlfarbe_aufgespielt": "Darf stechen (Trumpf spielen) oder beliebige andere Fehlfarbe spielen",
+            "trumpf_gefordert": "Darf beliebige Fehlfarbe spielen"
+          }
+        }
+      },
+
+      "stich": {
+        "description": "Vier Karten, eine pro Spieler, nach Reihenfolge",
+        "completion": "Stich ist vollendet, wenn vierte Karte liegt und niemand reklamiert",
+        "winner": "Höchste Karte nach Regeln",
+        "ranking": {
+          "gleicheKarten": "Karte des vorderen Spielers ist ranghöher",
+          "beispiel": "Zwei Herz 10 -> vom früheren Spieler ist höher"
+        },
+        "collection": {
+          "solo": "Solospieler legt Stiche als Ganzes verdeckt ab",
+          "normalspiel": "Spieler der Siegerpartei nimmt Stich"
+        }
+      },
+
+      "spielabkürzung": {
+        "description": "Solospieler darf Spiel verkürzen",
+        "rules": [
+          "Nur Solospieler darf abkürzen",
+          "Beim Abkürzen verliert Solospieler Reklamationsrecht",
+          "Aufdecken von Stiches/Nachzählen beendet das Spiel"
+        ]
+      }
+    }
+  },
+
+  "announcements": {
+    "firstAnnouncement": {
+      "description": "Erstansage: 'Re' oder 'Kontra'",
+      "timing": "Frühestens, wenn Spieltyp geklärt ist",
+      "latestTiming": "Wenn Spieler noch mindestens 11 Karten in Hand hält (nach 1. Stich)",
+      "requirement": "Mindestsicherheit 50%",
+      "pointValue": "Erhöht Spielwert um 2 Punkte"
+    },
+
+    "announcements": {
+      "keine90": {
+        "description": "Gegenpartei wird unter 90 Augen spielen",
+        "minCards": 10,
+        "eyeThreshold": 90,
+        "requirement": "88,89% Sicherheit",
+        "pointIncrease": 1
+      },
+      "keine60": {
+        "description": "Gegenpartei wird unter 60 Augen spielen",
+        "minCards": 9,
+        "eyeThreshold": 60,
+        "requirement": "91,67% Sicherheit",
+        "pointIncrease": 1
+      },
+      "keine30": {
+        "description": "Gegenpartei wird unter 30 Augen spielen",
+        "minCards": 8,
+        "eyeThreshold": 30,
+        "requirement": "93,33% Sicherheit",
+        "pointIncrease": 1
+      },
+      "schwarz": {
+        "description": "Gegenpartei wird keinen Stich machen",
+        "minCards": 7,
+        "requirement": "94,74% Sicherheit",
+        "pointIncrease": 1
+      }
+    },
+
+    "announcementRules": {
+      "prerequisite": "Absage nur nach gültiger Erstansage der eigenen Partei",
+      "timing": "Nach Erreichen von minCards in Hand",
+      "allowedSkipping": "Beliebig viele Stufen können übersprungen werden, wenn Zeitpunkt noch gültig",
+      "responses": {
+        "contra": "Erwiderung mit einer Karte weniger erforderlich",
+        "re": "Erwiderung mit einer Karte weniger erforderlich"
+      },
+      "restriction": "Identische Ansagen einer Partei können nicht wiederholt werden"
+    },
+
+    "timing": {
+      "description": "Wann kann angesagt werden?",
+      "examples": {
+        "atCardPlay": "Ansage beim Legen einer eigenen Karte oder Mitspielerkarte",
+        "beforeOwnCard": "Ansage vor Legen der eigenen Karte",
+        "withOwnCard": "Ansage beim Legen der eigenen Karte"
+      }
+    }
+  },
+
+  "scoring": {
+    "winningConditions": {
+      "reParty": {
+        "noAnnouncements": "121 Augen",
+        "reOnly": "121 Augen",
+        "reAndContra": "121 Augen",
+        "contraOnly": "120 Augen",
+        "kontra90": "151 Augen (oder 181/211 bei weiteren Absagen)",
+        "kontraSchwarz": "Alle Stiche",
+        "eigenAbsage90": "90 Augen gegen keine-90-Ansage",
+        "eigenAbsageSchwarz": "1 Stich gegen schwarz-Ansage"
+      },
+      "kontraParty": {
+        "noAnnouncements": "120 Augen",
+        "reOnly": "120 Augen",
+        "reAndContra": "120 Augen",
+        "kontraOnly": "121 Augen",
+        "re90": "151 Augen (oder 181/211 bei weiteren Absagen)",
+        "reSchwarz": "Alle Stiche",
+        "eigenAbsage90": "90 Augen gegen keine-90-Ansage",
+        "eigenAbsageSchwarz": "1 Stich gegen schwarz-Ansage"
+      }
+    },
+
+    "pointValues": {
+      "normalspiel": {
+        "basePoint": 1,
+        "under90": 1,
+        "under60": 1,
+        "under30": 1,
+        "black": 1,
+        "reAnnouncement": 2,
+        "contraAnnouncement": 2
+      },
+      "solo": {
+        "basePoint": 1,
+        "under90": 1,
+        "under60": 1,
+        "under30": 1,
+        "black": 1,
+        "multiplier": 3,
+        "description": "Punktzahl für Solospieler wird verdreifacht, für andere negativ"
+      },
+      "bonusPoints": {
+        "gegenKreuzDamen": { "points": 1, "condition": "Normalspiel, Kontra-Partei gewinnt" },
+        "doppelkopf": { "points": 1, "condition": "Stich mit 40+ Augen" },
+        "fuchs": { "points": 1, "condition": "Karo Ass der Gegenpartei gefangen" },
+        "karlchen": { "points": 1, "condition": "Kreuz Bube macht letzten Stich" }
+      }
+    },
+
+    "penalties": {
+      "noWinner": "Wenn beide Parteien ihr Ziel nicht erreichen: Nur bestimmte Punkte und Bonuspunkte zählen",
+      "evenOddRule": "Spielergebnisse nach jedem Spiel sind entweder alle gerade oder alle ungerade"
+    }
+  },
+
+  "violations": {
+    "categories": {
+      "unerheblich": {
+        "id": "unerheblich",
+        "name": "Unerheblicher Regelverstoß",
+        "description": "Verstoß hat keinen Einfluss auf Spielverlauf oder -ausgang",
+        "penalty": 0,
+        "consequence": "Spiel wird fortgesetzt"
+      },
+      "geringfuegig": {
+        "id": "geringfuegig",
+        "name": "Geringfügiger Regelverstoß",
+        "description": "Verstoß hat möglichen Einfluss auf Spielverlauf, aber keine spielentscheidende Bevorteilung",
+        "penalty": {
+          "normalspiel": "3 Strafpunkte für Verursacher, je 1 Punkt für Mitspieler",
+          "solo": {
+            "solospielerError": "3 Strafpunkte für Solospieler",
+            "kontraError_disadvantage": "3 Strafpunkte Verursacher, gutgeschrieben Solospieler",
+            "kontraError_noDisadvantage": "3 Strafpunkte Verursacher, je 1 für andere"
+          }
+        },
+        "consequence": "Spiel wird fortgesetzt"
+      },
+      "schwerwiegend": {
+        "id": "schwerwiegend",
+        "name": "Schwerwiegender Regelverstoß",
+        "description": "Verstoß kann spielentscheidend sein",
+        "penalty": {
+          "normalspiel": "12 Strafpunkte + 3 pro Absage der Gegenpartei",
+          "solo_solospieler": "12 Strafpunkte + 3 pro Absage",
+          "solo_kontra": "12 Minuspunkte + 3 pro Ansage des Solospielers"
+        },
+        "consequence": "Spiel wird sofort beendet, als 'nicht gespielt' gewertet"
+      }
+    },
+
+    "reclamation": {
+      "timingRule": "Verstoß muss sofort reklamiert werden, nachdem er von allen entdeckt werden konnte",
+      "losesRight": "Spieler, der eine Spielmaßnahme tätigt, verliert Reklamationsrecht",
+      "inquiryAllowed": "Anfrage an Partner, ob reklamiert wird, ist erlaubt - Antwort ist bindend",
+      "rightToReclaim": {
+        "clearedPartnership": "Nur Gegenspieler dürfen reklamieren",
+        "unclearedPartnership": "Alle außer Verursacher dürfen reklamieren"
+      }
+    }
+  },
+
+  "essenerSystem": {
+    "introduction": {
+      "purpose": "Systematischer Informationsaustausch zwischen Spielpartnern",
+      "principles": [
+        "Information über eigenes Blatt wird gegeben, wenn dadurch Erwartungswert der eigenen Partei erhöht wird",
+        "Von Partner geforderte Information wird grundsätzlich gegeben",
+        "Blattbewertung erfolgt durch Erwartungswerte und Verliererrechnung"
+      ]
+    },
+
+    "communicationTools": {
+      "announcements": {
+        "description": "Ansagen zeigen Blattstruktur und -stärke",
+        "timing": "Ansagezeitpunkt gibt zusätzliche Informationen",
+        "usage": "Nur wenn Erwartungswert erhöht wird"
+      },
+
+      "announcementTiming": {
+        "immediate": {
+          "description": "Ansage beim Legen einer Karte",
+          "meaning": "Bei Erstansage: besondere Stärke. Bei Folgeansage: Kommentar zur Karte"
+        },
+        "beforeOwnPlay": {
+          "description": "Ansage vor Anspiel",
+          "meaning": "Bei ungeklärter Partei: Partnerschaftsklärung. Bei geklärter Partei: Abbringen vom Normalanspiel"
+        },
+        "beforePlay": {
+          "description": "Warten vor Legen oder Anspiel (simuliertes Überlegen)",
+          "meaning": "Anfrage an Partner nach bestimmten Informationen",
+          "requirement": "Erfordert Selbstdisziplin, da vieles simuliert sein kann"
+        }
+      },
+
+      "playingConventions": {
+        "description": "Systematische Anspiele mit konsistenter Bedeutung",
+        "requirements": [
+          "Information muss mehr Vorteile bringen als potentielle Schwächung",
+          "Logische Struktur erforderlich",
+          "Ausreichend hohe Anwendungswahrscheinlichkeit",
+          "Geringe Anfälligkeit gegen Störmanöver"
+        ]
+      }
+    },
+
+    "heartTenConvention": {
+      "id": "heart_ten_convention",
+      "name": "Herz 10 Anspiel-Konvention",
+      "description": "Anspiel einer Herz 10 zeigt Besitz von Kreuz Dame und Pik Dame",
+      "timing": "Bis zum letztmöglichen Ansagezeitpunkt",
+      "variants": {
+        "earlyWithAnnouncement": {
+          "condition": "Ansage mit Legen der ersten Karte, Herz 10 bis 3. Stich",
+          "meaning": "Blatt ist so stark, dass eine Herz 10 beim Partner für keine-90 ausreicht",
+          "requirement": "Partner ansagt sofort keine-90, wenn er die andere Herz 10 hat"
+        },
+        "earlyNoAnnouncement": {
+          "condition": "Herz 10 in 1.-2. Stich ohne Ansage",
+          "meaning": "Trumpf 6-8 (meist 7) mit Herz 10, Kreuz Dame, Pik Dame an der Spitze, Zusatzwerte später sichtbar"
+        },
+        "earlyLateAnnouncement": {
+          "condition": "Herz 10 in 1.-2. Stich mit Ansage zum letzten Zeitpunkt",
+          "meaning": "Stärkere Blätter mit Zusatzwerten (Stechen, weitere Asse, 9 Trumpf, 8 gute Trumpf)"
+        }
+      }
+    },
+
+    "clubSpadeConvention": {
+      "id": "queen_convention",
+      "name": "Kreuz/Pik Dame Anspiel-Konvention",
+      "description": "Anspiel von Kreuz/Pik Dame signalisiert Re-Spieler mit Doppel-Herz 10",
+      "variants": {
+        "strong": {
+          "condition": "Ansage mit Legen der ersten Karte, Dame bis 3. Stich",
+          "meaning": "Starkes Re-Blatt, mit minimalen Zusatzwerten des Partners ist keine-90 möglich"
+        },
+        "weak": {
+          "condition": "Dame in 1.-2. Stich ohne Ansage",
+          "meaning": "Trumpfkurzes Blatt (5-6, selten schwache 7) ohne erkennbare Zusatzwerte"
+        },
+        "medium": {
+          "condition": "Dame in 1.-2. Stich mit Ansage zum letzten Zeitpunkt",
+          "meaning": "Doppel-Herz 10 mit Zusatzwerten, die Partner vor 11. Karte nicht kennt"
+        }
+      }
+    },
+
+    "handEvaluation": {
+      "expectationValues": {
+        "description": "Abschätzung der durchschnittlichen Augenzahl pro Spieler",
+        "rePlayer": "Ø 68 Augen pro Spiel",
+        "kontraPlayer": "Ø 52 Augen pro Spiel",
+        "minimumForAnnouncement": {
+          "re": "≥ 75 Augen Erwartungswert",
+          "kontra": "≥ 85 Augen Erwartungswert"
+        }
+      },
+
+      "loserCount": {
+        "description": "Zählung von Kartenverlierern",
+        "wholeLoser": [
+          "Jede fehlende Herz 10",
+          "Erste Karte von Pik/Kreuz (außer angespielte oder Doppelasse)"
+        ],
+        "halfLoser": [
+          "Jede fehlende Kreuz Dame (Pik Dame bei Kontra, zwei bei Re)",
+          "Zweite Karte von Pik/Kreuz",
+          "Erste Karte von Herz",
+          "Doppelasse",
+          "Angespielte Asse"
+        ],
+        "strongHand": "Maximum 4 Verlierer für starke Blätter"
+      }
+    },
+
+    "ninetyQuestions": {
+      "description": "Anfragen zum Informationsaustausch",
+      "prerequisites": {
+        "strength": "Starkes Blatt (mindestens Stärke für Re/Kontra bei Legen der ersten Karte)",
+        "advantage": "Echter Vorteil für eigene Partei durch Antwort"
+      },
+
+      "types": {
+        "forcing": {
+          "description": "Forcierende Anfrage - Partner muss antworten",
+          "condition": "Blatt so stark, dass auch mit sehr schwachem Partnerblatt Erfolg wahrscheinlich",
+          "obligation": "Partner ist zur Antwort verpflichtet"
+        },
+        "inviting": {
+          "description": "Einladende Anfrage - Partner darf verweigern",
+          "condition": "2,5-3 Verlierer bei etwas niedrigerer Trumpfstärke",
+          "partner": "Kann mit Nullblatt verweigern"
+        }
+      },
+
+      "situations": {
+        "firstStich": "Ansage im 1. Stich vor Legen der eigenen Karte mit Warten",
+        "ownCardPlay": "Ansage beim Anspiel mit Warten vor Legen",
+        "followUp": "Ansage mit Legen der 1. Karte und Warten vor 2. Karte",
+        "special": "Spezielle Anfrage vor Legen der 2. Karte"
+      }
+    },
+
+    "specialRules": {
+      "hochzeit": {
+        "announcedWedding": {
+          "description": "Hochzeiter meldet an, Partner wird durch Klärungsstich ermittelt",
+          "firstAnnouncement": "Erst nach Klärungsstich möglich",
+          "annancementTiming": "Zeitpunkte können sich verschieben (weniger Karten erforderlich)"
+        },
+        "silentWedding": {
+          "description": "Hochzeiter meldet nicht an, spielt Karo-Solo"
+        }
+      },
+
+      "soloVariants": {
+        "assolo": {
+          "description": "Asse sind Trumpf, besonders wertvoll",
+          "standardAssolo": "Mit guter Blattstruktur",
+          "developmentAssolo": "Mit weniger starkem Blatt, erhofft Kartenverteilung"
+        },
+        "colorSolo": {
+          "description": "Eine Farbe wird zur Trumpffarbe",
+          "heart": "Spezialfall: Nur 24 Trumpf",
+          "others": "26 Trumpf pro Farbe"
+        },
+        "queenJackSolo": {
+          "description": "Nur Damen oder nur Buben sind Trumpf"
+        },
+        "meatless": {
+          "description": "Fleischlos/Asse-Solo: Keine Trumpf, normale Kartenhierarchie"
+        }
+      }
+    }
+  },
+
+  "tournamentRules": {
+    "officialTournaments": {
+      "description": "Nach DDV Turnier-Spielregeln durchzuführen",
+      "tables": "Vier-Spieler-Tische",
+      "gamesPerRound": 24,
+      "playTime": "100 Minuten pro Runde",
+      "variants": {
+        "fivePlayerTable": {
+          "description": "Bei 5 Spielern",
+          "dealer": "Sitzt und erhält keine Punkte",
+          "gamesPerRound": 30,
+          "playTime": "125 Minuten"
+        }
+      }
+    },
+
+    "mandatory": {
+      "pflichtsolo": "Jeder Spieler muss ein Pflichtsolo in jeder Runde spielen"
+    },
+
+    "scoring": {
+      "listLeader": "Position 4 führt die Spielliste",
+      "documentation": "Quersumme muss null ergeben, gerade-ungerade-Regel muss gelten"
+    },
+
+    "arbitration": {
+      "referee": "Schiedsrichter trifft erste Entscheidung",
+      "court": "Schiedsgericht ist endgültig",
+      "time": "Schiedsrichter kann Spielzeit für Reklamationen verlängern"
+    }
+  },
+
+  "practicalGuidelines": {
+    "introduction": {
+      "description": "Ungeschriebene aber universell akzeptierte Regeln aus der Praxis",
+      "status": "Nicht in den offiziellen Regeln, aber in der Spielkultur verankert",
+      "importance": "Wesentlich für partnerorientiertes, faires Spiel"
+    },
+
+    "partnerProtection": {
+      "notOvertakingPartner": {
+        "id": "not_overtaking_partner",
+        "name": "Partner nicht abstechen",
+        "description": "Spieler soll seinen Partner nicht überstechen, wenn dieser einen Stich wahrscheinlich bereits gewinnt",
+        "context": "Wenn Partner mit höherer Karte angesagt oder bekannt ist, soll Spieler nicht mit noch höherer Karte nachstechen",
+        "consequence": "Verschwendet hohe Trumpf/Karten des Partners, kann Spiel kosten",
+        "exception": "Wenn eigene Partei in Gefahr ist oder defensiv gespielt werden muss"
+      },
+
+      "noEarlyOvertrumping": {
+        "id": "no_early_overtrumping",
+        "name": "Nicht zu früh überstechen",
+        "description": "Mit dem kleinsten Stechblatt nicht überstechen, wenn Partner hinten sitzt und noch wahrscheinlich gewinnt",
+        "rule": "Wenn Partner noch nicht alle Karten gespielt hat und wahrscheinlich höher sitzt, nicht vorstechen",
+        "reasoning": "Spart eigene Trumpf, lässt Partner das Spiel kontrollieren",
+        "example": "Partner spielt Stiche 1-2, Gegner versucht 3. Stich mit niedriger Karte. Besser warten, ob Partner nochmal übernimmt"
+      },
+
+      "signallingToPartner": {
+        "id": "signalling_partner",
+        "name": "Mit Kartenwahl dem Partner zeigen",
+        "description": "Durch Wahl bestimmter Karten dem Partner Informationen vermitteln",
+        "subcategories": {
+          "highLow": {
+            "name": "Hoch-Niedrig Markierung",
+            "description": "Beim Bedienen oder Abwerfen: Erste Karte höher, zweite niedrig = Kraft in dieser Farbe. Erste niedrig, zweite höher = Schwäche",
+            "usage": "Normalspiel bei Fehlkarten"
+          },
+          "suitPreference": {
+            "name": "Farbvorzug-Signal",
+            "description": "Durch Höhe der gespielten Karte Partnerwunsch signalisieren (welche Farbe soll nachgespielt werden)",
+            "usage": "Besonders bei Ass-Solos"
+          },
+          "singletonShowdown": {
+            "name": "Singleton-Zeige",
+            "description": "Beim Bedienen mit erkennbarem Singleton (K oder 9) den Partner warnen, dass nur eine Karte vorhanden ist",
+            "consequence": "Partner sollte die Farbe nachspielen"
+          }
+        }
+      }
+    },
+
+    "tacticalPlay": {
+      "controlTheGame": {
+        "id": "control_game",
+        "name": "Spiel unter Kontrolle halten",
+        "description": "Wer die Initiatve hat, soll sie behalten",
+        "guidance": [
+          "Mit starkem Blatt kontinuierlich anspielend bleiben",
+          "Keine Pausen für Gegner zu sammeln",
+          "Mit Trumpf dirigieren, nicht nachstechen"
+        ]
+      },
+
+      "avoidUnnecessaryRisks": {
+        "id": "avoid_risks",
+        "name": "Unnötige Risiken vermeiden",
+        "description": "Sichere Spiele nicht gefährden durch riskante Kartenwahl",
+        "guidance": [
+          "Nicht mit niedrigen Karten stechen, wenn höhere verfügbar",
+          "Nicht anstechen lassen, wenn Partner oben sitzt",
+          "Bluff-Ansagen nur mit echtem Grund"
+        ]
+      },
+
+      "defendingPositioning": {
+        "id": "defending_position",
+        "name": "Defensive Positionierung",
+        "description": "Wenn in Rückstand, klug Stiche verteilen",
+        "guidance": [
+          "Gegner nicht alle Stiche machen lassen",
+          "Zählen, wie viele Augen noch nötig sind",
+          "Hohe Karten sparen für kritische Stiche"
+        ]
+      }
+    },
+
+    "communicationConventions": {
+      "playingSequence": {
+        "id": "playing_sequence",
+        "name": "Spiel-Reihenfolge signalisiert Blattstruktur",
+        "description": "Die Reihenfolge, in der Karten ausgespielt werden, gibt Partner Information",
+        "examples": {
+          "assesFirst": "Asse zuerst spielen = Damen/Buben fehlen oder sind schwach",
+          "damesFirst": "Damen zuerst = Asse sparen für später, Damen sind dominant",
+          "trumpsEarly": "Früh Trumpf spielen = Viele Trumpf, wenige Fehlkarten"
+        }
+      },
+
+      "ansageZeitpunkt": {
+        "id": "announcement_timing_communication",
+        "name": "Ansagezeitpunkt als Kommunikationsmittel",
+        "description": "NICHT nur Regel, sondern auch Blatt-Charakterisierung",
+        "guidance": [
+          "Sofortige Ansage (beim Kartenlegen) = sehr starkes Blatt oder besondere Situation",
+          "Späte Ansage (zum letzten Moment) = Kraft vorhanden, aber nicht überragend",
+          "Warten vor Ansage = Schwächeres Blatt, Anfrage an Partner"
+        ]
+      },
+
+      "waitingBeforePlay": {
+        "id": "waiting_before_play",
+        "name": "Warten vor Kartenlegen = Anfrage",
+        "description": "Simuliertes Nachdenken ist ein Kommunikationsmittel (keine echte Überlegung)",
+        "usage": "Fragt Partner: 'Bekommst du diesen Stich?' oder 'Hast du diese Karte?'",
+        "partnerResponse": "Positive Antwort durch Ansage, negative durch fehlendes Signal",
+        "disciplineRequired": "Muss früh im Spiel trainiert werden, um Automatismus zu werden"
+      }
+    },
+
+    "handManagement": {
+      "economyOfTrumps": {
+        "id": "trump_economy",
+        "name": "Sparsamkeit mit Trumpf",
+        "description": "Trumpf sollten gezielt und nicht verschwendet werden",
+        "guidance": [
+          "Hohe Trumpf für entscheidende Stiche sparen",
+          "Mit niedrigen Trumpf nicht vorstechen",
+          "Fehlfarben soweit möglich bedienen/abwerfen"
+        ]
+      },
+
+      "trumpDrawing": {
+        "id": "trump_drawing",
+        "name": "Trumpf ziehen",
+        "description": "Gegnerische Trumpf systematisch herausziehen",
+        "timing": "Meist sinnvoll, wenn man Fehlfarben dominant hat",
+        "caution": "Nicht blind ziehen; zählen und strategisch planen"
+      },
+
+      "cardCounting": {
+        "id": "card_counting",
+        "name": "Karten zählen und Wahrscheinlichkeiten berechnen",
+        "description": "Stille Verfolgung der gespielten Karten",
+        "guidance": [
+          "Geistig Trumpf, Asse und hohe Karten zählen",
+          "Nach wenigen Stiches schon Blattverteilung erahnen",
+          "Damit Spielwahl optimieren"
+        ]
+      }
+    },
+
+    "fairPlay": {
+      "noArtificialSignaling": {
+        "id": "no_artificial_signals",
+        "name": "Keine künstlichen Signale",
+        "description": "Regelkonformen Signalen sind erlaubt, künstliche nicht",
+        "prohibited": [
+          "Mit links/rechts spielen zum Signalisieren",
+          "Körpergesten, Mimik zur Information",
+          "Lautstärke der Ansage variieren",
+          "Verzögerte Kartenwahl mit Bedeutung"
+        ],
+        "allowed": [
+          "Ansage und Ansagezeitpunkt (TSR)",
+          "Kartenwahl in logischer Reihenfolge",
+          "Warten vor Kartenlegen (Essener System)"
+        ]
+      },
+
+      "honestPlay": {
+        "id": "honest_play",
+        "name": "Ehrliches Spiel",
+        "description": "Partner vertrauen auf Glaubwürdigkeit der Signale",
+        "principle": "Was man signalisiert, muss mit dem Blatt übereinstimmen",
+        "consequence": "Täuschung zerstört Partnerschaft und Spiel-Kultur"
+      },
+
+      "respectForOpponents": {
+        "id": "respect_opponents",
+        "name": "Respekt für Gegner",
+        "description": "Gegner spielen fair und mit Verstand",
+        "guidance": [
+          "Nicht unnötig auf Fehler hinweisen",
+          "Spiel respektvoll führen",
+          "Nach dem Spiel kurz analysieren, nicht kritisieren"
+        ]
+      }
+    },
+
+    "specialSituations": {
+      "hochzeitPartnerClarification": {
+        "id": "wedding_partner_clarity",
+        "name": "Hochzeit: Partner deutlich machen",
+        "description": "Beim Klärungsstich dem Hochzeiter klar zeigen, ob man Partner bin",
+        "guidance": [
+          "Mit hohem Trumpf (oder As) klar gewinnen, wenn Partner",
+          "Mit kleiner Karte bedienen, wenn kein Partner",
+          "Ambivalenz vermeiden (kann zu Missverständnissen führen)"
+        ]
+      },
+
+      "soloDefense": {
+        "id": "solo_defense",
+        "name": "Solo gegen Solospieler spielen",
+        "description": "Gegen Solospieler ist Zusammenspiel noch wichtiger",
+        "guidance": [
+          "Gegenseitige Unterstützung ist kritisch",
+          "Nicht Stiche untereinander verteilen",
+          "Klar signalisieren, wer welchen Stich macht"
+        ]
+      },
+
+      "endGameStrategy": {
+        "id": "endgame_strategy",
+        "name": "Spiel-Ende: Klare Reihenfolge",
+        "description": "Am Ende des Spiels muss klar sein, wer gewinnt",
+        "guidance": [
+          "Letzte Stiche sind oft entscheidend",
+          "Mit berechenbarer Struktur spielen",
+          "Nicht überraschend wechseln"
+        ]
+      }
+    },
+
+    "partnerCommunicationExamples": {
+      "example1": {
+        "situation": "Partner spielt Ass an, sitzt vorn, ich sitze hinten",
+        "correctPlay": "Mit hoher Karte nachspielen, wenn ich Partner bin oder Stich unterstütze",
+        "incorrectPlay": "Mit niedriger Karte schwach bedienen -> wirkt wie Abwurf",
+        "meaning": "Hohe Karte = Stärke in dieser Farbe"
+      },
+
+      "example2": {
+        "situation": "Partner sitzt hinten, Gegner sitzt vorn und hat Stich, ich bin nächster",
+        "correctPlay": "Nicht überstechen, wenn Partner wahrscheinlich schlägt - Trumpf sparen",
+        "incorrectPlay": "Mit Trumpf überstechen -> verschwendet Trumpf unnötig",
+        "meaning": "Vertrauen in Partner sparen, nicht abstechen"
+      },
+
+      "example3": {
+        "situation": "Nach starkem Re-Ansage, Partner fragt (wartet vor Anspiel)",
+        "correctPlay": "Mit Stärke antworten (Ansage), wenn Blatt dazu passt",
+        "incorrectPlay": "Nicht antworten, weil unsicher -> Partner verliert Info",
+        "meaning": "Anfragen SIND Befehle, nicht optional"
+      },
+
+      "example4": {
+        "situation": "Partner spielt Damen zuerst, zeigt damit Damen-Dominanz",
+        "correctPlay": "Asse sparen, Partner hat Damen-Kontrolle",
+        "incorrectPlay": "Sofort Asse spielen, ignoriert Partnersignal",
+        "meaning": "Kartenreihenfolge ist Kommunikation"
+      }
+    }
+  }
+}

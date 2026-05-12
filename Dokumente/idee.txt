@@ -1,0 +1,9 @@
+Neue Session in Claude Code für /Users/manfredwolff/ki-projects/doppelkopf
+(Das ist ein eigenständiges Projekt)
+Dort dann:
+Engine-Architektur planen
+API-Struktur definieren
+Game-Logic implementieren
+Tests schreiben
+Später in separater Session:
+UI/Frontend gegen die Engine-API bauenn
