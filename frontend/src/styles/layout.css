@@ -1,0 +1,287 @@
+/**
+ * Responsive Layout - Landscape Only
+ * Mobile (375-812px) | Tablet (813-1024px) | Desktop (≥1280px)
+ */
+
+/* ========================================================================
+   GAME BOARD MAIN CONTAINER
+   ======================================================================== */
+
+.game-board {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--spacing-md);
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-secondary);
+  overflow: hidden;
+}
+
+/* ========================================================================
+   HEADER AREA (Player 1 + Tisch + Player 2)
+   ======================================================================== */
+
+.game-board__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--spacing-md);
+  align-items: center;
+  min-height: 80px;
+}
+
+.game-board__player-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.game-board__player-area--p1 {
+  grid-column: 1;
+}
+
+.game-board__tisch {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--color-border);
+  padding: var(--spacing-md);
+}
+
+.game-board__player-area--p2 {
+  grid-column: 3;
+}
+
+/* Tisch - Trick Cards */
+.tisch__current-trick {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 60px;
+}
+
+/* ========================================================================
+   MIDDLE AREA (Hand + Buttons - Flexible Content)
+   ======================================================================== */
+
+.game-board__hand-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.game-board__hand {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.game-board__hand--mobile {
+  /* Landscape-only: all cards fit or scroll */
+  max-height: 150px;
+}
+
+.game-board__hand--tablet {
+  max-height: 180px;
+}
+
+.game-board__hand--desktop {
+  max-height: 200px;
+}
+
+/* ========================================================================
+   FOOTER AREA (Announcement Buttons + Score)
+   ======================================================================== */
+
+.game-board__footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.game-board__announcements {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.game-board__score-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  min-width: 120px;
+}
+
+/* ========================================================================
+   MOBILE LANDSCAPE (375-812px)
+   ======================================================================== */
+
+@media (max-width: 812px) {
+  .game-board {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .game-board__header {
+    gap: var(--spacing-sm);
+    min-height: 60px;
+  }
+
+  .game-board__player-area {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .game-board__hand-area {
+    gap: var(--spacing-sm);
+    min-height: 140px;
+  }
+
+  .game-board__hand {
+    padding: var(--spacing-sm);
+    gap: 2px; /* Tight spacing for fan-stack on mobile */
+  }
+
+  .game-board__footer {
+    gap: var(--spacing-sm);
+  }
+
+  .game-board__announcements {
+    gap: 2px;
+  }
+
+  .game-board__score-panel {
+    padding: var(--spacing-sm);
+    min-width: 100px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ========================================================================
+   TABLET LANDSCAPE (813-1024px)
+   ======================================================================== */
+
+@media (min-width: 813px) and (max-width: 1279px) {
+  .game-board {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .game-board__header {
+    gap: var(--spacing-md);
+    min-height: 70px;
+  }
+
+  .game-board__player-area {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+  }
+
+  .game-board__hand-area {
+    gap: var(--spacing-md);
+    min-height: 160px;
+  }
+
+  .game-board__hand {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .game-board__footer {
+    gap: var(--spacing-md);
+  }
+
+  .game-board__score-panel {
+    padding: var(--spacing-md);
+    min-width: 130px;
+  }
+}
+
+/* ========================================================================
+   DESKTOP LANDSCAPE (≥1280px)
+   ======================================================================== */
+
+@media (min-width: 1280px) {
+  .game-board {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .game-board__header {
+    gap: var(--spacing-lg);
+    min-height: 100px;
+  }
+
+  .game-board__player-area {
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+  }
+
+  .game-board__hand-area {
+    gap: var(--spacing-lg);
+    min-height: 200px;
+  }
+
+  .game-board__hand {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .game-board__footer {
+    gap: var(--spacing-xl);
+  }
+
+  .game-board__score-panel {
+    padding: var(--spacing-lg);
+    min-width: 160px;
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* ========================================================================
+   SCROLLBAR STYLING
+   ======================================================================== */
+
+.game-board__hand::-webkit-scrollbar {
+  height: 6px;
+}
+
+.game-board__hand::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+.game-board__hand::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.game-board__hand::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

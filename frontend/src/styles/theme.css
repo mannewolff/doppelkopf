@@ -1,0 +1,185 @@
+/**
+ * Doppelkopf Theme
+ * Dark Mode Default (Landscape-only)
+ */
+
+:root {
+  /* ====================================================================
+     COLORS - Dark Mode
+     ==================================================================== */
+
+  --color-bg-primary: #0f1419;
+  --color-bg-secondary: #1a4d2e; /* Kartentisch Grün */
+  --color-bg-tertiary: #2a5f3f;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e0e0e0;
+  --color-text-muted: #999999;
+
+  /* Party Colors */
+  --color-party-re: #4caf50; /* Grün */
+  --color-party-kontra: #ff9800; /* Orange */
+  --color-party-solo: #2196f3; /* Blau */
+
+  /* Card States */
+  --color-card-valid: #00ff00; /* Helles Grün für gültige Karten */
+  --color-card-selected: #00ff00;
+  --color-card-disabled: #444444;
+  --color-card-hover: #00ff00;
+
+  /* Announcement States */
+  --color-announcement-active: #ffc107; /* Gelb */
+  --color-announcement-done: #4caf50; /* Grün */
+  --color-announcement-disabled: #444444;
+
+  /* Suit Colors */
+  --color-suit-clubs: #000000; /* Kreuz: Schwarz */
+  --color-suit-spades: #8b0000; /* Pik: Dunkelrot */
+  --color-suit-hearts: #ff0000; /* Herz: Rot */
+  --color-suit-diamonds: #ffd700; /* Karo: Gold */
+
+  /* Feedback */
+  --color-success: #4caf50;
+  --color-error: #f44336;
+  --color-warning: #ff9800;
+  --color-info: #2196f3;
+
+  /* Borders & Shadows */
+  --color-border: #404040;
+  --color-border-focus: #00ff00;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  /* ====================================================================
+     TYPOGRAPHY
+     ==================================================================== */
+
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* ====================================================================
+     SPACING
+     ==================================================================== */
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* ====================================================================
+     BORDERS & RADIUS
+     ==================================================================== */
+
+  --border-width: 1px;
+  --border-width-focus: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  /* ====================================================================
+     TRANSITIONS & ANIMATIONS
+     ==================================================================== */
+
+  --transition-fast: 100ms ease-in-out;
+  --transition-normal: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+
+  /* ====================================================================
+     Z-INDEX
+     ==================================================================== */
+
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+  --z-tooltip: 1100;
+  --z-notification: 1200;
+}
+
+/* ========================================================================
+   GLOBAL STYLES
+   ======================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow: hidden; /* Landscape-only: no scroll */
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ========================================================================
+   UTILITY CLASSES
+   ======================================================================== */
+
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.bg-party-re {
+  background-color: var(--color-party-re);
+}
+
+.bg-party-kontra {
+  background-color: var(--color-party-kontra);
+}
+
+.border-focus {
+  border: var(--border-width-focus) solid var(--color-border-focus);
+}
+
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+
+.transition-normal {
+  transition: all var(--transition-normal);
+}

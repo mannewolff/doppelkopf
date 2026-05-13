@@ -1,0 +1,1872 @@
+Turnier-Spielregeln (TSR)
+des Deutschen Doppelkopf-Verbandes e. V. (DDV)
+Diese Turnier-Spielregeln beschreiben Sachverhalte ohne jegliche Personifizierung.
+Aus diesem Grunde ist darauf verzichtet worden, jeweils die weibliche Form hinzuzufügen
+(z. B. "Doppelkopfspieler/innen").
+
+Inhalt
+1.
+
+Definition der in den Turnier-Spielregeln genannten Personen
+
+2.
+
+Allgemeines
+
+2.1
+
+Begriff des Doppelkopfspieles
+
+2.2
+
+Das Doppelkopfblatt
+
+2.3
+
+Rangfolge der Karten
+
+2.4
+
+Die Parteienbildung
+
+2.5
+
+Spielziel
+
+3.
+
+Spielvorbereitung
+
+3.1
+
+Listenführer
+
+3.2
+
+Bestimmung der Plätze
+
+3.3
+
+Geben der Karten
+
+4.
+
+Spielfindung
+
+4.1
+
+Die Vorbehaltsabfrage
+
+4.2
+
+Pflichtsolo
+
+4.3
+
+Lustsolo
+
+4.4
+
+Hochzeit
+
+5.
+
+Spielverlauf
+
+5.1
+
+Aufspiel
+
+5.2
+
+Bedienen
+
+5.3
+
+Stiche
+
+5.4
+
+Spielabkürzung
+
+5.5
+
+Klärung der Parteizugehörigkeit und Partnerschaft
+
+6.
+
+Ansagen und Absagen
+
+6.1
+
+Definitionen
+
+6.2
+
+Ansagen und Ansagezeitpunkt
+
+6.3
+
+Absagen und Absagezeitpunkt
+
+6.4
+
+Ergänzungen zu den An- und Absagezeitpunkten
+
+7.
+
+Spielbewertung
+
+7.1
+
+Gewinnstufen und Gewinnkriterien
+
+7.2
+
+Spielwerte
+
+7.3
+
+Spielliste
+
+8.
+
+Turnier-Doppelkopf
+
+8.1
+
+Offizielle Turniere
+
+8.2
+
+Schiedsrichter, Schiedsgericht
+
+8.3
+
+Vierer-Tische
+
+8.4
+
+Sitzreihenfolge
+
+8.5
+
+Anzahl der Spiele und Spielzeit
+
+8.6
+
+Pflichtsolo
+
+9.
+
+Regelverstöße, Unsportlichkeiten und Strafpunkte
+
+9.1
+
+Allgemeine Grundregeln
+
+9.2
+
+Unerhebliche Regelverstöße
+
+9.3
+
+Geringfügige Regelverstöße
+
+9.4
+
+Schwerwiegende Regelverstöße
+
+9.5
+
+Regelverstöße bei bereits entschiedenem Spiel
+
+9.6
+
+Reklamation
+
+9.7
+
+Unsportliches Verhalten
+
+10.
+
+Abweichungen und Empfehlungen
+
+10.1
+
+Abweichungen an Fünfer-Tischen
+
+10.2
+
+Empfehlungen für Fünfer-Tische
+
+11.
+
+Inkrafttreten und Änderungshistorie
+
+TSR, Stand 21.02.2026
+
+Seite 2 von 28
+
+1.
+
+Definition der in den Turnier-Spielregeln genannten Personen
+Teilnehmer:
+Alle bei einem Doppelkopfturnier mitspielenden Personen.
+Mitspieler:
+Alle Personen am gleichen Tisch.
+Spieler:
+Die im jeweiligen Spiel mitspielenden vier Personen.
+Gegenpartei:
+Die jeweils andere Partei. Für einen Spieler der Kontra-Partei ist die Re-Partei die
+Gegenpartei und für einen Spieler der Re-Partei ist die Kontra-Partei die Gegenpartei.
+Gegenspieler:
+Ein Spieler der Gegenpartei.
+Partner:
+Ein Spieler der eigenen Partei.
+Zuschauer:
+Personen, die sich an einem Tisch aufhalten, an dem sie nicht selbst Mitspieler
+sind.
+
+2.
+
+Allgemeines
+
+2.1
+
+Begriff des Doppelkopfspieles
+
+2.1.1
+
+Das Doppelkopfspiel ist ein Kartenspiel für vier oder mehr Personen. Das einzelne
+Spiel wird von vier Spielern gespielt.
+
+2.1.2
+
+Das Doppelkopfspiel ist wahrscheinlich aus dem meist im süddeutschen Raum gespielten Schafkopf entstanden, das bereits seit 1895 ein Regelwerk besaß. Es erhielt den Namen daher, dass alle Karten doppelt im Spiel vorhanden sind (DoppelSchafkopf). Doppelkopf wird im Gegensatz zu Schafkopf inzwischen in ganz
+Deutschland gespielt, überwiegend jedoch in Norddeutschland und in der RheinMain-Gegend.
+
+2.1.3
+
+Mit der Gründung des Deutschen Doppelkopf-Verbandes e.V. (DDV) am 27. März
+1982 im Rahmen der 1. Deutschen Meisterschaft in Braunschweig wurden Bestrebungen in Gang gesetzt, die Regeln zu vereinheitlichen. Das Kartenspiel Doppelkopf wurde und wird regional nach sehr unterschiedlichen Varianten gespielt. Für
+sportliche Wettkampfbedingungen, wie sie für die Wettbewerbe des DDV benötigt
+werden, sind jedoch einheitliche Regeln unabdingbar. Deswegen wird im DDV
+stets nach den TSR gespielt. Bei Fragen gibt die Regelkommission Auskunft, deren Kontaktdaten auf der Homepage „www.doko-verband.de“ zu finden sind.
+
+TSR, Stand 21.02.2026
+
+Seite 3 von 28
+
+2.2
+
+Das Doppelkopfblatt
+
+2.2.1
+
+Das Doppelkopf-Kartenspiel besteht aus 48 Spielkarten in vier Farben zu je 12
+Karten. Die Farben heißen „Kreuz", „Pik", „Herz" und „Karo". Jede Karte ist doppelt
+im Spiel. Dies ergibt folgende Darstellung der Karten:
+
+2.2.2
+
+As
+
+As
+
+10
+
+10
+
+K
+
+K
+
+D
+
+D
+
+B
+
+B
+
+9
+
+9
+
+Kreuz
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+♣
+
+Pik
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+♠
+
+Herz
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+♥
+
+Karo
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+♦
+
+Jede Farbe hat folgende Karten zweifach mit nachstehendem Zählwert (Augen):
+1. Ass
+
+11
+
+Augen
+
+2. Zehn
+
+10
+
+Augen
+
+3. König
+
+4
+
+Augen
+
+4. Dame
+
+3
+
+Augen
+
+5. Bube
+
+2
+
+Augen
+
+6. Neun
+
+0
+
+Augen
+
+In jeder Farbe sind somit 60 Augen vorhanden, so dass das Doppelkopfblatt insgesamt 240 Augen enthält.
+2.3
+
+Rangfolge der Karten
+
+2.3.1
+
+Jede Karte gehört entweder zu einer der gleichwertigen „Fehlfarben“ oder zu den
+Trumpfkarten.
+
+2.3.2
+
+Jede Trumpfkarte ist ranghöher als irgendeine Fehlkarte.
+
+2.3.3
+
+Die Rangfolge hängt vom Typ des Spieles ab, der vor Beginn des Spieles in der
+Vorbehaltsabfrage ermittelt wird. Es gibt die folgenden zwei Spieltypen:
+•
+•
+
+Normalspiel
+Solo
+
+Beim Solo werden vier Varianten unterschieden:
+• Farbsolo
+• Damensolo
+• Bubensolo
+• Fleischloser (Asse-Solo)
+TSR, Stand 21.02.2026
+
+Seite 4 von 28
+
+2.3.4
+
+Rangfolge beim Normalspiel:
+Die absteigende Rangfolge der 13 jeweils zweifach im Spiel vorhandenen Trumpfkarten ist:
+♥ 10, ♣ D, ♠ D, ♥ D, ♦ D, ♣ B, ♠ B, ♥ B, ♦ B, ♦ As, ♦ 10, ♦ K, ♦ 9.
+In den drei Fehlfarben ist die absteigende Rangfolge der ebenfalls doppelt vorhandenen Karten: in Kreuz und Pik: As, 10, K, 9, in Herz: A, K, 9.
+Beim Normalspiel gibt es damit 26 Trumpfkarten und 22 Fehlkarten.
+
+2.3.5
+
+Rangfolge beim Farbsolo:
+Beim Farbsolo werden 4 Varianten unterschieden, da jede der 4 Farben als
+Trumpffarbe gewählt werden kann. Gegenüber dem Normalspiel ersetzen die
+Trumpfkarten – As, 10 (außer ♥ Solo), K, 9 – der gewählten Trumpffarbe die
+Trumpfkarten in der Farbe Karo.
+Damit ergibt sich folgende absteigende Rangfolge der jeweils zweifach im Spiel
+vorhandenen Trumpfkarten:
+Wie beim Normalspiel: ♥ 10, ♣ D, ♠ D, ♥ D, ♦ D, ♣ B, ♠ B, ♥ B, ♦ B
+und zusätzlich aus der gewählten Trumpffarbe: As, 10 (außer ♥ 10), K, 9.
+In den drei Fehlfarben ist die absteigende Rangfolge der ebenfalls doppelt vorhandenen Karten: As, 10 (außer ♥ 10), K, 9.
+Beim Farbsolo in Kreuz, Pik und Karo gibt es jeweils 26 Trumpfkarten und 22 Fehlkarten, und beim Farbsolo in Herz gibt es 24 Trumpfkarten und 24 Fehlkarten.
+
+2.3.6
+
+Rangfolge beim Damensolo und beim Bubensolo:
+Die absteigende Rangfolge der 4 jeweils zweifach im Spiel vorhandenen Trumpfkarten ist:
+Beim Damensolo: ♣ D, ♠ D, ♥ D, ♦ D
+bzw. beim Bubensolo: ♣ B, ♠ B, ♥ B, ♦ B.
+In den vier Fehlfarben ist die absteigende Rangfolge der ebenfalls doppelt vorhandenen Karten:
+Beim Damensolo: As, 10, K, B, 9
+bzw. beim Bubensolo: As, 10, K, D, 9.
+Beim Damensolo und beim Bubensolo gibt es jeweils 8 Trumpfkarten und 40 Fehlkarten.
+
+2.3.7
+
+Rangfolge beim Fleischlosen (Asse-Solo):
+Beim Fleischlosen (Asse-Solo) gibt es keine Trumpfkarten und 48 Fehlkarten.
+In den vier Fehlfarben ist die absteigende Rangfolge der doppelt vorhandenen
+Karten jeweils: As, 10, K, D, B, 9.
+
+TSR, Stand 21.02.2026
+
+Seite 5 von 28
+
+2.4
+
+Die Parteienbildung
+
+2.4.1
+
+Doppelkopf ist ein Parteienspiel.
+
+2.4.2
+
+Die vier Spieler bilden zwei Parteien: die Re-Partei und die Kontra-Partei.
+
+2.4.3
+
+Es werden grundsätzlich zwei Spieltypen unterschieden: das Normalspiel und das
+Solo.
+
+2.4.4
+
+Das Normalspiel:
+Wird kein Solo gespielt, bilden die beiden Spieler mit den Kreuz Damen die RePartei, die beiden anderen Spieler die Kontra-Partei. Hat ein Spieler nach dem
+Austeilen beide Kreuz Damen in der Hand, tritt der Sonderfall einer „Hochzeit“
+(siehe 4.4) ein.
+
+2.4.5
+
+BEACHTE: Es ist von vornherein nicht klar, wer mit wem eine Partei bildet. Dies
+herauszufinden oder zu verheimlichen, macht einen wesentlichen Reiz des Doppelkopfspieles aus. Daher ist es unzulässig, durch irgendeine nicht in den Spielregeln vorgesehene Aktion anzuzeigen, ob man „mit“ oder „ohne“ Kreuz Dame
+spielt.
+
+2.4.6
+
+Die von der Regelkommission des DDV bzw. von der Mitgliederversammlung zugelassenen Spieltaktiken (auch Konventionen genannt) widersprechen nicht 2.4.5.
+Eine Spieltaktik ist ein Spielzug, mit dem indirekt, d.h. ohne An- oder Absage, die
+vermeintliche Parteizugehörigkeit oder eine andere Information mit hoher Wahrscheinlichkeit preisgegeben wird.
+BEACHTE: Das Anwenden einer Spieltaktik stellt keinen Kartenverrat dar, da sie
+im Unterschied zu einer Konvention des Bridgespieles auch als Täuschung eingesetzt werden darf. Daher ist der Ausdruck „Konvention“ etwas irreführend, aber
+auch im Doppelkopfspiel allgemein üblich für solch eine Spieltaktik.
+
+2.4.7
+
+Das Solo:
+Ein Spieler kann versuchen, ein Spiel allein gegen die übrigen drei Spieler zu gewinnen. Beim Solo bildet der Solospieler die Re-Partei, die drei anderen Spieler
+die Kontra-Partei.
+
+2.5
+
+Spielziel
+
+2.5.1
+
+Jede Partei versucht, mehr „Augen“ als die Gegenpartei zu erspielen. Weitere
+Ziele sind das Erspielen von Sonderpunkten sowie für die stärkere Partei, den
+Punktwert des Spieles durch An- bzw. Absagen soweit wie möglich zu erhöhen
+bzw. für die schwächere Partei, den von der anderen Partei abgesagten Augenwert zu erreichen.
+
+TSR, Stand 21.02.2026
+
+Seite 6 von 28
+
+3 Spielvorbereitung
+3.1
+
+Listenführer
+
+3.1.1
+
+Der Mitspieler auf Position 4 hat die Liste zu führen. Nach Vereinbarung am Tisch
+kann auch ein anderer Mitspieler die Listenführung übernehmen, die Sitzreihenfolge bleibt dadurch jedoch unverändert.
+
+3.2
+
+Bestimmung der Plätze
+
+3.2.1
+
+Die Reihenfolge der Mitspieler wird ausgelost. Falls diese Reihenfolge nicht auf
+dem Spieltisch gekennzeichnet ist und keine Einigkeit bei den Mitspielern erzielt
+werden kann, wählt der Listenführer seinen Platz. Die anderen Mitspieler schließen sich im Uhrzeigersinn an.
+
+3.3
+
+Geben der Karten
+
+3.3.1
+
+Mit dem Geben der Karten zum ersten Spiel beginnt der Mitspieler auf Position 1.
+Danach gibt der Spieler auf Position 2 usw. Lediglich nach einem Pflichtsolo (jedoch nicht nach dem „Vorführen“) werden die Karten vom selben Geber noch einmal ausgeteilt.
+
+3.3.2
+
+Ist der Geber vorübergehend abwesend, darf der links neben ihm sitzende Mitspieler die Karten für das nächste Spiel mischen und austeilen – vorausgesetzt, der eigentliche Geber hat sich das Geben nicht ausdrücklich vorher vorbehalten.
+
+3.3.3
+
+Der Kartengeber hat die Karten gründlich zu mischen, sie vom rechten Nachbarn
+einmal abheben zu lassen, den dabei liegenbleibenden Teil auf den abgehobenen
+zu legen und danach die Karten zu verteilen.
+
+3.3.4
+
+Werden vom Kartengeber die Karten beim Mischen „gestochen“ oder „geblättert“,
+ist vor dem Abheben noch einmal durchzumischen.
+
+3.3.5
+
+Abheben ist Pflicht! Es hat so zu erfolgen, dass mindestens drei Karten abgehoben werden bzw. liegen bleiben.
+
+3.3.6
+
+Ist der Abheber vorübergehend abwesend, darf der rechts neben ihm sitzende Mitspieler abheben – vorausgesetzt, der eigentliche Abheber hat sich das Abheben
+nicht ausdrücklich vorher vorbehalten.
+
+3.3.7
+
+Es müssen, beim linken Nachbarn des richtigen Gebers (siehe 3.3.2) beginnend,
+jedem Spieler viermal jeweils drei Karten gegeben werden, so dass danach jeder
+Spieler 12 Karten in der Hand hält.
+
+TSR, Stand 21.02.2026
+
+Seite 7 von 28
+
+3.3.8
+
+Die Karten sind in einer Weise zu geben, dass ihre Vorderseiten keinem Spieler
+sichtbar werden. Wird beim Geben durch den Kartengeber allein- oder mit verschuldet eine Karte aufgeworfen, muss erneut gemischt, abgehoben und gegeben
+werden.
+
+3.3.9
+
+Jeder Spieler ist verpflichtet, darauf zu achten, dass ihm die richtige Kartenanzahl
+(also 12) ausgeteilt wurde.
+
+3.3.10 Einsprüche gegen jegliche sofort offensichtliche Unkorrektheiten beim Mischen,
+Abheben sowie die Art und Weise der Kartenverteilung kann ein Spieler nur geltend machen, solange er selbst noch keine seiner Karten aufgenommen hat (z.B.
+Verstoß gegen 3.3.7 oder 3.3.8). Sofort offensichtliche Regelverstöße, die erst
+während der Kartenaufnahme erkannt werden können (z.B. Kartenverteilung 3-34-2, versehentliches Aufdecken einer Karte am Ende des Gebens), dürfen auch
+noch bei ihrer Erkennung reklamiert werden. Ein Verstoß gegen 3.3.1 (falscher
+Geber) ist in diesem Sinne kein sofort offensichtlicher Regelverstoß.
+4.
+
+Spielfindung
+
+4.1
+
+Die Vorbehaltsabfrage
+
+4.1.1
+
+Bevor zum ersten Stich aufgespielt bzw. eine Ansage getroffen werden darf, muss
+in der Vorbehaltsabfrage der Spieltyp ermittelt werden.
+
+4.1.2
+
+Beginnend beim linken Nachbarn des Kartengebers wird in ununterbrochener Reihenfolge nach Vorbehalten abgefragt.
+Möchte ein Spieler ein Pflichtsolo, ein Lustsolo oder eine Hochzeit anmelden, sagt
+er laut und deutlich „Vorbehalt“.
+Die Anmeldung eines Vorbehalts kann an Position 1, 2 und 3 nur zurückgenommen werden, wenn der nächste Spieler sich noch nicht geäußert hat. Der Spieler
+an Position 4 kann seinen Vorbehalt nur zurücknehmen, wenn weder eine Karte
+aufgespielt wurde, noch bereits eine Ansage (gemäß 6) getätigt wurde, noch die
+Vorbehaltsabfrage bei mehreren Vorbehalten bereits gemäß 4.1.6 fortgesetzt
+wurde.
+Andernfalls muss evtl. ungewollt ein Solo gespielt werden.
+Ein Spieler, der keinen „Vorbehalt“ anmelden möchte, sagt laut und deutlich:
+„gesund“.
+
+4.1.3
+
+Melden sich alle Spieler „gesund“, wird ein Normalspiel durchgeführt.
+
+4.1.4
+
+Hat nur ein Spieler einen „Vorbehalt“ angemeldet, muss er diesen „taufen“, d.h., er
+muss bekannt geben, ob er ein Solo (Pflichtsolo oder Lustsolo) oder eine Hochzeit
+spielen will.
+Im Falle eines Pflichtsolos erhält dieser Spieler die Aufspielpflicht zum ersten
+Stich.
+
+TSR, Stand 21.02.2026
+
+Seite 8 von 28
+
+4.1.5
+
+Haben mehrere Spieler im selben Spiel „Vorbehalt“ angemeldet, gilt die Reihenfolge:
+1. Pflichtsolo
+2. Lustsolo
+3. Hochzeit
+
+4.1.6
+
+Um festzustellen, wer bei mehreren Vorbehalten den höchstrangigen hat, wird als
+erstes reihum gefragt, ob einer der betroffenen Spieler ein Pflichtsolo spielen will.
+Verneinen dies alle, fragt man nach dem Lustsolo.
+Haben mehrere Spieler „Vorbehalt“ angemeldet, kann der Vorbehalt „Hochzeit“
+niemals zum Zuge kommen.
+
+4.1.7
+
+Da bei mehreren gleichrangigen Vorbehalten der „weiter vorn sitzende“ Spieler
+den Vorrang hat, endet die Abfrage, sobald ein Spieler den gefragten Vorbehalt
+bejaht.
+Alle weiteren Vorbehalte sind ohne Bedeutung und dürfen auch nicht mehr getauft
+werden.
+
+4.1.8
+
+Ist es für einen Spieler sicher, dass sein Vorbehalt der höchstrangige ist, kann er
+ihn sofort ansagen („taufen“), auch wenn er nicht an der Reihe ist. Es darf danach
+sofort aufgespielt werden, ohne dass die Vorbehaltsabfrage zu Ende geführt wird.
+Die anderen Spieler dürfen dann selbst weder einen Vorbehalt anmelden noch
+diesen taufen.
+
+4.1.9
+
+Bei einer „Vorführung“ (siehe 4.2.3) steht fest, welcher Spieler ein Pflichtsolo
+spielt. Es wird daher keine Vorbehaltsabfrage durchgeführt. Der Solospieler gibt
+lediglich bekannt, welches Solo er spielen wird.
+
+4.2
+
+Pflichtsolo
+
+4.2.1
+
+Jede Soloart kann als Pflichtsolo gespielt werden.
+
+4.2.2
+
+Der Solospieler hat hierbei die Aufspielpflicht zum ersten Stich.
+
+4.2.3
+
+Jeder Spieler muss ein Pflichtsolo innerhalb der Spielrunde absolvieren. Ist die Anzahl der nicht gespielten Pflichtsoli gleich der Anzahl der noch zu absolvierenden
+Spiele, muss derjenige Spieler, dem ein Pflichtsolo fehlt und der als Nächster links
+vom Kartengeber sitzt, ein Pflichtsolo spielen; d.h. er wird „vorgeführt“.
+Es ist nicht möglich, ihm dieses Spiel abzunehmen. Kartengeber ist derjenige
+Spieler, der das nächste Spiel geben müsste, auch wenn er selbst vorgeführt wird.
+
+4.2.4
+
+Das Pflichtsolo wird in der Spielliste in der hierfür vorgesehenen Rubrik notiert.
+
+4.2.5
+
+Nach einem Pflichtsolo werden die Karten vom selben Geber, der das Pflichtsolo
+gegeben hat, noch einmal gegeben.
+
+TSR, Stand 21.02.2026
+
+Seite 9 von 28
+
+Wurde das Pflichtsolo jedoch als vorgeführtes Solo gespielt, gibt der nächste Mitspieler.
+4.3
+
+Lustsolo
+
+4.3.1
+
+Ein Lustsolo darf erst dann gespielt werden, wenn das eigene Pflichtsolo bereits
+gespielt wurde. Als Lustsolo kann jede Soloart gespielt werden, ohne Rücksicht
+auf die Art der zuvor gespielten Soli. Beim Lustsolo spielt der linke Nachbar des
+Kartengebers zum ersten Stich auf.
+
+4.3.2
+
+Das Lustsolo wird in der Spielliste in der Rubrik der Normalspiele notiert. Das
+nächste Spiel wird deshalb von einem anderen Geber ausgeteilt.
+Hochzeit
+
+4.4
+4.4.1
+
+Hat ein Spieler beide Kreuz Damen in der Hand, kann er sich, falls er kein Solo
+melden möchte, zwischen zwei Spieltypen entscheiden. Er kann zwischen einer
+angemeldeten Hochzeit (4.4.3) und einer „Stillen Hochzeit“ (Farbsolo in Karo,
+siehe 4.4.5) wählen.
+
+4.4.2
+
+Möchte der Spieler mit den beiden Kreuz Damen kein Solo spielen, meldet er in
+der Vorbehaltsabfrage „Vorbehalt“ an (siehe Ausnahme 4.4.5), ohne seinen Vorbehalt gleich zu taufen.
+Hat kein anderer Spieler einen Vorbehalt angemeldet, tauft er seinen Vorbehalt,
+indem er laut und deutlich „Hochzeit“ sagt.
+
+4.4.3
+
+Die angemeldete Hochzeit
+Eine angemeldete Hochzeit kann unterschiedliche Spielverläufe haben:
+a) Es spielt derjenige als „Re-Mann“ mit dem Hochzeiter, der innerhalb der ersten
+drei Stiche dieses Spieles den ersten Stich (den sogenannten Klärungsstich) – abgesehen von den Stichen des Hochzeiters – macht.
+In diesem Fall wird das Spiel als Normalspiel fortgesetzt. Beim Klärungsstich ist es
+unerheblich, ob eine Trumpfkarte oder eine Fehlfarbe aufgespielt wurde, so dass
+ein Aufspiel einer Herz 10 eines Nichthochzeiters ebenso erlaubt ist.
+b) Der Hochzeiter macht die ersten drei Stiche selbst.
+Jetzt wird der dritte Stich als Klärungsstich gezählt und das Spiel wird als „Farbsolo in Karo“ fortgesetzt. Der Klärungsstich klärt daher auch, ob eine Hochzeit als
+Normalspiel oder als Farbsolo in Karo fortgesetzt wird. Der Hochzeiter wird im letzten Fall zum Alleinspieler und bildet die Re-Partei, die drei anderen Spieler bilden
+die Kontra-Partei. Das Spiel wird wie ein Solo abgerechnet, ersetzt jedoch ein
+noch nicht gespieltes Pflichtsolo nicht, so dass es bei den Normalspielen notiert
+wird. Eine evtl. Strafpunkteverteilung erfolgt bis einschließlich Klärungsstich wie
+beim Normalspiel, danach wie beim Solo.
+
+TSR, Stand 21.02.2026
+
+Seite 10 von 28
+
+4.4.4
+
+Bei einer angemeldeten Hochzeit ist die Erstansage erst erlaubt, nachdem der Klärungsstich vollendet wurde (vierte Karte des Stiches ist gespielt). Insoweit ist ein
+abweichender Zeitpunkt gegenüber einem Normalspiel möglich, aber nicht
+zwangsläufig (siehe 6.4.2).
+
+4.4.5
+
+Stille Hochzeit
+Meldet ein Spieler, der beide Kreuz Damen in der Hand hält, keinen Vorbehalt
+bzw. einen solchen nicht regelgerecht an (siehe 4.1.2), spielt er eine „Stille Hochzeit“. Das Spiel wird wie ein Solo abgerechnet, ersetzt jedoch ein noch nicht gespieltes Pflichtsolo nicht, so dass es bei den Normalspielen notiert wird. Eine evtl.
+Strafpunkteverteilung erfolgt solange wie beim Normalspiel, bis entschieden ist,
+dass ein Solo gespielt wird (Legen der zweiten Kreuz Dame). An- und Absagezeitpunkte bei einer „Stillen Hochzeit“ sind wie beim Normalspiel. Es gilt nicht der Sonderfall wie bei der angemeldeten Hochzeit.
+
+TSR, Stand 21.02.2026
+
+Seite 11 von 28
+
+5 Spielverlauf
+5.1
+
+Aufspiel
+
+5.1.1
+
+Aufspielpflicht zum ersten Stich hat derjenige, der mit der Vorbehaltsabfrage begonnen hat (Ausnahme siehe 4.2.2). Es darf erst dann zum ersten Stich aufgespielt werden, nachdem die Vorbehaltsabfrage beendet und ein ggf. ermittelter
+Vorbehalt getauft ist.
+
+5.1.2
+
+Ab dem zweiten Stich spielt immer derjenige auf, der den vorangegangenen Stich
+gemacht hat.
+
+5.1.3
+
+Eine (auf)gespielte Karte darf nicht zurückgenommen werden. Lediglich bei gefordertem Weiterspiel nach einem Regelverstoß ist eine regelgerechte Korrektur erlaubt.
+
+5.2
+
+Bedienen
+
+5.2.1
+
+Nach dem Aufspiel hat zunächst der linke Spieler des Aufspielenden eine Karte
+zuzugeben. Dies geschieht, indem die Karte offen auf den Spieltisch gelegt wird.
+Ebenso verhalten sich im Uhrzeigersinn die beiden übrigen Spieler.
+
+5.2.2
+
+Es besteht Bedienpflicht, d.h. jeder muss, wenn möglich, eine Karte der aufgespielten Fehlfarbe oder der geforderten Trumpffarbe zugeben (bedienen).
+
+5.2.3
+
+Wer die aufgespielte Fehlfarbe nicht hat, darf entweder eine Trumpfkarte zugeben,
+d.h. stechen, oder eine beliebige Karte einer anderen Fehlfarbe spielen. Wenn
+eine Trumpfkarte gefordert wird, aber nicht bedient werden kann, darf eine beliebige Karte einer Fehlfarbe zugegeben werden.
+
+5.2.4
+
+Eine einmal gespielte Karte darf nur im Falle eines nicht reklamierten Regelverstoßes zurückgenommen werden.
+
+5.3
+
+Stiche
+
+5.3.1
+
+Ein Stich besteht aus je einer Karte der vier Spieler. Er ist vollendet, wenn jeder
+der vier Spieler in der vorgeschriebenen Reihenfolge regelgerecht eine Karte gelegt hat, d.h. sobald die vierte Karte offen auf dem Spieltisch liegt und niemand reklamiert.
+
+5.3.2
+
+Die Positionen der Spieler werden „im laufenden Stich“ folgendermaßen bezeichnet:
+Position 1 ist Vorhand; der Spieler, der die Aufspielpflicht für den Stich besitzt.
+Position 2 ist Mittelhand; der Spieler, der die 2. Karte des Stiches legen muss.
+Position 3 ist Mittelhand; der Spieler, der die 3. Karte des Stiches legen muss.
+
+TSR, Stand 21.02.2026
+
+Seite 12 von 28
+
+Position 4 ist Hinterhand; der Spieler, der die 4. Karte des Stiches legen muss und damit
+den Stich beendet.5.3.3 Der Stich gehört demjenigen Spieler, der unter Beachtung der Regeln (siehe 5.1 und 5.2)
+1. zu einer aufgespielten und durchweg bedienten Fehlfarbe die ranghöchste Karte
+des Stiches gespielt hat,
+2. eine Fehlfarbe aufspielt, die weder bedient noch gestochen wird,
+3. eine aufgespielte Fehlfarbe als einziger sticht,
+4. eine Trumpfkarte auf eine aufgespielte Fehlfarbe mit einer ranghöheren Trumpfkarte nochmals übersticht,
+5. bei einer geforderten Trumpfkarte die ranghöchste Trumpfkarte des Stiches legt,
+6. Trumpfkarten fordert und darauf nur Karten von Fehlfarben bzw. rangniedrigere
+Trumpfkarten erhält.
+Werden in einem Stich zwei gleiche Karten gelegt, ist die vom weiter vorn sitzenden Spieler gelegte Karte die ranghöhere. Dies gilt auch für die Herz 10.
+5.3.4
+
+Der Spieler, dem der Stich nach 5.3.3 gehört, legt ihn als Ganzes verdeckt vor sich
+hin. (Er darf allerdings Karten zur Erinnerung an Sonderpunkte gesondert verdeckt
+(evtl. quer) ablegen, allerdings muss hierdurch für alle die Rekonstruktion der Stiche und des Spieles immer noch gewährleistet sein.) Dieser Spieler hat die Aufspielpflicht zum nächsten Stich. Die Stiche werden übereinander abgelegt, nicht
+nebeneinander.
+
+5.3.5
+
+Die Stiche sind so zu vereinnahmen, dass jeder Spieler auch die zuletzt zugegebene Karte deutlich erkennen kann. Der vorherige Stich ist auf Verlangen eines
+Spielers solange einzusehen, bis die 4. Karte des nächsten Stiches gespielt ist.
+Ausnahme: Gibt ein Spieler rechtzeitig zu erkennen, den letzten Stich einsehen zu
+wollen, ist dieser auch dann zu zeigen, wenn schon 4 Karten auf dem Tisch liegen.
+
+5.3.6
+
+Jeder Stich ist einzeln einzuziehen, folgerichtig abzulegen und bis Spielende verdeckt nachprüfbar zu belassen (siehe aber 5.3.7).
+
+5.3.7
+
+Zieht der Solospieler einen oder mehrere Stiche hintereinander nicht ein, fallen
+diese und alle folgenden Stiche an die Kontra-Partei, sobald ein Stich abgegeben
+wird. Beim Normalspiel bzw. für die Kontra-Partei beim Solo gilt ausschließlich
+5.3.6.
+
+5.3.8
+
+Das Aufdecken der abgelegten Stiche bzw. Nachzählen der Augen durch einen
+Spieler beendet das Spiel.
+
+TSR, Stand 21.02.2026
+
+Seite 13 von 28
+
+5.4
+
+Spielabkürzung
+
+5.4.1
+
+Im Allgemeinen ist jedes Spiel zu Ende zu spielen!
+
+5.4.2
+
+Die Frage „Darf ich abkürzen?“ oder eine ähnliche ist hier rein rhetorisch zu verstehen, d.h. sie impliziert die Abkürzung.
+
+5.4.3
+
+Eine Spielabkürzung ist grundsätzlich nur einem Solospieler gestattet. Der Solospieler verwirkt damit das Recht zur Reklamation von zuvor erfolgten Regelverstößen.
+
+5.4.4
+
+Durch das Auflegen oder Vorzeigen seiner Karten während des Spieles ohne Angabe einer Erklärung zeigt der Solospieler an, dass er alle weiteren Stiche
+macht. Falls der Solospieler zu diesem Zeitpunkt kein Aufspiel hat, ist davon auszugehen, dass er mit beliebiger Karte übernimmt bzw. jede Fehlfarbe, die er nicht
+besitzt, mit beliebiger Trumpfkarte sticht.
+
+5.4.5
+
+Macht der Solospieler die restlichen Stiche nur, falls er seine Karten in einer bestimmten Reihenfolge spielt, muss er diese Reihenfolge unaufgefordert angeben.
+Es ist allerdings davon auszugehen, dass der Solospieler sowohl in den Trumpfkarten als auch in den Fehlfarben von oben spielt. Allerdings muss nicht davon
+ausgegangen werden, dass er eine Trumpfkarte zuerst spielt, wenn er dieses nicht
+ausdrücklich beim Abkürzen angibt.
+
+5.4.6
+
+Der Solospieler darf das Spiel jederzeit abkürzen, indem er seine nicht gespielten
+Karten der Gegenpartei übergibt. Die Gegenpartei macht somit alle Reststiche.
+
+5.4.7
+
+Kürzt der Solospieler nach 5.4.6 ab und der Zeitpunkt für eine An- bzw. Absage ist
+noch nicht vorbei, ist es der Gegenpartei erlaubt, die mögliche Ansage bzw. die
+möglichen Absagen noch zu machen. Die restlichen Karten werden jedoch nicht
+mehr gespielt.
+
+5.5
+
+Klärung der Parteizugehörigkeit und Partnerschaft
+
+5.5.1
+
+Parteizugehörigkeit eines Spielers kann nur auf folgende Weise zweifelsfrei eindeutig geklärt werden:
+1. Durch die Bekanntgabe eines Solos,
+2. bei einer Hochzeit durch den Klärungsstich,
+3. beim Normalspiel und bei der „Stillen Hochzeit“ durch gelegte Kreuz Dame,
+4. beim Normalspiel durch An- oder Absagen,
+5. durch Abwurf einer Fehlkarte bei Anspiel einer Trumpfkarte beim Normalspiel
+oder bei einer „Stillen Hochzeit“.
+
+5.5.2
+
+Die Partnerschaften sind erst dann eindeutig geklärt, wenn nach den Kriterien aus
+5.5.1 für alle vier Spieler die Parteizugehörigkeit eindeutig geklärt ist. Das Legen
+einer einzelnen Kreuz Dame bzw. lediglich eine Ansage klären die Partnerschaften
+nicht in diesem Sinne (zum hieraus resultierenden Reklamationsrecht siehe auch
+9.6.1).
+
+TSR, Stand 21.02.2026
+
+Seite 14 von 28
+
+6 Ansagen und Ansagezeitpunkt
+6.1
+
+Definitionen
+
+6.1.1
+
+Eine Karte befindet sich „in der Hand“ eines Spielers, wenn sie noch nicht gespielt
+ist, d.h. eine Karte ist gespielt, wenn sie den Spieltisch offen (sichtbar) berührt hat.
+
+6.1.2
+
+Das Wort „mindestens“ gibt an, dass eine An- bzw. Absage vor dem später möglichen Zeitpunkt gemacht werden darf, ohne dass sich dadurch die nachfolgenden
+Absagen oder Erwiderungen (gemäß 6.4.4) auf einen entsprechend vorgezogenen
+Zeitpunkt verschieben müssen.
+
+6.2
+
+Ansagen und Ansagezeitpunkt
+
+6.2.1
+
+Eine Erstansage ist frühestens möglich, sobald geklärt ist, welcher Spieltyp gespielt wird. Das bedeutet, dass die Vorbehaltsabfrage beendet sein muss, ggf. ein
+Solo getauft sein muss und bei einer Hochzeit der Klärungsstich beendet sein
+muss.
+
+6.2.2
+
+Die Erstansage „Re“ (mit den Kreuz Damen bzw. als Solospieler) oder „Kontra“
+(gegen die Kreuz Damen bzw. gegen den Solospieler) muss von jeder Partei spätestens dann erfolgen, wenn der ansagende Spieler noch mindestens 11 Karten in
+der Hand hält. Der erste Stich wird daher auch als „Freistich“ bezeichnet.
+Eine Ausnahme bezüglich des Ansagezeitpunktes bildet die angemeldete Hochzeit
+(siehe 6.4.2.).
+
+6.3
+
+Absagen und Absagezeitpunkt
+
+6.3.1
+
+Beide am Spiel beteiligte Parteien haben die Möglichkeit, der Gegenpartei abzusagen, dass diese eine bestimmte Augenzahl nicht erreichen wird.
+Die im Spiel befindlichen 240 Augen sind hierzu in Stufen (Limits) eingeteilt. Jede
+Stufe umfasst 30 Augen. Die Absage „keine 90“ („keine 60“, „keine 30“) behauptet,
+dass die Gegenpartei unter der genannten Augenzahl bleiben wird. Die Absage
+„schwarz“ behauptet, dass die Gegenpartei keinen Stich machen wird. Erreicht die
+Gegenpartei jedoch das abgesagte Ziel (die jeweilige Augenzahl bzw. den Stich),
+hat die absagende Partei nicht gewonnen, auch wenn sie mehr als 120 Augen erspielt hat.
+
+6.3.2
+
+Eine Absage ist nur zulässig, wenn vorher die eigene Partei eine regelgerechte
+Erstansage gemacht hat.
+
+6.3.3
+
+Durch jede Absage wird der Spielwert zusätzlich erhöht; es sei denn, keine Partei
+erreicht das von ihr abgesagte Ziel.
+
+TSR, Stand 21.02.2026
+
+Seite 15 von 28
+
+6.3.4
+
+Für den jeweiligen Absagezeitpunkt gilt:
+„keine 90“
+
+mit mindestens
+
+10
+
+Karten in der Hand
+
+„keine 60“
+
+mit mindestens
+
+9
+
+Karten in der Hand
+
+„keine 30“
+
+mit mindestens
+
+8
+
+Karten in der Hand
+
+„schwarz“
+
+mit mindestens
+
+7
+
+Karten in der Hand
+
+Eine Ausnahme bezüglich des Absagezeitpunktes bildet die angemeldete Hochzeit
+(siehe 6.4.2).
+6.4.1
+
+Unter Beachtung des frühest- und des spätestmöglichen Zeitpunktes für An- bzw.
+Absagen ist eine An- bzw. Absage auch regelgerecht, wenn der betreffende Spieler nicht mit dem Legen einer Karte an der Reihe ist.
+
+6.4.2
+
+Die angemeldete Hochzeit
+Eine Ausnahme bezüglich des Zeitpunktes für An- und Absagen gilt bei einer angemeldeten Hochzeit. Ist der erste Stich der Klärungsstich, verschieben sich die in
+6.2.2 und 6.3.4 genannten Ansage- bzw. Absagezeitpunkte nicht. Ist der zweite
+(dritte) Stich der Klärungsstich, verringert sich die dort genannte Kartenzahl um 1
+(2).
+Eine Erstansage ist immer erst nach Beendigung des Klärungsstiches erlaubt!
+
+6.4.3
+
+Ist der zulässige Zeitpunkt für eine Erstansage bzw. eine mögliche Absage nicht
+überschritten, dürfen beliebig viele Stufen übersprungen werden, d.h., beim Überspringen von An- bzw. Absagen müssen diese nicht genannten An- bzw. Absagen
+zu eben diesem Zeitpunkt auch noch zulässig sein. Es werden in diesem Fall alle
+Stufen in die Abrechnung mit einbezogen.
+Daraus folgt, dass es unzulässig ist, eine unterlassene An- bzw. Absage nach dem
+spätestmöglichen Zeitpunkt durch die nächste Absage nachzuholen.
+
+6.4.4
+
+Eine
+AusDie
+Erwiderung
+auf eine An- bzw. Absage ist stets noch mit einer Karte weniger,
+nahme
+beals für die An- bzw. Absage der Gegenpartei notwendig war, erlaubt. Als Erwiderung
+ist nur
+züglich
+des„Kontra“ (gegen die Re-Partei) bzw. „Re“ (gegen die Kontra- Partei)
+zulässig.
+AbsagezeitEine
+Absage
+der eigenen Partei danach ist nur dann regelgerecht, wenn die Erwipunktes
+bildet
+derung auch als Erstansage rechtzeitig erfolgt wäre.
+die angemeldete Hochzeit
+siehe 6.5.2.
+
+6.4
+ErTSR, Stand 21.02.2026
+gänzun-
+
+Seite 16 von 28
+
+6.4.5
+
+Werden „Kontra“ und „Re“ (gleichgültig, in welcher Reihenfolge) angesagt, muss
+ein dritter Spieler bzw. vierter Spieler, falls er bei ungeklärter Partnerschaft eine
+Absage vornimmt, zu erkennen geben, ob er zur Kontra- oder zur Re-Partei gehört.
+Es ist zulässig, dass beide Parteien „keine 90“ („keine 60“, usw.) absagen.
+
+6.4.6
+
+Machen mehrere Spieler gleichzeitig oder nacheinander verschiedene An- oder
+Absagen, sind alle gültig.
+
+6.4.7
+
+Eine Wiederholung identischer An- bzw. Absagen einer Partei ist nicht zulässig.
+BEACHTE: Weist ein Spieler noch einmal auf seine eigene An- bzw. Absage hin,
+wenn er meint, dass die anderen Spieler sie infolge von Lärm nicht gehört haben,
+ist dies regelgerecht. Es liegt damit keine unzulässige Wiederholung einer Anbzw. Absage vor.
+
+TSR, Stand 21.02.2026
+
+Seite 17 von 28
+
+7.
+
+Spielbewertung
+
+7.1 Gewinnstufen und Gewinnkriterien
+Die Fälle, in denen eine Partei gewonnen hat und den Grundwert von einem Spielpunkt dafür erhält, werden im Folgenden vollständig aufgeführt, wobei nur bereits
+vollständige und regelgerechte Stiche berücksichtigt werden (siehe 9.5.1).
+7.1.1
+
+Gewonnen hat die Re-Partei in den folgenden Fällen:
+1. Mit dem 121. Auge, wenn keine Ansage bzw. Absage getroffen wurde,
+2. mit dem 121. Auge, wenn nur „Re“ angesagt wurde,
+3. mit dem 121. Auge, wenn „Re“ und „Kontra“ unabhängig von der Reihenfolge
+4.
+5.
+6.
+7.
+
+8.
+
+7.1.2
+
+angesagt wurden,
+mit dem 120. Auge, wenn nur „Kontra“ angesagt wurde,
+mit dem 151. (181., 211.) Auge, wenn sie der Kontra-Partei „keine 90“ („keine
+60“, „keine 30“) abgesagt hat,
+falls sie alle Stiche erhalten hat, wenn sie der Kontra-Partei „schwarz“ abgesagt
+hat,
+mit dem 90. (60., 30.) Auge, wenn von der Kontra-Partei „keine 90“ („keine 60“,
+„keine 30“) abgesagt wurde und die Re-Partei sich nicht durch eine Absage zu
+einer höheren Augenzahl verpflichtet hat,
+mit dem 1. Stich, den sie erhält, wenn von der Kontra-Partei „schwarz“ abgesagt wurde und die Re-Partei sich nicht durch eine Absage zu einer höheren
+Augenzahl verpflichtet hat.
+
+Gewonnen hat die Kontra-Partei in den folgenden Fällen:
+1. Mit dem 120. Auge, wenn keine Ansage bzw. Absage getroffen wurde,
+2. mit dem 120. Auge, wenn nur „Re“ gesagt wurde,
+3. mit dem 120. Auge, wenn „Re“ und „Kontra“ unabhängig von der Reihenfolge
+angesagt wurden,
+4. mit dem 121. Auge, wenn nur „Kontra“ gesagt wurde,
+5. mit dem 151. (181., 211.) Auge, wenn sie der Re-Partei „keine 90“ („keine 60“,
+„keine 30“) abgesagt hat,
+6. falls sie alle Stiche erhalten hat, wenn sie der Re-Partei „schwarz“ abgesagt hat,
+7. mit dem 90. (60., 30.) Auge, wenn von der Re-Partei „keine 90“ („keine 60“,
+„keine 30“) abgesagt wurde und die Kontra-Partei sich nicht durch eine Absage
+zu einer höheren Augenzahl verpflichtet hat,
+8. mit dem 1. Stich, den sie erhält, wenn von der Re-Partei „schwarz“ abgesagt
+wurde und die Kontra-Partei sich nicht durch eine Absage zu einer höheren Augenzahl verpflichtet hat.
+
+7.1.3
+
+Erreichen beide Parteien ihr abgesagtes Ziel nicht, hat keine Partei gewonnen,
+und es werden nur die unter 7.2.2 (a) und 7.2.2 (e und f) genannten Punkte sowie
+Sonderpunkte vergeben.
+
+TSR, Stand 21.02.2026
+
+Seite 18 von 28
+
+7.2
+
+Spielwerte
+
+7.2.1
+
+Die Spielwerte der Einzelspiele werden in Spielpunkten (Punkten) ausgedrückt.
+
+7.2.2
+
+Es wird nach der PLUS-MINUS-Wertung gewertet:
+
+Beim Normalspiel erhalten die Spieler der Siegerpartei folgende Spielpunkte mit
+positivem, die Spieler der Verliererpartei mit negativem Vorzeichen:
+(a)
+
+(b)
+
+(c)
+
+(d)
+
+Gewonnen
+
+1 Punkt als Grundwert
+
+unter 90 gespielt
+
+1 Punkt zusätzlich
+
+unter 60 gespielt
+
+1 Punkt zusätzlich
+
+unter 30 gespielt
+
+1 Punkt zusätzlich
+
+schwarz gespielt
+
+1 Punkt zusätzlich
+
+Es wurde
+„Re“ angesagt
+
+2 Punkte zusätzlich
+
+„Kontra“ angesagt
+
+2 Punkte zusätzlich
+
+Es wurde von der Re-Partei:
+„keine 90“ abgesagt
+
+1 Punkt zusätzlich
+
+„keine 60“ abgesagt
+
+1 Punkt zusätzlich
+
+„keine 30“ abgesagt
+
+1 Punkt zusätzlich
+
+„schwarz“ abgesagt
+
+1 Punkt zusätzlich
+
+Es wurde von der Kontra-Partei:
+„keine 90“ abgesagt
+
+1 Punkt zusätzlich
+
+„keine 60“ abgesagt
+
+1 Punkt zusätzlich
+
+„keine 30“ abgesagt
+
+1 Punkt zusätzlich
+
+„schwarz“ abgesagt
+
+1 Punkt zusätzlich
+
+TSR, Stand 21.02.2026
+
+Seite 19 von 28
+
+(e)
+
+(f)
+
+7.2.3
+
+Es wurden von der Re-Partei:
+120 Augen gegen „keine 90“
+
+Erreicht
+
+1 Punkt zusätzlich
+
+90
+
+Augen gegen „keine 60“
+
+Erreicht
+
+1 Punkt zusätzlich
+
+60
+
+Augen gegen „keine 30“
+
+Erreicht
+
+1 Punkt zusätzlich
+
+30
+
+Augen gegen „schwarz“
+
+Erreicht
+
+1 Punkt zusätzlich
+
+Es wurden von der Kontra-Partei:
+120 Augen gegen „keine 90“
+
+erreicht
+
+1 Punkt zusätzlich
+
+90
+
+Augen gegen „keine 60“
+
+erreicht
+
+1 Punkt zusätzlich
+
+60
+
+Augen gegen „keine 30“
+
+erreicht
+
+1 Punkt zusätzlich
+
+30
+
+Augen gegen „schwarz“
+
+erreicht
+
+1 Punkt zusätzlich
+
+Sonderpunkte können von beiden Parteien nur beim Normalspiel gewonnen werden. Sie werden ggf. zuerst miteinander und danach mit den unter 7.2.2 ermittelten Punkten verrechnet.
+Es werden folgende Sonderpunkte vergeben:
+
+7.2.4
+
+Gegen die Kreuz Damen gewonnen
+
+1 Sonderpunkt
+
+Doppelkopf (ein Stich mit 40 oder mehr Augen)
+
+1 Sonderpunkt
+
+Karo Ass (Fuchs) der Gegenpartei gefangen
+
+1 Sonderpunkt
+
+Kreuz Bube (Karlchen) macht den letzten Stich
+
+Sonderpunkt
+
+Bei einem Solo werden nur die Punkte unter 7.2.2 gewertet. Dies gilt auch für eine
+„Stille Hochzeit“ (siehe 4.4.5).
+Diese Punktzahl wird für den Solospieler verdreifacht und ihm bei Gewinn gutgeschrieben, bei Niederlage abgezogen.
+Den drei Spielern der Gegenpartei wird die einfache Punktzahl mit umgekehrtem
+Vorzeichen angeschrieben.
+
+TSR, Stand 21.02.2026
+
+Seite 20 von 28
+
+7.3
+
+Spielliste
+
+7.3.1
+
+Jedes Spiel ist unmittelbar nach seiner Beendigung als Gewinn oder Verlust für die
+beteiligten Spieler in der Spielliste einzutragen.
+
+7.3.2
+
+Für die korrekte Notation ist nicht nur der Listenführer (siehe 3.1, sondern sind alle
+Spieler gleichermaßen verantwortlich. Empfohlen wird daher, dass jeweils der aktuelle Kartengeber die Eintragungen in der Spielliste auf ihre Richtigkeit überprüft.
+
+7.3.3
+
+„Korrekte Notation“ bedeutet, dass die richtige Punktzahl bei den richtigen Spielern mit dem richtigen Vorzeichen an der richtigen Stelle auf dem Spielzettel eingetragen wird. Um hier Fehler frühzeitig zu erkennen, empfiehlt es sich, jeweils die
+folgenden Punkte zu überprüfen:
+1. Die Quersumme muss nach jedem Spiel 0 ergeben.
+2. Die Spielergebnisse der vier Mitspieler sind nach jedem Spiel entweder alle gerade oder alle ungerade (Gerade-Ungerade-Regel). Diese Regel kann nur durch
+die Vergabe von Strafpunkten in einem Solo zugunsten des Solospielers verletzt
+werden (+3, 0, 0, -3), (+15, 0, 0, -15) bzw. (+21, 0, 0, -21).
+3. Die jeweiligen Spieler, die in einem Spiel positive Punkte erreicht haben, müssen gekennzeichnet sein, indem ihre Positionsnummern notiert werden oder indem
+diese Spieler eindeutig markiert werden.
+
+7.3.4
+
+Der ausgeloste Listenführer ist dafür verantwortlich, dass die Spielliste nach Beendigung der Runde bei der Turnierleitung abgegeben wird.
+
+8 Turnier-Doppelkopf
+8.1
+
+Offizielle Turniere
+
+8.1.1
+
+Alle offiziellen Turniere des DDV sind unter Beachtung dieser Turnier-Spielregeln
+durchzuführen.
+
+8.2
+
+Schiedsrichter, Schiedsgericht
+
+8.2.1
+
+Es werden ein Schiedsrichter und ein Schiedsgericht eingesetzt
+Im Falle einer Reklamation entscheidet der Schiedsrichter in erster Instanz über
+die Vergabe von Strafpunkten.
+Das Schiedsgericht wird einberufen, wenn ein Spieler mit einer Entscheidung des
+Schiedsrichters nicht einverstanden ist und bei Verdacht auf Unsportlichkeit. Die
+Entscheidung des Schiedsgerichtes ist endgültig.
+
+8.2.2
+
+Vergebene Strafpunkte sind vom Schiedsrichter oder von einem Mitglied des
+Schiedsgerichtes in jedem Fall abzuzeichnen.
+
+TSR, Stand 21.02.2026
+
+Seite 21 von 28
+
+8.3
+
+Vierer-Tische
+
+8.3.1
+
+Es wird ausschließlich an Vierer-Tischen gespielt.
+
+8.4
+
+Sitzreihenfolge
+
+8.4.1
+
+An jedem Tisch gilt, dass der Spieler auf Position 1 als erster gibt und der Spieler
+auf Position 4 die Spielliste führt. Erklärt sich ein anderer Spieler bereit, die Spielliste zu führen, hat dies keinen Einfluss auf die Sitzreihenfolge.
+
+8.5
+
+Anzahl der Spiele und Spielzeit
+
+8.5.1
+
+Eine Spielrunde besteht aus 24 Spielen. Sie beginnt stets erst mit der offiziellen
+Freigabe durch den Schiedsrichter. Diese erfolgt für alle Tische gleichzeitig.
+Zuvor darf lediglich die Spielvorbereitung abgeschlossen sein und es dürfen die
+Karten aufgenommen werden. Der Beginn der Vorbehaltsabfrage ist vor Freigabe
+der Runde unzulässig.
+Die reine Spielzeit beträgt für alle Tische gleichermaßen 100 Minuten.
+In begründeten Ausnahmefällen darf der Schiedsrichter für einzelne Tische hiervon abweichen.
+Der Schiedsrichter ist berechtigt, bei einer Reklamation die zeitliche Begrenzung
+an dem betroffenen Tisch um die Zeit der Unterbrechung zu verlängern.
+Bei Entscheidungen des Schiedsgerichts wird die Spielzeit des betroffenen Tisches und der Tische, an denen die Mitglieder des Schiedsgerichtes spielen, um
+die Zeit der Unterbrechung nach der Entscheidung des Schiedsrichters verlängert.
+Abweichende Spielzeiten sind sofort auf dem Spielzettel durch den Schiedsrichter
+zu dokumentieren.
+Das Ende der Spielrunde wird durch den Schiedsrichter bekanntgegeben.
+Danach werden angefangene Spiele (mit Beginn des Austeilens gilt ein Spiel als
+angefangen) zu Ende gespielt. Ausstehende Normalspiele werden durch den
+Schiedsrichter gestrichen. Der Schiedsrichter kann Mitglieder des Schiedsgerichts
+oder die Turnierleitung hierzu beauftragen. Ist auf der Spielliste eine Nachspielzeit
+notiert, verlängert sich die offizielle Spielzeit dieses Tisches um die dort angegebene Nachspielzeit.
+
+8.5.2
+8.5.3
+
+Eine Spielrunde ist beendet, wenn kein Mitspieler mehr die errechneten Spielpunkte überprüfen oder beanstanden will.
+Nach Überschreiten der Spielzeit werden mit Ausnahme von vorgeführten
+Pflichtsoli keine Spiele mehr wiederholt. Dieses gilt auch für Spiele mit falsch ausgeteilten Karten.
+
+8.6
+
+Pflichtsolo
+
+In jeder Spielrunde ist von jedem Spieler ein Pflichtsolo zu spielen.
+
+TSR, Stand 21.02.2026
+
+Seite 22 von 28
+
+Ist das für die Spielrunde festgesetzte Zeitlimit erreicht, und es stehen noch
+Pflichtsoli aus, müssen die betreffenden Spieler ihr Pflichtsolo noch spielen; d.h.
+sie werden „vorgeführt“.
+
+9
+
+Regelverstöße, Unsportlichkeiten und Strafpunkte
+
+9.1
+
+Allgemeine Grundregeln
+
+9.1.1
+
+Als oberstes Spielgebot gilt, die einzelnen Punkte der Turnier-Spielregeln des DDV
+auch zur weiteren Förderung des Doppelkopfspieles nach Verbandsregeln zu beachten und einzuhalten.
+
+9.1.2
+
+Alle Teilnehmer haben in jeder Situation das Prinzip der Fairness und Sachlichkeit
+zu wahren und kein fadenscheiniges Recht zu suchen.
+
+9.1.3 Die Wiederholung eines Spieles ist normalerweise ohne das Vorliegen und
+Ahnden eines schwerwiegenden Regelverstoßes nicht zulässig (außer Verstöße
+gegen 3.3).
+(1) In Ausnahmefällen, zu denen in jedem Fall auch das Schiedsgericht hinzuzuziehen ist, ist der Sachverhalt, der zur Spielwiederholung führte, zu protokollieren und
+unverzüglich der Regelkommission des DDV zuzuleiten.
+(2) Für den Fall, dass ein schwerwiegender Regelverstoß vorliegt, kein Spieler jedoch reklamieren will, darf das Spiel abgebrochen und wiederholt werden, wenn folgende Voraussetzungen kumulativ vorliegen:
+• Alle Spieler am Tisch sind einverstanden.
+• Abbruch und Wiederholung erfolgen in Anwesenheit und mit Zustimmung
+des Schiedsrichters.
+Liegt lediglich ein geringfügiger oder gar unerheblicher Regelverstoß vor, kommt
+eine Spielwiederholung nicht in Frage. Der Schiedsrichter ist berechtigt, einen ohne
+seine vorherige Zustimmung vorgenommenen Spielabbruch als Unsportlichkeit zu
+werten und das Schiedsgericht einzuberufen.
+9.1.4
+
+Lautes Zählen der Trumpfkarten oder Augen ist weder den Spielern noch den anderen Teilnehmern oder Zuschauern erlaubt.
+
+9.1.5
+
+Spieler, Teilnehmer und Zuschauer haben sich jeglicher Äußerungen und Gesten
+zu enthalten, die geeignet sind, die Karten zu verraten oder den Spielverlauf zu
+beeinträchtigen bzw. zu beeinflussen.
+
+9.1.6
+
+Das Animieren eines Spielers zu einem Regelverstoß stellt eine Unsportlichkeit
+dar. Falls der Regelverstoß dann allerdings tatsächlich begangen wird, müssen
+Unsportlichkeit und Regelverstoß entsprechend geahndet werden, d.h. in der Regel erhalten dann zwei Spieler Strafpunkte.
+
+TSR, Stand 21.02.2026
+
+Seite 23 von 28
+
+9.1.7
+
+Ist für einen Regelverstoß nicht ausdrücklich in diesen TSR bzw. im Anhang der
+TSR (Schiedsrichterhilfen) bzw. durch die Regelkommission des DDV geregelt, ob
+er als unerheblicher, geringfügiger oder schwerwiegender Regelverstoß bzw. als
+unsportliches Verhalten zu klassifizieren ist, ist die Klassifikation nach 9.2.1, 9.3.1,
+9.4.1 bzw. 9.7.1 vorzunehmen.
+
+9.2
+
+Unerhebliche Regelverstöße
+
+9.2.1
+
+Ein „unerheblicher Regelverstoß“ liegt dann vor, wenn der Regelverstoß keinen
+Einfluss auf den weiteren Spielverlauf bzw. Spielausgang hat.
+
+9.2.2
+
+Macht eine Partei zwangsläufig alle Reststiche, ist jeder reklamierte Regelverstoß
+unerheblich.
+„Zwangsläufig“ in diesem Zusammenhang bedeutet, dass die betreffende Partei
+entweder alle Reststiche – unabhängig davon, in welcher Reihenfolge die eigenen
+Karten gelegt werden – macht, oder dass die Partei vor einem evtl. Regelverstoß
+die korrekte Reihenfolge angegeben hat, in der die eigenen Spielkarten gelegt
+werden müssen, damit die eigene Partei alle Reststiche macht.
+„Zwangsläufig“ bedeutet jedoch nicht bei beliebiger Kartenverteilung, sondern bei
+der gegebenen.
+
+9.2.3
+
+Begeht ein Spieler einen unerheblichen Regelverstoß, werden keine (0) Strafpunkte verteilt. Das Spiel wird nach Erledigung der Reklamation fortgesetzt.
+
+9.3
+
+Geringfügige Regelverstöße
+
+9.3.1
+
+Ein „geringfügiger Regelverstoß“ liegt dann vor, wenn durch den Regelverstoß
+kein entscheidender Einfluss auf den Sieger des Spieles gegeben ist, d.h. eine
+spielentscheidende Bevorteilung der eigenen Partei ausgeschlossen ist. Der Regelverstoß kann aber sehr wohl Einfluss auf den Spielverlauf und -ausgang haben.
+
+9.3.2
+
+Normalspiel:
+Begeht ein Spieler einen geringfügigen Regelverstoß beim Normalspiel, erhält er
+im Falle einer Reklamation 3 Strafpunkte. Die drei Mitspieler erhalten je einen
+Punkt gutgeschrieben. Das Spiel wird nach Erledigung der Reklamation fortgesetzt.
+
+9.3.3
+
+Solo:
+Begeht ein Spieler einen geringfügigen Regelverstoß, nachdem feststeht, dass ein
+Solo gespielt wird, wird folgendermaßen verfahren:
+
+(a)
+
+Bei einem geringfügigen Fehler des Solospielers erhält dieser im Falle einer Reklamation 3 Strafpunkte. Die drei Mitspieler erhalten je einen Punkt gutgeschrieben. Das Spiel wird nach Erledigung der Reklamation fortgesetzt.
+
+TSR, Stand 21.02.2026
+
+Seite 24 von 28
+
+(b)
+(b1)
+
+(b2)
+
+Bei einem geringfügigen Regelverstoß eines Spielers der Kontra-Partei werden
+zwei Fälle unterschieden:
+Der Regelverstoß kann zu einem Nachteil für den Solospieler führen:
+Der Verursacher erhält im Falle einer Reklamation 3 Strafpunkte, die dem Solospieler gutgeschrieben werden. Die beiden übrigen Mitspieler erhalten 0 Punkte.
+Das Spiel wird nach Erledigung der Reklamation fortgesetzt.
+Der Regelverstoß kann nicht zu einem Nachteil für den Solospieler führen:
+Der Verursacher erhält im Falle einer Reklamation 3 Strafpunkte. Die drei Mitspieler erhalten je einen Punkt gutgeschrieben. Das Spiel wird nach Erledigung der
+Reklamation fortgesetzt.
+
+9.4
+
+Schwerwiegende Regelverstöße
+
+9.4.1
+
+Ein „schwerwiegender Regelverstoß“ liegt dann vor, wenn der Regelverstoß einen
+entscheidenden Einfluss auf den Sieger des Spieles haben kann, d.h. eine spielentscheidende Bevorteilung der eigenen Partei möglich ist.
+
+9.4.2
+
+Begeht ein Spieler einen schwerwiegenden Regelverstoß, ist im Falle einer Reklamation das Spiel sofort zu beenden.
+In diesen Fällen werden folgende Abläufe bei Vergabe von Strafpunkten unterschieden:
+
+9.4.3
+
+Normalspiel:
+Beim Normalspiel wird das vorzeitig beendete Spiel als „nicht gespielt“ gewertet.
+Der Verursacher erhält 12 Strafpunkte. Diese Strafpunktzahl erhöht sich für den
+Verursacher um je 3 Punkte für jede Absage, die die Gegenpartei bis zum Eintritt
+des Regelverstoßes gemacht hat. Die drei Mitspieler erhalten je 4 (bzw. 5, 6, 7
+oder 8) Pluspunkte.
+
+9.4.4
+
+Solo:
+Bei einem schwerwiegenden Regelverstoß des Solospielers gilt Regelung 9.4.3.
+Bei einem schwerwiegenden Regelverstoß eines Spielers der Gegenpartei wird
+das Solo als gespielt gewertet. Der Verursacher erhält 12 Minuspunkte. Diese
+Punktzahl erhöht sich für den Verursacher um je 3 Punkte für jede Absage, die der
+Solospieler bis zum Eintritt des Regelverstoßes gemacht hat.
+Der Solospieler erhält 12 (bzw. 15, 18, 21, 24) Pluspunkte. Die übrigen Spieler erhalten 0 Punkte.
+
+9.5
+
+Regelverstöße bei bereits entschiedenem Spiel
+
+9.5.1
+
+Wird ein Regelverstoß begangen und reklamiert, der eine korrekte Weiterführung
+des Spieles nicht zulässt (siehe 9.4 Schwerwiegende Regelverstöße), und eine
+Partei hat das Spiel nach An- und Absagen bereits gewonnen, erfolgt ein Spielabbruch. Die Reststiche ab dem Zeitpunkt des Regelverstoßes gehen an die Gegenpartei. Weitere Sonderpunkte können nicht mehr erzielt werden. Der Regelverstoß
+
+TSR, Stand 21.02.2026
+
+Seite 25 von 28
+
+wird zusätzlich wie ein geringfügiger Regelverstoß geahndet.
+Zur Ermittlung, ob das Spiel bereits entschieden ist (siehe 7.1), zählen nur bereits
+vollständig und regelgerecht beendete Stiche.
+9.6
+
+Reklamation
+
+9.6.1
+
+Das Recht, einen Regelverstoß zu reklamieren, haben bei geklärter Partnerschaft
+nur die Gegenspieler, bei ungeklärter Partnerschaft dagegen alle am Spiel beteiligten Spieler, mit Ausnahme des Verursachers. Ungeklärte Partnerschaft liegt vor,
+wenn die Parteizugehörigkeit zum Zeitpunkt des Regelverstoßes noch nicht für alle
+vier Spieler zweifelsfrei geklärt ist (siehe „Klärung der Parteizugehörigkeit und
+Partnerschaft“ in 5.5).
+
+9.6.2
+
+Jeder Spieler darf auf einen Regelverstoß hinweisen.
+
+9.6.3
+
+Ein Regelverstoß ist sofort, nachdem er von allen Spielern entdeckt werden
+konnte, zu reklamieren. Wer eine Aktion [die Fortsetzung der Vorbehaltsabfrage
+(Gesund-, Vorbehaltsmeldung, Taufen eines Vorbehaltes), das Legen einer Karte
+bzw. eine An- bzw. Absage sowie die aktiv akzeptierte Korrektur eines Regelverstoßes] tätigt, verliert das Anrecht auf Reklamation. Eine Spielmaßnahme (Fortsetzung der Vorbehaltsabfrage, Ansage, Absage, Bemerkung, Legen einer Karte), die
+einen Regelverstoß darstellt, ist als gültiger Spielzug anzusehen, wenn sie nicht
+rechtzeitig reklamiert wurde.
+
+9.6.4
+
+Eine Anfrage an den/die reklamationsberechtigten Partner, ob reklamiert oder ob
+weitergespielt werden soll, ist erlaubt. Der/Die Partner darf/dürfen nur mit „Reklamation“ bzw. „keine Reklamation“ antworten. Seine/Ihre Antwort ist bindend, d.h.
+ihm/ihnen wird die Entscheidung überlassen! Im Falle der Reklamation wird je
+nach Schwere des Fehlers nach 9.2 bis 9.5 verfahren. Im Falle der Nichtreklamation wird der Regelverstoß als gültiger Spielzug angesehen.
+
+9.6.5
+
+Bei jeder Reklamation ist der Schiedsrichter zu rufen. Das Spiel ruht sofort, d.h.
+der laufende Stich bleibt offen, die anderen Stiche und die restlichen Karten bleiben verdeckt liegen, und es werden keine Diskussionen über das Spiel geführt.
+Wurde falsch gegeben (z.B. falscher Geber, nicht abgehoben, falsche Kartenanzahl verteilt), kann sofort erneut gegeben werden, d.h., hierzu braucht keine
+Schiedsrichterentscheidung abgewartet werden.
+
+9.6.6
+
+Es wird der zuerst reklamierte Regelverstoß, also nicht notwendigerweise der zuerst begangene Regelverstoß bestraft. Bei gleichzeitiger Reklamation verschiedener Regelverstöße wird der zuerst begangene bestraft, sofern dieser noch reklamiert werden darf. Ist dann der erste kein schwerwiegender Regelverstoß, kann
+der zweite Regelverstoß erneut reklamiert werden.
+
+9.6.7
+
+Gegen die Entscheidung des Schiedsrichters kann nur sofort reklamiert werden,
+d.h., dass das Spiel bis zur Entscheidung des Schiedsgerichtes unterbrochen wird.
+
+TSR, Stand 21.02.2026
+
+Seite 26 von 28
+
+9.7
+
+Unsportliches Verhalten
+
+9.7.1
+
+Ein unsportliches Verhalten liegt dann vor, wenn ein Spieler mit nicht- spielerischen Mitteln versucht, andere Spieler zu beeinflussen, oder die regelgerechte
+Wertung eines Spieles oder einer Spielrunde zu verhindern.
+
+9.7.2
+
+Bei Verdacht auf unsportliches Verhalten muss der Schiedsrichter das Schiedsgericht einberufen, es sei denn es handelt sich um die Vergabe von Strafpunkten
+nach 9.7.3. Das Schiedsgericht kann, je nach Schwere des Deliktes, die folgenden
+Sanktionen verhängen:
+a) Verwarnung (führt bei weiterem Fehlverhalten zu Punktabzug oder zur Disqualifikation),
+b) Punktabzug (maximal 12) ohne Gutschrift für die Mitspieler,
+c) Disqualifikation
+
+9.7.3. Im Anhang der TSR (Schiedsrichterhilfen) können Unsportlichkeiten, die eine eindeutig definierte Handlung beschreiben, als gebundene Entscheidungen gekennzeichnet werden. Im Falle gebundener Entscheidungen vergibt der Schiedsrichter
+die für die Handlung vorgesehenen Strafpunkte.
+
+10 Abweichungen und Empfehlungen
+Abweichend von 2.1.1 kann Doppelkopf auch von 5, 6, oder 7 Spielern gespielt
+werden. Es wird dann an Fünfer-, Sechser- oder Siebener-Tischen gespielt. Statt
+des Spieles an einem Siebener-Tisch kann ein Spieler („Springer“) auch an zwei
+Tischen gleichzeitig spielen.
+10.1
+
+Abweichungen an Fünfer-Tischen
+
+10.1.1 Abweichend von 3.3 erhält bei fünf Mitspielern der Kartengeber selbst keine Karten; er „sitzt“.
+10.1.2 Der Geber erhält am Fünfer-Tisch weder Plus- noch Minuspunkte.
+10.1.3 Abweichend von 7.3.3 muss am Fünfer-Tisch die Gerade-Ungerade-Regel nicht
+erfüllt sein.
+10.1.4 Abweichend von 3.1.1 führt am Fünfer-Tisch der Spieler an Position 5 die Spielliste.
+10.1.5 Abweichend von 8.5.1 dauert eine Spielrunde am Fünfer-Tisch 30 Spiele und ist
+nach einer reinen Spielzeit von 125 Minuten zu beenden.
+
+TSR, Stand 21.02.2026
+
+Seite 27 von 28
+
+10.2
+
+Empfehlungen für Fünfer-Tische
+
+10.2.1 Entsprechend 4.2.5 werden nach einem Pflichtsolo die Karten nochmals vom selben Geber verteilt, so dass im Extremfall ein Spieler nur an 21 Spielen beteiligt ist,
+während die anderen 24 bzw. 25 absolvieren. Jeder Spieler hat jedoch in jedem
+Fall bei genau fünf Normalspielen Aufspielpflicht, so dass niemand an mehr als 25
+Spielen beteiligt sein kann.
+
+11 Inkrafttreten
+•
+•
+•
+•
+•
+•
+•
+•
+
+Diese Turnier-Spielregeln gelten seit 1. Juli 2000.
+Die Punkte 8.2 und 8.2.1 sind durch die MGV 2002 geändert worden und gelten ab
+1. Januar 2003.
+Die Punkte 2.1.3 – 4.4.3 – 6 und 9.7 wurden durch die MGV 2013 geändert und gelten
+ab 1. Januar 2014.
+Der Punkt 9.1.3 wurde durch die MGV 2015 geändert und gilt ab 01.04.2015.
+Die Punkte 6.4.4 – 9.1.7 – 9.6.1 – 9.6.2 und 9.6.3 wurden durch die MGV 2016 geändert und gelten ab 01.04.2016
+Die Punkte 5.1.1 – 5.4.3 – 5.4.6 – 6.4.7 – 8.4.1 – 8.5.1 – 9.7 und 9.7.7 wurden durch
+die MGV 2019 geändert und gelten ab 01.04.2019
+Der Punkt 9 wurde durch die MGV 2024 ergänzt, die Punkte 9.6 und 9.7 wurden inklusive aller Unterpunkte getauscht. Die Änderungen gelten ab 01.04.2024.
+Der Punkt 5.3.8 wurde durch die MGV 2026 geändert und gilt ab 01.03.2026.
+
+Reinhardshagen, den 21. Februar 2026
+Deutscher Doppelkopf-Verband e. V. (DDV)
+--- Die Regelkommission des DDV ---
+
+TSR, Stand 21.02.2026
+
+Seite 28 von 28
+
+

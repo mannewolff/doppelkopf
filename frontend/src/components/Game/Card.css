@@ -1,0 +1,124 @@
+/**
+ * Playing Card Component Styles
+ * Uses PNG images from htdebeer/SVG-cards (LGPL 2.1)
+ */
+
+.playing-card {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: default;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  /* Ensure crisp rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+.playing-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Sizes (height-driven, width adjusts via aspect ratio of the image) */
+.playing-card--small {
+  width: 50px;
+  height: 75px;
+}
+
+.playing-card--medium {
+  width: 65px;
+  height: 98px;
+}
+
+.playing-card--large {
+  width: 90px;
+  height: 135px;
+}
+
+/* States */
+.playing-card--clickable {
+  cursor: pointer;
+}
+
+.playing-card--clickable:hover:not(.playing-card--disabled) {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.playing-card--valid {
+  box-shadow: 0 0 0 3px var(--color-card-valid),
+    0 4px 12px rgba(0, 255, 0, 0.4);
+  border-radius: 6px;
+}
+
+.playing-card--valid:hover {
+  box-shadow: 0 0 0 3px var(--color-card-valid),
+    0 12px 20px rgba(0, 255, 0, 0.6) !important;
+}
+
+.playing-card--selected {
+  transform: translateY(-15px);
+  box-shadow: 0 0 0 3px var(--color-card-selected),
+    0 12px 24px rgba(0, 255, 0, 0.7);
+}
+
+.playing-card--in-trick {
+  /* Trick cards are static */
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.playing-card--in-trick:hover {
+  transform: none;
+}
+
+.playing-card--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+.playing-card--disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive sizing */
+@media (max-width: 812px) {
+  .playing-card--small {
+    width: 38px;
+    height: 57px;
+  }
+
+  .playing-card--medium {
+    width: 50px;
+    height: 75px;
+  }
+
+  .playing-card--large {
+    width: 70px;
+    height: 105px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .playing-card--medium {
+    width: 80px;
+    height: 120px;
+  }
+
+  .playing-card--large {
+    width: 100px;
+    height: 150px;
+  }
+}
