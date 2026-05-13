@@ -4,6 +4,8 @@ import { useViewport } from '../../hooks/useViewport'
 import type { Player, Trick, Card as CardType } from '../../types/game'
 import { Card } from './Card'
 import { VorbehaltPhase } from './VorbehaltPhase'
+import { GameStartOverlay } from './GameStartOverlay'
+import { GameEndScreen } from './GameEndScreen'
 import { getValidCardIds, sortHandByGameType } from '../../lib/cardLogic'
 import './GameBoard.css'
 
@@ -41,6 +43,8 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     sendAnnounce,
     sendDeclareVorbehalt,
     sendChooseVorbehaltType,
+    sendStartPlaying,
+    sendNextGame,
   } = useGameWebSocket({
     gameId,
     playerId,
@@ -169,22 +173,24 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   // Peeking is allowed even mid-trick - it just overlays the table.
   const canShowLastTrick = lastCompletedTrick !== null
 
-  // Game End State
-  if (gameState.isFinished && gameState.gameEndResult) {
-    return (
-      <GameEndScreen
-        winner={gameState.gameEndResult.winner}
-        finalScore={gameState.score}
-        onNewGame={() => {
-          // Reload page to start fresh game
-          window.location.reload()
-        }}
-      />
-    )
+  // Game End / Round End → show summary screen with Spielzettel
+  if (gameState.phase === 'finished' || gameState.phase === 'round-finished') {
+    return <GameEndScreen gameState={gameState} onNextGame={sendNextGame} />
   }
+
+  // Ready-to-play: human must click "Spiel starten" before AI starts moving
+  const showStartOverlay = gameState.phase === 'ready-to-play'
 
   return (
     <div className={`game-board game-board--${viewport}`}>
+      {showStartOverlay && (
+        <GameStartOverlay
+          gameState={gameState}
+          sortedHand={sortedHand}
+          playerId={playerId}
+          onStartPlaying={sendStartPlaying}
+        />
+      )}
       {/* ================================================================
           TOP ROW: Player 1 (oben/gegenüber)
           ================================================================ */}
@@ -353,11 +359,11 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
           <div className="score-panel__row">
             <div className="score-panel__points score-re">
               <span className="score-label">RE</span>
-              <span className="score-value">{gameState.score.re}</span>
+              <span className="score-value">{formatScore(gameState.score.re)}</span>
             </div>
             <div className="score-panel__points score-kontra">
               <span className="score-label">KO</span>
-              <span className="score-value">{gameState.score.kontra}</span>
+              <span className="score-value">{formatScore(gameState.score.kontra)}</span>
             </div>
           </div>
         </div>
@@ -424,43 +430,6 @@ function renderVorbehaltBadge(decision: Player['vorbehaltDecision']): string | n
 }
 
 // ============================================================================
-// GAME END SCREEN
-// ============================================================================
-
-interface GameEndScreenProps {
-  winner: 're' | 'kontra'
-  finalScore: { re: number; kontra: number }
-  onNewGame: () => void
-}
-
-function GameEndScreen({ winner, finalScore, onNewGame }: GameEndScreenProps) {
-  return (
-    <div className="game-board game-board--ended">
-      <div className="game-end-screen">
-        <h1 className="game-end-screen__title">🏆 Spiel beendet!</h1>
-        <div className={`game-end-screen__winner winner-${winner}`}>
-          {winner === 're' ? 'RE' : 'KONTRA'} hat gewonnen!
-        </div>
-        <div className="game-end-screen__scores">
-          <div className="game-end-screen__score">
-            <div className="score-label">RE</div>
-            <div className="score-value">{finalScore.re}</div>
-          </div>
-          <div className="game-end-screen__separator">vs</div>
-          <div className="game-end-screen__score">
-            <div className="score-label">KONTRA</div>
-            <div className="score-value">{finalScore.kontra}</div>
-          </div>
-        </div>
-        <button className="game-end-screen__button" onClick={onNewGame}>
-          🔄 Neues Spiel
-        </button>
-      </div>
-    </div>
-  )
-}
-
-// ============================================================================
 // ANNOUNCEMENT BUTTON
 // ============================================================================
 
@@ -482,5 +451,17 @@ function AnnouncementButton({ type, active, disabled, onClick }: AnnouncementBut
       {type}
     </button>
   )
+}
+
+// ============================================================================
+// HELPERS
+// ============================================================================
+
+/**
+ * Render a score value, or "?" if it's null (Spoiler-Schutz pre-clarification).
+ */
+function formatScore(value: number | null): string {
+  if (value === null) return '?'
+  return String(value)
 }
 

@@ -23,6 +23,8 @@ interface UseGameWebSocketReturn {
   sendAnnounce: (announcementType: AnnouncementType) => void
   sendDeclareVorbehalt: (decision: 'gesund' | 'vorbehalt') => void
   sendChooseVorbehaltType: (type: VorbehaltDecision) => void
+  sendStartPlaying: () => void
+  sendNextGame: () => void
   requestState: () => void
 }
 
@@ -106,6 +108,20 @@ export function useGameWebSocket(options: UseGameWebSocketOptions): UseGameWebSo
     },
     [sendMessage]
   )
+
+  const sendStartPlaying = useCallback(() => {
+    sendMessage({
+      type: 'game:start-playing',
+      payload: {},
+    })
+  }, [sendMessage])
+
+  const sendNextGame = useCallback(() => {
+    sendMessage({
+      type: 'game:next-game',
+      payload: {},
+    })
+  }, [sendMessage])
 
   // ========================================================================
   // MESSAGE HANDLING
@@ -255,6 +271,8 @@ export function useGameWebSocket(options: UseGameWebSocketOptions): UseGameWebSo
     sendAnnounce,
     sendDeclareVorbehalt,
     sendChooseVorbehaltType,
+    sendStartPlaying,
+    sendNextGame,
     requestState,
   }
 }

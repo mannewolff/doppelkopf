@@ -84,15 +84,19 @@ export type GameType =
  *  - waiting: Spielsetup, Karten werden verteilt
  *  - finding: Vorbehalt-Frage reihum (Phase 1)
  *  - finding-vorbehalt-type: Spieler mit Vorbehalt wählt Typ (Phase 2)
+ *  - ready-to-play: Karten sind sortiert, Mensch klickt „Spiel starten"
  *  - playing: Spiel läuft
- *  - finished: Spiel beendet
+ *  - finished: Spiel beendet, kann mit „Nächstes Spiel" fortsetzen
+ *  - round-finished: 20-Spiele-Runde komplett, Endabrechnung
  */
 export type GamePhase =
   | 'waiting'
   | 'finding'
   | 'finding-vorbehalt-type'
+  | 'ready-to-play'
   | 'playing'
   | 'finished'
+  | 'round-finished'
 
 /**
  * Entscheidung in der Vorbehalt-Phase.
@@ -110,6 +114,18 @@ export type VorbehaltDecision =
   | 'farbsolo-hearts'
   | 'farbsolo-diamonds'
 
+/**
+ * Snapshot of one completed game within a Spielzettel round.
+ */
+export interface GameHistoryEntry {
+  gameNumber: number
+  gameType: GameType
+  winnerParty: 're' | 'kontra'
+  pointValue: number
+  /** playerId of the solo player, if this game was a solo */
+  soloPlayer?: string
+}
+
 export interface GameState {
   gameId: string
   phase: GamePhase
@@ -123,12 +139,12 @@ export interface GameState {
 
   // Cards
   hand: Card[] // Only visible to the player
-  validCardIds: string[] // Which cards can be played now
+  validCardIds: string[] // Server-provided; frontend computes its own
 
-  // History
+  // History (in this single game)
   tricks: Trick[]
   currentTrick: Trick | null
-  playHistory: TrickCard[] // All plays in order
+  playHistory: TrickCard[]
 
   // Vorbehalt phase tracking
   /** Player ID who declared "Vorbehalt" (during phase 'finding-vorbehalt-type') */
@@ -136,13 +152,29 @@ export interface GameState {
 
   // Status
   announcements: Announcement[]
-  score: { re: number; kontra: number }
+  /**
+   * Current trick-points per party. `null` means: not yet revealed to this
+   * client (Spoiler-Schutz before parties are clarified).
+   */
+  score: { re: number | null; kontra: number | null }
   isFinished: boolean
   gameEndResult?: {
     winner: 're' | 'kontra'
     finalScore: number
     statistics: GameStatistics
   }
+
+  // Spielzettel (Round of N games, default 20)
+  /** Current game number within the round (1..totalGames) */
+  gameNumber: number
+  /** Games per round (default 20) */
+  totalGames: number
+  /** Cumulative score across all completed games of this round, per playerId */
+  cumulativeScore: Record<string, number>
+  /** History of completed games in this round */
+  gameHistory: GameHistoryEntry[]
+  /** Tracks which players have already played their mandatory solo (Pflichtsolo) */
+  pflichtsoloPlayed: Record<string, boolean>
 }
 
 export interface GameStatistics {
@@ -166,6 +198,10 @@ export type ClientMessage =
   | { type: 'game:declare-vorbehalt'; payload: { decision: 'gesund' | 'vorbehalt' } }
   /** Phase 2: choose specific vorbehalt type */
   | { type: 'game:choose-vorbehalt-type'; payload: { type: VorbehaltDecision } }
+  /** Wait phase: human signals readiness, server starts the play */
+  | { type: 'game:start-playing'; payload: Record<string, never> }
+  /** After phase 'finished': human starts the next game in the round */
+  | { type: 'game:next-game'; payload: Record<string, never> }
 
 export type ServerMessage =
   | { type: 'game:state-updated'; payload: GameState }

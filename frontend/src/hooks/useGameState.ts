@@ -31,8 +31,13 @@ const initialGameState: GameState = {
   currentTrick: null,
   playHistory: [],
   announcements: [],
-  score: { re: 0, kontra: 0 },
+  score: { re: null, kontra: null },
   isFinished: false,
+  gameNumber: 1,
+  totalGames: 20,
+  cumulativeScore: {},
+  gameHistory: [],
+  pflichtsoloPlayed: {},
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {
