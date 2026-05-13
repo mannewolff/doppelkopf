@@ -141,16 +141,50 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   useEffect(() => {
     if (seatMap) return
     if (!gameState || gameState.players.length !== 4) return
-    const map: Record<1 | 2 | 3 | 4, string> = { 1: '', 2: '', 3: '', 4: '' }
+
+    // Sanity: the prop playerId must actually exist in the players array.
+    const humanExists = gameState.players.some((p) => p.id === playerId)
+    if (!humanExists) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[seatMap-init] playerId not found in players, skipping init',
+        { playerId, players: gameState.players.map((p) => p.id) }
+      )
+      return
+    }
+
     const aiPlayers = gameState.players
       .filter((p) => p.id !== playerId)
       .sort((a, b) => a.position - b.position)
-    // Human → seat 4 (always)
-    map[4] = playerId
-    // AIs → seats 1, 2, 3 in order of their initial position
-    aiPlayers.forEach((p, idx) => {
-      map[(idx + 1) as 1 | 2 | 3] = p.id
+
+    if (aiPlayers.length !== 3) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[seatMap-init] expected exactly 3 AI players, got',
+        aiPlayers.length
+      )
+      return
+    }
+
+    const map: Record<1 | 2 | 3 | 4, string> = {
+      1: aiPlayers[0].id,
+      2: aiPlayers[1].id,
+      3: aiPlayers[2].id,
+      4: playerId,
+    }
+
+    // eslint-disable-next-line no-console
+    console.log('[seatMap-init]', {
+      playerId,
+      players: gameState.players.map((p) => ({
+        id: p.id,
+        name: p.name,
+        position: p.position,
+        isAI: p.isAI,
+      })),
+      map,
     })
+
     setSeatMap(map)
   }, [gameState, playerId, seatMap])
 
