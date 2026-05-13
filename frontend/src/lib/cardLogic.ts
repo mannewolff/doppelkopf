@@ -254,39 +254,40 @@ export function getValidCardIds(
 
 /**
  * Compute which player parties (Re / Kontra) are currently revealed to the
- * human, based on Kreuz-Dame plays in the playHistory.
+ * human, based on observable game events.
  *
- * Rules (Normalspiel):
- *  - As soon as a player plays a Kreuz-Dame, they're revealed as Re-Partei.
- *  - Once two distinct players have played a Kreuz-Dame, the remaining two
- *    players are by elimination revealed as Kontra-Partei.
- *  - Until then, other players' party stays hidden (returned as undefined).
+ * Reveal sources (Normalspiel):
+ *  1. **Kreuz-Dame plays** — Anyone who plays a Kreuz-Dame is revealed as Re.
+ *     Once two distinct players have done so, the remaining two are by
+ *     elimination Kontra.
+ *  2. **Re/Kontra announcements** — A „Re" announcement reveals the player
+ *     as Re; a „Kontra" announcement reveals them as Kontra.
+ *  3. **90/60/30/Schwarz announcements** — A follow-up announcement implies
+ *     the player belongs to the party that made the initial Re or Kontra
+ *     call. If only one of the two has been called so far, the announcer
+ *     is in that party. If both have been called and we can't tell,
+ *     this announcement is skipped.
+ *  4. **Game end** — `player.party` from the server is used as fallback.
  *
- * Edge case: Hochzeit (both Kreuz-Damen at one player) — only one player
- * gets revealed as Re; the others stay hidden until the Klärungsstich is
- * played (out of MVP scope, backend handles that).
- *
- * At game end (`isFinished`), all parties are revealed via this same
- * mechanism plus a fallback to `player.party` from the server.
+ * Hochzeit edge case: Both Kreuz-Damen at one player → only that player
+ * gets revealed as Re; the others stay hidden until the Klärungsstich
+ * (out of MVP scope; backend handles party assignment then).
  */
 export function getRevealedParties(
   gameState: GameState
 ): Record<string, 're' | 'kontra'> {
   const revealed: Record<string, 're' | 'kontra'> = {}
 
+  // --- Pass 1: Kreuz-Dame plays ------------------------------------------
   const kreuzDamePlayers = new Set<string>()
   for (const tc of gameState.playHistory) {
     if (tc.card.suit === 'clubs' && tc.card.rank === 'queen') {
       kreuzDamePlayers.add(tc.playerId)
     }
   }
-
   for (const pid of kreuzDamePlayers) {
     revealed[pid] = 're'
   }
-
-  // Once both Kreuz-Damen are revealed at different players, the other two
-  // must be Kontra. (Hochzeit case: only one player → others stay hidden.)
   if (kreuzDamePlayers.size >= 2) {
     for (const p of gameState.players) {
       if (!kreuzDamePlayers.has(p.id) && !(p.id in revealed)) {
@@ -295,9 +296,35 @@ export function getRevealedParties(
     }
   }
 
-  // After the game ends, the server has authoritative knowledge of all
-  // parties. Fall back to the server-supplied player.party for any player
-  // still unrevealed by the Kreuz-Dame logic.
+  // --- Pass 2: announcements (chronological) -----------------------------
+  // Re/Kontra announcements are direct. Follow-up announcements (90/60/30/
+  // schwarz) imply the same party as the initial Re/Kontra call.
+  const sortedAnnouncements = [...gameState.announcements].sort(
+    (a, b) => a.timestamp - b.timestamp
+  )
+  let reAnnounced = false
+  let kontraAnnounced = false
+  for (const a of sortedAnnouncements) {
+    if (a.type === 're') {
+      revealed[a.playerId] = 're'
+      reAnnounced = true
+    } else if (a.type === 'kontra') {
+      revealed[a.playerId] = 'kontra'
+      kontraAnnounced = true
+    } else {
+      // 90/60/30/schwarz — infer party from earlier first announcements
+      if (!(a.playerId in revealed)) {
+        if (reAnnounced && !kontraAnnounced) {
+          revealed[a.playerId] = 're'
+        } else if (kontraAnnounced && !reAnnounced) {
+          revealed[a.playerId] = 'kontra'
+        }
+        // Both announced → ambiguous, leave unrevealed for now
+      }
+    }
+  }
+
+  // --- Pass 3: fallback at game end --------------------------------------
   if (gameState.isFinished) {
     for (const p of gameState.players) {
       if (!(p.id in revealed) && (p.party === 're' || p.party === 'kontra')) {
