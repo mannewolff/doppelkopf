@@ -55,6 +55,14 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   const [showLastTrick, setShowLastTrick] = useState(false)
 
   /**
+   * Stable seat assignment: which playerId is shown on which visual seat
+   * (1=top, 2=right, 3=left, 4=bottom). Locked in on first game state and
+   * NOT changed when the server rotates `position` between games (dealer
+   * rotation). The human is always at seat 4.
+   */
+  const [seatMap, setSeatMap] = useState<Record<1 | 2 | 3 | 4, string> | null>(null)
+
+  /**
    * Frozen trick: when a trick completes, we hold it on the table for
    * TRICK_HOLD_MS so the player sees the 4th card. We trigger this off the
    * `tricks` array growing (most reliable signal) rather than off the
@@ -126,6 +134,26 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     setShowLastTrick(false)
   }, [currentGameId])
 
+  // Lock in the seat assignment on first load. The human is always seat 4;
+  // the three AIs take seats 1/2/3 in the order their initial server-side
+  // `position` puts them. After this, dealer rotation on the server may
+  // change `position` between games, but the visual seat stays put.
+  useEffect(() => {
+    if (seatMap) return
+    if (!gameState || gameState.players.length !== 4) return
+    const map: Record<1 | 2 | 3 | 4, string> = { 1: '', 2: '', 3: '', 4: '' }
+    const aiPlayers = gameState.players
+      .filter((p) => p.id !== playerId)
+      .sort((a, b) => a.position - b.position)
+    // Human → seat 4 (always)
+    map[4] = playerId
+    // AIs → seats 1, 2, 3 in order of their initial position
+    aiPlayers.forEach((p, idx) => {
+      map[(idx + 1) as 1 | 2 | 3] = p.id
+    })
+    setSeatMap(map)
+  }, [gameState, playerId, seatMap])
+
   /**
    * Single-click card play: a click immediately plays the card.
    * Optimized for mobile (one tap = play).
@@ -169,10 +197,17 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     )
   }
 
-  // Players: 4 in fixed positions
-  const player1 = gameState.players.find((p) => p.position === 1) // oben
-  const player2 = gameState.players.find((p) => p.position === 2) // rechts
-  const player3 = gameState.players.find((p) => p.position === 3) // links
+  // Players at stable visual seats (1=top, 2=right, 3=left, 4=bottom).
+  // Falls back to the server's `position` field on the very first render
+  // before the seatMap has been initialized.
+  const findById = (id: string | undefined) =>
+    id ? gameState.players.find((p) => p.id === id) : undefined
+  const player1 =
+    findById(seatMap?.[1]) ?? gameState.players.find((p) => p.position === 1)
+  const player2 =
+    findById(seatMap?.[2]) ?? gameState.players.find((p) => p.position === 2)
+  const player3 =
+    findById(seatMap?.[3]) ?? gameState.players.find((p) => p.position === 3)
   const playerHuman = gameState.players.find((p) => p.id === playerId) // unten
 
   const isYourTurn = gameState.currentPlayerId === playerId
@@ -260,14 +295,16 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
           )}
           <div className="tisch__current-trick">
             {/* Always render 4 positioned slots; cards appear in the slot of the
-                player who played them. Empty slots stay invisible. */}
-            {[1, 2, 3, 4].map((pos) => {
-              const trickCard = displayedTrick?.cards.find((tc) => {
-                const cardPlayer = gameState.players.find((p) => p.id === tc.playerId)
-                return cardPlayer?.position === pos
-              })
+                player who played them, looked up via the stable seatMap. */}
+            {([1, 2, 3, 4] as const).map((seat) => {
+              const seatPlayerId =
+                seatMap?.[seat] ??
+                gameState.players.find((p) => p.position === seat)?.id
+              const trickCard = seatPlayerId
+                ? displayedTrick?.cards.find((tc) => tc.playerId === seatPlayerId)
+                : undefined
               return (
-                <div key={pos} className={`tisch__slot tisch__slot--pos${pos}`}>
+                <div key={seat} className={`tisch__slot tisch__slot--pos${seat}`}>
                   {trickCard && (
                     <Card card={trickCard.card} isInTrick size="small" />
                   )}
