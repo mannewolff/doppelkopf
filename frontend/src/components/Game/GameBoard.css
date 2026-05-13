@@ -32,7 +32,7 @@
   grid-template-columns: auto 1fr auto;
   gap: var(--spacing-md);
   align-items: stretch;
-  min-height: 275px;
+  min-height: 300px;
 }
 
 .game-board__side {
@@ -50,7 +50,7 @@
   border-radius: var(--border-radius-md);
   border: 2px solid var(--color-border);
   padding: var(--spacing-sm);
-  min-height: 275px;
+  min-height: 300px;
 }
 
 /**
@@ -67,50 +67,71 @@
  *    │      │ pos4 │      │   pos4 = bottom (Mensch)
  *    └──────┴──────┴──────┘
  */
+/**
+ * Tisch arrangement (absolute positioning):
+ *
+ *       ┌───────┐
+ *       │ Top   │
+ *       └───────┘
+ *
+ *   ┌────┐       ┌────┐
+ *   │Left│       │Right│   ← positioned just above Süd
+ *   └────┘       └────┘
+ *       ┌───────┐
+ *       │Bottom │
+ *       └───────┘
+ *
+ * Top sits at the top edge, Left & Right are pushed down to ~60% of the
+ * table height (clearly below center), Bottom sits at the bottom edge.
+ */
 .tisch__current-trick {
-  display: grid;
-  /* Each slot is exactly the size of one Card (small=50x75). Generous gap
-     between rows lets us shift West/Ost down without overlapping Süd. */
-  grid-template-columns: 50px 50px 50px;
-  grid-template-rows: 75px 75px 75px;
-  grid-template-areas:
-    '.    top    .'
-    'left center right'
-    '.    bottom .';
-  align-items: center;
-  justify-items: center;
-  gap: 15px;
-  width: 180px; /* 50*3 + 15*2 */
-  height: 255px; /* 75*3 + 15*2 */
-  margin: 0 auto;
   position: relative;
+  width: 220px;
+  height: 280px;
+  margin: 0 auto;
 }
 
 .tisch__slot {
-  /* slot reserves space even when empty so the layout doesn't jump */
-  width: 50px;
-  height: 75px;
+  /* Reserves space even when empty (positioned absolutely now). */
+  width: 65px;
+  height: 98px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 
-.tisch__slot--pos1 { grid-area: top; }
+.tisch__slot--pos1 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .tisch__slot--pos2 {
-  grid-area: right;
-  /* West/Ost noticeably lowered so they sit visibly closer to the bottom
-     than to the top — but staying within their own row to avoid clashing
-     with Süd. */
-  transform: translateY(18px);
+  /* Ost (right) — clearly below center, near right edge */
+  top: 55%;
+  right: 0;
+  transform: translateY(-50%);
 }
+
 .tisch__slot--pos3 {
-  grid-area: left;
-  transform: translateY(18px);
+  /* West (left) — clearly below center, near left edge */
+  top: 55%;
+  left: 0;
+  transform: translateY(-50%);
 }
-.tisch__slot--pos4 { grid-area: bottom; }
+
+.tisch__slot--pos4 {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .tisch__placeholder {
-  grid-area: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-text-muted);
   font-style: italic;
   font-size: var(--font-size-sm);
@@ -119,41 +140,27 @@
   white-space: nowrap;
 }
 
-/* Mobile landscape: tighter grid so the hand below stays fully visible */
+/* Mobile landscape: tighter table */
 @media (max-width: 812px) {
   .tisch__current-trick {
-    grid-template-columns: 38px 38px 38px;
-    grid-template-rows: 57px 57px 57px;
-    gap: 10px;
-    width: 134px; /* 38*3 + 10*2 */
-    height: 191px; /* 57*3 + 10*2 */
+    width: 170px;
+    height: 220px;
   }
   .tisch__slot {
-    width: 38px;
-    height: 57px;
-  }
-  .tisch__slot--pos2,
-  .tisch__slot--pos3 {
-    transform: translateY(12px);
+    width: 50px;
+    height: 75px;
   }
 }
 
-/* Desktop landscape: roomier tisch */
+/* Desktop landscape: roomier table */
 @media (min-width: 1280px) {
   .tisch__current-trick {
-    grid-template-columns: 70px 70px 70px;
-    grid-template-rows: 105px 105px 105px;
-    gap: 20px;
-    width: 250px; /* 70*3 + 20*2 */
-    height: 355px; /* 105*3 + 20*2 */
+    width: 280px;
+    height: 360px;
   }
   .tisch__slot {
-    width: 70px;
-    height: 105px;
-  }
-  .tisch__slot--pos2,
-  .tisch__slot--pos3 {
-    transform: translateY(25px);
+    width: 80px;
+    height: 120px;
   }
 }
 
@@ -872,11 +879,11 @@
 
   .game-board__middle {
     gap: var(--spacing-xs);
-    min-height: 205px;
+    min-height: 235px;
   }
 
   .game-board__tisch {
-    min-height: 205px;
+    min-height: 235px;
     padding: var(--spacing-xs);
   }
 
@@ -979,11 +986,11 @@
 
   .game-board__middle {
     gap: var(--spacing-lg);
-    min-height: 375px;
+    min-height: 380px;
   }
 
   .game-board__tisch {
-    min-height: 375px;
+    min-height: 380px;
   }
 
   .player-info {

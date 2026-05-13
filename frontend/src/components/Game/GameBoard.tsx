@@ -366,7 +366,7 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
               return (
                 <div key={seat} className={`tisch__slot tisch__slot--pos${seat}`}>
                   {trickCard && (
-                    <Card card={trickCard.card} isInTrick size="small" />
+                    <Card card={trickCard.card} isInTrick size="medium" />
                   )}
                 </div>
               )
