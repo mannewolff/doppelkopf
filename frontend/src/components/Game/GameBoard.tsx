@@ -267,6 +267,32 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     displayedTrick = gameState.currentTrick
   }
 
+  // Diagnostic log: every time the displayed trick changes, dump
+  // the mapping seat → trick card so we can see what landed where.
+  const displayedTrickFingerprint = displayedTrick
+    ? `${displayedTrick.id}#${displayedTrick.cards.length}`
+    : 'empty'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!seatMap || !displayedTrick || displayedTrick.cards.length === 0) return
+    const slotInfo = ([1, 2, 3, 4] as const).map((seat) => {
+      const seatPlayerId = seatMap[seat]
+      const tc = displayedTrick.cards.find((c) => c.playerId === seatPlayerId)
+      return {
+        seat,
+        seatPlayerId,
+        card: tc ? `${tc.card.suit}-${tc.card.rank}` : '—',
+      }
+    })
+    // eslint-disable-next-line no-console
+    console.log('[trick→slots]', {
+      trickId: displayedTrick.id,
+      cardCount: displayedTrick.cards.length,
+      rawCards: displayedTrick.cards.map((c) => `${c.playerId}:${c.card.suit}-${c.card.rank}`),
+      slots: slotInfo,
+    })
+  }, [displayedTrickFingerprint, seatMap])
+
   // "Last trick" button is enabled whenever a completed trick exists.
   // Peeking is allowed even mid-trick - it just overlays the table.
   const canShowLastTrick = lastCompletedTrick !== null
