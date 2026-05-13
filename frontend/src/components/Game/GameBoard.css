@@ -32,7 +32,7 @@
   grid-template-columns: auto 1fr auto;
   gap: var(--spacing-md);
   align-items: stretch;
-  min-height: 260px;
+  min-height: 220px;
 }
 
 .game-board__side {
@@ -49,52 +49,59 @@
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: var(--border-radius-md);
   border: 2px solid var(--color-border);
-  padding: var(--spacing-md);
-  min-height: 260px;
+  padding: var(--spacing-sm);
+  min-height: 220px;
 }
 
 /**
  * Tisch arrangement: each card appears in the table slot pointing to its
- * player's seat (oben / rechts / unten / links). Empty slots stay invisible
- * but still reserve space so the layout never collapses.
+ * player's seat (oben / rechts / unten / links). Left/right cards are
+ * intentionally shifted DOWN a bit so it's obvious which seat played them
+ * (West/Ost sit lower than the center of the table).
  *
  *    ┌──────┬──────┬──────┐
  *    │      │ pos1 │      │   pos1 = top  (gegenüber)
  *    ├──────┼──────┼──────┤
- *    │ pos3 │ ctr  │ pos2 │   pos2 = right
- *    ├──────┼──────┼──────┤   pos3 = left
+ *    │ pos3↓│ ctr  │ pos2↓│   pos2 = right (lowered)
+ *    ├──────┼──────┼──────┤   pos3 = left  (lowered)
  *    │      │ pos4 │      │   pos4 = bottom (Mensch)
  *    └──────┴──────┴──────┘
  */
 .tisch__current-trick {
   display: grid;
-  grid-template-columns: 60px 60px 60px;
-  grid-template-rows: 80px 80px 80px;
+  grid-template-columns: 50px 50px 50px;
+  grid-template-rows: 65px 65px 65px;
   grid-template-areas:
     '.    top    .'
     'left center right'
     '.    bottom .';
   align-items: center;
   justify-items: center;
-  gap: var(--spacing-xs);
-  width: 192px;
-  height: 256px;
+  gap: 4px;
+  width: 162px;
+  height: 207px;
   margin: 0 auto;
   position: relative;
 }
 
 .tisch__slot {
   /* slot reserves space even when empty so the layout doesn't jump */
-  width: 60px;
-  height: 80px;
+  width: 50px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .tisch__slot--pos1 { grid-area: top; }
-.tisch__slot--pos2 { grid-area: right; }
-.tisch__slot--pos3 { grid-area: left; }
+.tisch__slot--pos2 {
+  grid-area: right;
+  transform: translateY(22px); /* West/Ost weiter nach unten ziehen */
+}
+.tisch__slot--pos3 {
+  grid-area: left;
+  transform: translateY(22px);
+}
 .tisch__slot--pos4 { grid-area: bottom; }
 
 .tisch__placeholder {
@@ -107,31 +114,39 @@
   white-space: nowrap;
 }
 
-/* Mobile landscape: shrink the tisch grid */
+/* Mobile landscape: tighter grid so the hand below stays fully visible */
 @media (max-width: 812px) {
   .tisch__current-trick {
-    grid-template-columns: 46px 46px 46px;
-    grid-template-rows: 64px 64px 64px;
-    width: 156px;
-    height: 208px;
+    grid-template-columns: 36px 36px 36px;
+    grid-template-rows: 50px 50px 50px;
+    width: 116px;
+    height: 158px;
   }
   .tisch__slot {
-    width: 46px;
-    height: 64px;
+    width: 36px;
+    height: 50px;
+  }
+  .tisch__slot--pos2,
+  .tisch__slot--pos3 {
+    transform: translateY(16px);
   }
 }
 
 /* Desktop landscape: roomier tisch */
 @media (min-width: 1280px) {
   .tisch__current-trick {
-    grid-template-columns: 80px 80px 80px;
-    grid-template-rows: 110px 110px 110px;
-    width: 256px;
-    height: 346px;
+    grid-template-columns: 70px 70px 70px;
+    grid-template-rows: 95px 95px 95px;
+    width: 222px;
+    height: 295px;
   }
   .tisch__slot {
-    width: 80px;
-    height: 110px;
+    width: 70px;
+    height: 95px;
+  }
+  .tisch__slot--pos2,
+  .tisch__slot--pos3 {
+    transform: translateY(28px);
   }
 }
 
@@ -840,22 +855,22 @@
 
 @media (max-width: 812px) {
   .game-board {
-    padding: var(--spacing-sm);
-    gap: var(--spacing-sm);
+    padding: var(--spacing-xs);
+    gap: var(--spacing-xs);
   }
 
   .game-board__top {
-    min-height: 50px;
+    min-height: 40px;
   }
 
   .game-board__middle {
-    gap: var(--spacing-sm);
-    min-height: 210px;
+    gap: var(--spacing-xs);
+    min-height: 168px;
   }
 
   .game-board__tisch {
-    min-height: 210px;
-    padding: var(--spacing-sm);
+    min-height: 168px;
+    padding: var(--spacing-xs);
   }
 
   .player-info {
@@ -957,11 +972,11 @@
 
   .game-board__middle {
     gap: var(--spacing-lg);
-    min-height: 350px;
+    min-height: 310px;
   }
 
   .game-board__tisch {
-    min-height: 350px;
+    min-height: 310px;
   }
 
   .player-info {
