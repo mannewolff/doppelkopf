@@ -140,7 +140,11 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     )
   }
 
-  if (!gameState || gameState.gameId !== gameId) {
+  // Match base gameId — the server appends "::g{N}" for follow-up games
+  // within a Spielzettel round, so we compare the prefix only.
+  const gameIdMatches =
+    !!gameState && (gameState.gameId === gameId || gameState.gameId.startsWith(`${gameId}::`))
+  if (!gameState || !gameIdMatches) {
     return (
       <div className="game-board game-board--waiting">
         <div className="waiting-screen">
