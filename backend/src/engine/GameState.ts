@@ -1,15 +1,15 @@
 /**
  * Interne, vollständige Server-Sicht des Spiels.
  *
- * GameState (im shared/types) ist die spielereigene, gefilterte Sicht
- * (eigene Hand + validCardIds). Diese Datei hält den "Master-Zustand"
- * inkl. aller Hände.
+ * GameState (in shared/types) ist die spielereigene, gefilterte Sicht.
+ * Diese Datei hält den "Master-Zustand" inkl. aller Hände und Vorbehalt-Tracking.
  */
 
 import type {
   Announcement,
   AnnouncementType,
   Card,
+  GameHistoryEntry,
   GamePhase,
   GameType,
   Player,
@@ -31,26 +31,33 @@ export interface InternalGameState {
   currentPlayerId: string
   currentPlayerPosition: PlayerPosition
 
+  /** Spieler-ID, die 'vorbehalt' angemeldet hat. */
+  vorbehaltActivePlayerId?: string
+
   /** Alle Hände (Server-only). */
   hands: Map<string, Card[]>
 
-  /** Bereits abgeschlossene Stiche. */
   tricks: Trick[]
-  /** Aktueller, offener Stich. */
   currentTrick: Trick
 
-  /** Flache Liste aller gespielten Karten. */
   playHistory: TrickCard[]
 
-  /** Alle Ansagen in chronologischer Reihenfolge. */
   announcements: Announcement[]
 
-  /** Live-Score während des Spiels (Augensumme pro Partei). */
   score: { re: number; kontra: number }
 
   isFinished: boolean
 
-  /** Version-Marker für stale-callback-Schutz. */
+  /** Position des aktuellen Gebers (Server-only). Rotiert mit jedem nextGame. */
+  dealerPosition: PlayerPosition
+
+  /** Spielzettel-Felder (kumulativ über die 20er-Runde). */
+  gameNumber: number
+  totalGames: number
+  cumulativeScore: Record<string, number>
+  gameHistory: GameHistoryEntry[]
+  pflichtsoloPlayed: Record<string, boolean>
+
   version: number
 }
 

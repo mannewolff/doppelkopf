@@ -69,7 +69,6 @@ export interface ScoreBreakdown {
 }
 
 const RE_WIN_THRESHOLD = 121
-const KONTRA_WIN_THRESHOLD = 120
 
 /**
  * Hauptberechnung.

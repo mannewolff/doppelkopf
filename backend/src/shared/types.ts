@@ -1,7 +1,5 @@
 /**
- * Doppelkopf Game Types — kopiert vom Frontend (frontend/src/types/game.ts).
- * Diese Datei MUSS strukturell identisch zum Frontend bleiben, da sie
- * den WebSocket-Contract definiert.
+ * Doppelkopf Game Types — Vertrag zwischen Frontend und Backend.
  */
 
 // ============================================================================
@@ -33,6 +31,17 @@ export interface Announcement {
   timestamp: number
 }
 
+export type VorbehaltDecision =
+  | 'gesund'
+  | 'hochzeit'
+  | 'damen-solo'
+  | 'buben-solo'
+  | 'fleischlos'
+  | 'farbsolo-clubs'
+  | 'farbsolo-spades'
+  | 'farbsolo-hearts'
+  | 'farbsolo-diamonds'
+
 export interface Player {
   id: string
   name: string
@@ -41,6 +50,7 @@ export interface Player {
   isAI: boolean
   announcements: Announcement[]
   cardsRemaining: number
+  vorbehaltDecision?: VorbehaltDecision
 }
 
 // ============================================================================
@@ -64,8 +74,35 @@ export interface Trick {
 // GAME STATE
 // ============================================================================
 
-export type GameType = 'normalspiel' | 'solo' | 'hochzeit'
-export type GamePhase = 'waiting' | 'playing' | 'finished'
+export type GameType =
+  | 'normalspiel'
+  | 'hochzeit'
+  | 'damen-solo'
+  | 'buben-solo'
+  | 'fleischlos'
+  | 'farbsolo-clubs'
+  | 'farbsolo-spades'
+  | 'farbsolo-hearts'
+  | 'farbsolo-diamonds'
+
+/**
+ * Spielphasen:
+ *  - waiting               : Spielsetup
+ *  - finding               : Vorbehalt-Frage reihum (Phase 1)
+ *  - finding-vorbehalt-type: Spieler mit Vorbehalt wählt Typ (Phase 2)
+ *  - ready-to-play         : Karten verteilt, wartet auf game:start-playing
+ *  - playing               : Spiel läuft
+ *  - finished              : Spiel beendet, wartet auf game:next-game
+ *  - round-finished        : 20er-Runde komplett, Endabrechnung
+ */
+export type GamePhase =
+  | 'waiting'
+  | 'finding'
+  | 'finding-vorbehalt-type'
+  | 'ready-to-play'
+  | 'playing'
+  | 'finished'
+  | 'round-finished'
 
 export interface GameStatistics {
   re: { players: string[]; score: number }
@@ -80,6 +117,19 @@ export interface GameEndResult {
   finalScore: number
   statistics: GameStatistics
   playedAt: number
+}
+
+/**
+ * Eintrag im Spielzettel pro abgeschlossenem Spiel.
+ */
+export interface GameHistoryEntry {
+  gameNumber: number
+  gameType: GameType
+  winnerParty: 're' | 'kontra'
+  /** Spielpunkt-Betrag (positiv, Sicht des Siegers). */
+  pointValue: number
+  /** Solospieler-ID, falls Solo (alle Soli außer 'hochzeit'). */
+  soloPlayer?: string
 }
 
 export interface GameState {
@@ -99,10 +149,24 @@ export interface GameState {
   currentTrick: Trick | null
   playHistory: TrickCard[]
 
+  vorbehaltActivePlayerId?: string
+
   announcements: Announcement[]
   score: { re: number; kontra: number }
   isFinished: boolean
   gameEndResult?: GameEndResult
+
+  // ====== Spielzettel (P5) ======
+  /** Spielnummer in der aktuellen 20er-Runde (1..totalGames) */
+  gameNumber: number
+  /** Spiele pro Runde, default 20 */
+  totalGames: number
+  /** Akkumulierte Punkte pro Spieler über alle bisherigen Spiele der Runde */
+  cumulativeScore: Record<string, number>
+  /** History der bisherigen Spiele dieser Runde */
+  gameHistory: GameHistoryEntry[]
+  /** Welche Spieler haben ihr Pflichtsolo schon gespielt */
+  pflichtsoloPlayed: Record<string, boolean>
 }
 
 // ============================================================================
@@ -115,6 +179,12 @@ export type ClientMessage =
   | { type: 'game:announce'; payload: { announcementType: AnnouncementType } }
   | { type: 'game:state-request'; payload: { gameId: string } }
   | { type: 'game:leave'; payload: { reason?: string } }
+  | { type: 'game:declare-vorbehalt'; payload: { decision: 'gesund' | 'vorbehalt' } }
+  | { type: 'game:choose-vorbehalt-type'; payload: { type: VorbehaltDecision } }
+  /** Mensch ist bereit, das Spiel zu starten (nach ready-to-play). */
+  | { type: 'game:start-playing'; payload: Record<string, never> }
+  /** Mensch will das nächste Spiel der Runde starten (nach finished). */
+  | { type: 'game:next-game'; payload: Record<string, never> }
 
 export type ServerMessage =
   | { type: 'game:state-updated'; payload: GameState }
@@ -143,3 +213,5 @@ export type GameErrorCode =
   | 'server-error'
   | 'rule-violation'
   | 'announcement-invalid'
+  | 'vorbehalt-invalid'
+  | 'phase-invalid'
