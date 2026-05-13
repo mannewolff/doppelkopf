@@ -32,7 +32,7 @@
   grid-template-columns: auto 1fr auto;
   gap: var(--spacing-md);
   align-items: stretch;
-  min-height: 120px;
+  min-height: 260px;
 }
 
 .game-board__side {
@@ -50,12 +50,13 @@
   border-radius: var(--border-radius-md);
   border: 2px solid var(--color-border);
   padding: var(--spacing-md);
-  min-height: 100px;
+  min-height: 260px;
 }
 
 /**
  * Tisch arrangement: each card appears in the table slot pointing to its
- * player's seat (oben / rechts / unten / links). Empty slots stay invisible.
+ * player's seat (oben / rechts / unten / links). Empty slots stay invisible
+ * but still reserve space so the layout never collapses.
  *
  *    ┌──────┬──────┬──────┐
  *    │      │ pos1 │      │   pos1 = top  (gegenüber)
@@ -67,8 +68,8 @@
  */
 .tisch__current-trick {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 60px 60px 60px;
+  grid-template-rows: 80px 80px 80px;
   grid-template-areas:
     '.    top    .'
     'left center right'
@@ -76,17 +77,16 @@
   align-items: center;
   justify-items: center;
   gap: var(--spacing-xs);
-  min-height: 140px;
-  width: 100%;
-  max-width: 260px;
+  width: 192px;
+  height: 256px;
   margin: 0 auto;
   position: relative;
 }
 
 .tisch__slot {
   /* slot reserves space even when empty so the layout doesn't jump */
-  min-width: 50px;
-  min-height: 60px;
+  width: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,9 +101,38 @@
   grid-area: center;
   color: var(--color-text-muted);
   font-style: italic;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   text-align: center;
   pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Mobile landscape: shrink the tisch grid */
+@media (max-width: 812px) {
+  .tisch__current-trick {
+    grid-template-columns: 46px 46px 46px;
+    grid-template-rows: 64px 64px 64px;
+    width: 156px;
+    height: 208px;
+  }
+  .tisch__slot {
+    width: 46px;
+    height: 64px;
+  }
+}
+
+/* Desktop landscape: roomier tisch */
+@media (min-width: 1280px) {
+  .tisch__current-trick {
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 110px 110px 110px;
+    width: 256px;
+    height: 346px;
+  }
+  .tisch__slot {
+    width: 80px;
+    height: 110px;
+  }
 }
 
 /* ========================================================================
@@ -821,7 +850,12 @@
 
   .game-board__middle {
     gap: var(--spacing-sm);
-    min-height: 90px;
+    min-height: 210px;
+  }
+
+  .game-board__tisch {
+    min-height: 210px;
+    padding: var(--spacing-sm);
   }
 
   .player-info {
@@ -923,7 +957,11 @@
 
   .game-board__middle {
     gap: var(--spacing-lg);
-    min-height: 140px;
+    min-height: 350px;
+  }
+
+  .game-board__tisch {
+    min-height: 350px;
   }
 
   .player-info {
