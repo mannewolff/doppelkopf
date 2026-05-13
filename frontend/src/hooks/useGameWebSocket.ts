@@ -1,5 +1,11 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
-import type { GameState, ServerMessage, ClientMessage, AnnouncementType } from '../types/game'
+import type {
+  GameState,
+  ServerMessage,
+  ClientMessage,
+  AnnouncementType,
+  VorbehaltDecision,
+} from '../types/game'
 import { useGameState } from './useGameState'
 
 interface UseGameWebSocketOptions {
@@ -15,6 +21,8 @@ interface UseGameWebSocketReturn {
   error: string | null
   sendPlayCard: (cardId: string) => void
   sendAnnounce: (announcementType: AnnouncementType) => void
+  sendDeclareVorbehalt: (decision: 'gesund' | 'vorbehalt') => void
+  sendChooseVorbehaltType: (type: VorbehaltDecision) => void
   requestState: () => void
 }
 
@@ -78,6 +86,26 @@ export function useGameWebSocket(options: UseGameWebSocketOptions): UseGameWebSo
       payload: { gameId },
     })
   }, [gameId, sendMessage])
+
+  const sendDeclareVorbehalt = useCallback(
+    (decision: 'gesund' | 'vorbehalt') => {
+      sendMessage({
+        type: 'game:declare-vorbehalt',
+        payload: { decision },
+      })
+    },
+    [sendMessage]
+  )
+
+  const sendChooseVorbehaltType = useCallback(
+    (type: VorbehaltDecision) => {
+      sendMessage({
+        type: 'game:choose-vorbehalt-type',
+        payload: { type },
+      })
+    },
+    [sendMessage]
+  )
 
   // ========================================================================
   // MESSAGE HANDLING
@@ -225,6 +253,8 @@ export function useGameWebSocket(options: UseGameWebSocketOptions): UseGameWebSo
     error,
     sendPlayCard,
     sendAnnounce,
+    sendDeclareVorbehalt,
+    sendChooseVorbehaltType,
     requestState,
   }
 }

@@ -3,6 +3,7 @@ import { useGameWebSocket } from '../../hooks/useGameWebSocket'
 import { useViewport } from '../../hooks/useViewport'
 import type { Player } from '../../types/game'
 import { Card } from './Card'
+import { VorbehaltPhase } from './VorbehaltPhase'
 import './GameBoard.css'
 
 interface GameBoardProps {
@@ -28,17 +29,69 @@ interface GameBoardProps {
  */
 export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   const viewport = useViewport()
-  const { gameState, connected, error, sendPlayCard, sendAnnounce } = useGameWebSocket({
+  const {
+    gameState,
+    connected,
+    error,
+    sendPlayCard,
+    sendAnnounce,
+    sendDeclareVorbehalt,
+    sendChooseVorbehaltType,
+  } = useGameWebSocket({
     gameId,
     playerId,
     playerName,
   })
 
   const [isLoading, setIsLoading] = useState(!connected)
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
 
   useEffect(() => {
     setIsLoading(!connected)
   }, [connected])
+
+  // Reset card selection when hand changes (after playing a card or new deal)
+  const handLength = gameState?.hand?.length ?? 0
+  useEffect(() => {
+    setSelectedCardId(null)
+  }, [handLength])
+
+  // ESC key deselects card
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setSelectedCardId(null)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  /**
+   * Two-step card play:
+   *   1st click on a card → select it (visual highlight)
+   *   2nd click on same card → play it
+   *   Click on different card → switch selection
+   */
+  const handleCardClick = (cardId: string) => {
+    if (!gameState?.validCardIds.includes(cardId)) return
+    if (selectedCardId === cardId) {
+      sendPlayCard(cardId)
+      setSelectedCardId(null)
+    } else {
+      setSelectedCardId(cardId)
+    }
+  }
+
+  /**
+   * "Karte spielen" button: plays the currently selected card
+   */
+  const handlePlaySelected = () => {
+    if (!selectedCardId) return
+    if (!gameState?.validCardIds.includes(selectedCardId)) return
+    sendPlayCard(selectedCardId)
+    setSelectedCardId(null)
+  }
 
   // Loading / Waiting States
   if (isLoading) {
@@ -160,19 +213,30 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
               </span>
             )}
             {isYourTurn && <span className="hand-area__turn-indicator">👈 DU BIST AM ZUG</span>}
+            <button
+              type="button"
+              className="play-card-button"
+              disabled={!selectedCardId || !isYourTurn}
+              onClick={handlePlaySelected}
+              title="Selektierte Karte spielen (oder zweimal klicken)"
+            >
+              🎴 Karte spielen
+            </button>
           </div>
         )}
         <div className={`game-board__hand game-board__hand--${viewport}`}>
           {gameState.hand.map((card) => {
             const isValid = gameState.validCardIds.includes(card.id)
+            const isSelected = selectedCardId === card.id
             return (
               <Card
                 key={card.id}
                 card={card}
                 isValid={isValid}
+                isSelected={isSelected}
                 disabled={!isValid}
                 size="medium"
-                onClick={() => isValid && sendPlayCard(card.id)}
+                onClick={() => handleCardClick(card.id)}
               />
             )
           })}
@@ -180,47 +244,56 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
       </div>
 
       {/* ================================================================
-          FOOTER: Announcement Buttons + Score Panel
+          FOOTER: Vorbehalt-Phase (Finding) ODER Announcement Buttons (Playing)
           ================================================================ */}
       <div className="game-board__footer">
-        <div className="game-board__announcements">
-          <AnnouncementButton
-            type="re"
-            active={gameState.announcements.some((a) => a.type === 're')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('re')}
+        {gameState.phase === 'finding' || gameState.phase === 'finding-vorbehalt-type' ? (
+          <VorbehaltPhase
+            gameState={gameState}
+            playerId={playerId}
+            onDeclareVorbehalt={sendDeclareVorbehalt}
+            onChooseVorbehaltType={sendChooseVorbehaltType}
           />
-          <AnnouncementButton
-            type="kontra"
-            active={gameState.announcements.some((a) => a.type === 'kontra')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('kontra')}
-          />
-          <AnnouncementButton
-            type="90"
-            active={gameState.announcements.some((a) => a.type === '90')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('90')}
-          />
-          <AnnouncementButton
-            type="60"
-            active={gameState.announcements.some((a) => a.type === '60')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('60')}
-          />
-          <AnnouncementButton
-            type="30"
-            active={gameState.announcements.some((a) => a.type === '30')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('30')}
-          />
-          <AnnouncementButton
-            type="schwarz"
-            active={gameState.announcements.some((a) => a.type === 'schwarz')}
-            disabled={!isYourTurn}
-            onClick={() => sendAnnounce('schwarz')}
-          />
-        </div>
+        ) : (
+          <div className="game-board__announcements">
+            <AnnouncementButton
+              type="re"
+              active={gameState.announcements.some((a) => a.type === 're')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('re')}
+            />
+            <AnnouncementButton
+              type="kontra"
+              active={gameState.announcements.some((a) => a.type === 'kontra')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('kontra')}
+            />
+            <AnnouncementButton
+              type="90"
+              active={gameState.announcements.some((a) => a.type === '90')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('90')}
+            />
+            <AnnouncementButton
+              type="60"
+              active={gameState.announcements.some((a) => a.type === '60')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('60')}
+            />
+            <AnnouncementButton
+              type="30"
+              active={gameState.announcements.some((a) => a.type === '30')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('30')}
+            />
+            <AnnouncementButton
+              type="schwarz"
+              active={gameState.announcements.some((a) => a.type === 'schwarz')}
+              disabled={!isYourTurn}
+              onClick={() => sendAnnounce('schwarz')}
+            />
+          </div>
+        )}
 
         <div className="game-board__score-panel">
           <div className="score-panel__header">Score</div>
@@ -253,6 +326,7 @@ interface PlayerInfoProps {
 }
 
 function PlayerInfo({ player, position, isActive }: PlayerInfoProps) {
+  const vorbehaltBadge = renderVorbehaltBadge(player.vorbehaltDecision)
   return (
     <div
       className={`player-info player-info--${position} ${isActive ? 'player-info--active' : ''}`}
@@ -269,6 +343,9 @@ function PlayerInfo({ player, position, isActive }: PlayerInfoProps) {
       <div className="player-info__cards">
         🂠 {player.cardsRemaining}
       </div>
+      {vorbehaltBadge && (
+        <div className="player-info__vorbehalt-status">{vorbehaltBadge}</div>
+      )}
       {player.announcements.length > 0 && (
         <div className="player-info__announcements">
           {player.announcements.slice(-2).map((a) => (
@@ -280,6 +357,17 @@ function PlayerInfo({ player, position, isActive }: PlayerInfoProps) {
       )}
     </div>
   )
+}
+
+/**
+ * Returns a small badge label for the player's Vorbehalt decision.
+ * Returns null if no decision yet or in playing phase (already cleared).
+ */
+function renderVorbehaltBadge(decision: Player['vorbehaltDecision']): string | null {
+  if (!decision) return null
+  if (decision === 'gesund') return '✓ Gesund'
+  if (decision === 'hochzeit') return '💍 Hochzeit'
+  return '⚠ Vorbehalt'
 }
 
 // ============================================================================

@@ -141,16 +141,195 @@ function dealCards3334(deck) {
 }
 
 /**
- * Sort hand by suit + rank for better display
+ * Card sort definitions per game type.
+ *
+ * Each gameType defines:
+ *  - trumpOrder: ordered list of {suit, rank} pairs representing trump cards
+ *    (highest trump first → lowest trump last)
+ *  - failSuitOrder: ordered list of suits for non-trump cards
+ *  - failRankOrder: ordered list of ranks within each fail suit (highest first)
+ *
+ * The resulting hand order is:
+ *   [trumps high→low, fail-suit-1 high→low, fail-suit-2 high→low, ...]
+ */
+
+// Normalspiel: Herz 10 > all Damen > all Buben > Karo (Ass, 10, König, 9)
+// Fail suits: Kreuz, Pik, Herz (Karo is trump)
+const NORMAL_TRUMP_ORDER = [
+  { suit: 'hearts', rank: 'ten' },
+  { suit: 'clubs', rank: 'queen' },
+  { suit: 'spades', rank: 'queen' },
+  { suit: 'hearts', rank: 'queen' },
+  { suit: 'diamonds', rank: 'queen' },
+  { suit: 'clubs', rank: 'jack' },
+  { suit: 'spades', rank: 'jack' },
+  { suit: 'hearts', rank: 'jack' },
+  { suit: 'diamonds', rank: 'jack' },
+  { suit: 'diamonds', rank: 'ace' },
+  { suit: 'diamonds', rank: 'ten' },
+  { suit: 'diamonds', rank: 'king' },
+  { suit: 'diamonds', rank: 'nine' },
+]
+
+const NORMAL_FAIL_SUIT_ORDER = ['clubs', 'spades', 'hearts']
+const FAIL_RANK_ORDER = ['ace', 'ten', 'king', 'nine']
+
+// Build trump order for Farbsolo (suit X = trump): Herz 10 + Damen + Buben + entire suit X
+function buildColorSoloTrumpOrder(trumpSuit) {
+  if (trumpSuit === 'hearts') {
+    // Heart solo: all hearts except 10 are trumps, plus Herz 10 stays highest
+    return [
+      { suit: 'hearts', rank: 'ten' },
+      { suit: 'clubs', rank: 'queen' },
+      { suit: 'spades', rank: 'queen' },
+      { suit: 'hearts', rank: 'queen' },
+      { suit: 'diamonds', rank: 'queen' },
+      { suit: 'clubs', rank: 'jack' },
+      { suit: 'spades', rank: 'jack' },
+      { suit: 'hearts', rank: 'jack' },
+      { suit: 'diamonds', rank: 'jack' },
+      { suit: 'hearts', rank: 'ace' },
+      { suit: 'hearts', rank: 'king' },
+      { suit: 'hearts', rank: 'nine' },
+    ]
+  }
+  // For clubs/spades/diamonds solo: Herz 10 + Damen + Buben + ace/10/king/9 of trumpSuit
+  return [
+    { suit: 'hearts', rank: 'ten' },
+    { suit: 'clubs', rank: 'queen' },
+    { suit: 'spades', rank: 'queen' },
+    { suit: 'hearts', rank: 'queen' },
+    { suit: 'diamonds', rank: 'queen' },
+    { suit: 'clubs', rank: 'jack' },
+    { suit: 'spades', rank: 'jack' },
+    { suit: 'hearts', rank: 'jack' },
+    { suit: 'diamonds', rank: 'jack' },
+    { suit: trumpSuit, rank: 'ace' },
+    { suit: trumpSuit, rank: 'ten' },
+    { suit: trumpSuit, rank: 'king' },
+    { suit: trumpSuit, rank: 'nine' },
+  ]
+}
+
+// Damensolo: only the 4 Damen are trumps (highest to lowest by suit)
+const QUEEN_SOLO_TRUMP_ORDER = [
+  { suit: 'clubs', rank: 'queen' },
+  { suit: 'spades', rank: 'queen' },
+  { suit: 'hearts', rank: 'queen' },
+  { suit: 'diamonds', rank: 'queen' },
+]
+
+// Bubensolo: only the 4 Buben are trumps
+const JACK_SOLO_TRUMP_ORDER = [
+  { suit: 'clubs', rank: 'jack' },
+  { suit: 'spades', rank: 'jack' },
+  { suit: 'hearts', rank: 'jack' },
+  { suit: 'diamonds', rank: 'jack' },
+]
+
+/**
+ * Get trump order and fail suit order for a given gameType.
+ * For Solo variants, also accepts trumpSuit for color solos.
+ */
+function getSortConfig(gameType) {
+  switch (gameType) {
+    case 'normalspiel':
+    case 'hochzeit':
+      return {
+        trumpOrder: NORMAL_TRUMP_ORDER,
+        failSuitOrder: NORMAL_FAIL_SUIT_ORDER,
+      }
+    case 'farbsolo-clubs':
+      return {
+        trumpOrder: buildColorSoloTrumpOrder('clubs'),
+        failSuitOrder: ['spades', 'hearts', 'diamonds'],
+      }
+    case 'farbsolo-spades':
+      return {
+        trumpOrder: buildColorSoloTrumpOrder('spades'),
+        failSuitOrder: ['clubs', 'hearts', 'diamonds'],
+      }
+    case 'farbsolo-hearts':
+      return {
+        trumpOrder: buildColorSoloTrumpOrder('hearts'),
+        failSuitOrder: ['clubs', 'spades', 'diamonds'],
+      }
+    case 'farbsolo-diamonds':
+      return {
+        trumpOrder: buildColorSoloTrumpOrder('diamonds'),
+        failSuitOrder: ['clubs', 'spades', 'hearts'],
+      }
+    case 'damen-solo':
+      return {
+        trumpOrder: QUEEN_SOLO_TRUMP_ORDER,
+        failSuitOrder: ['clubs', 'spades', 'hearts', 'diamonds'],
+      }
+    case 'buben-solo':
+      return {
+        trumpOrder: JACK_SOLO_TRUMP_ORDER,
+        failSuitOrder: ['clubs', 'spades', 'hearts', 'diamonds'],
+      }
+    case 'fleischlos':
+      return {
+        trumpOrder: [],
+        failSuitOrder: ['clubs', 'spades', 'hearts', 'diamonds'],
+      }
+    default:
+      return {
+        trumpOrder: NORMAL_TRUMP_ORDER,
+        failSuitOrder: NORMAL_FAIL_SUIT_ORDER,
+      }
+  }
+}
+
+/**
+ * Returns trump position (index in trumpOrder) for a card, or -1 if not trump.
+ * Cards earlier in trumpOrder are stronger trumps.
+ */
+function getTrumpPosition(card, trumpOrder) {
+  return trumpOrder.findIndex((t) => t.suit === card.suit && t.rank === card.rank)
+}
+
+/**
+ * Sort hand intelligently by game type:
+ *  - Trumps first, in order of strength (high → low)
+ *  - Fail suits next, ordered by suit then rank (high → low)
+ */
+function sortHandByGameType(hand, gameType) {
+  const { trumpOrder, failSuitOrder } = getSortConfig(gameType)
+
+  // Pre-compute rank/suit indices once for performance
+  const failSuitIndex = (suit) => {
+    const idx = failSuitOrder.indexOf(suit)
+    return idx === -1 ? 99 : idx
+  }
+  const failRankIndex = (rank) => FAIL_RANK_ORDER.indexOf(rank)
+
+  return [...hand].sort((a, b) => {
+    const aTrump = getTrumpPosition(a, trumpOrder)
+    const bTrump = getTrumpPosition(b, trumpOrder)
+
+    // Both trumps: sort by trump position (lower index = higher trump = first)
+    if (aTrump !== -1 && bTrump !== -1) {
+      return aTrump - bTrump
+    }
+    // Only a is trump: a comes first
+    if (aTrump !== -1) return -1
+    // Only b is trump: b comes first
+    if (bTrump !== -1) return 1
+
+    // Neither is trump: sort by fail-suit-order, then rank
+    const suitDiff = failSuitIndex(a.suit) - failSuitIndex(b.suit)
+    if (suitDiff !== 0) return suitDiff
+    return failRankIndex(a.rank) - failRankIndex(b.rank)
+  })
+}
+
+/**
+ * Backwards compatibility wrapper - defaults to normalspiel sort.
  */
 function sortHand(hand) {
-  const suitOrder = { clubs: 0, spades: 1, hearts: 2, diamonds: 3 }
-  const rankOrder = { ace: 0, ten: 1, king: 2, queen: 3, jack: 4, nine: 5 }
-  return [...hand].sort((a, b) => {
-    const suitDiff = suitOrder[a.suit] - suitOrder[b.suit]
-    if (suitDiff !== 0) return suitDiff
-    return rankOrder[a.rank] - rankOrder[b.rank]
-  })
+  return sortHandByGameType(hand, 'normalspiel')
 }
 
 // ============================================================================
@@ -166,7 +345,8 @@ function createGameState(gameId, playerName) {
   // Deal cards 3-3-3-3 (authentic Doppelkopf style)
   const hands = dealCards3334(deck)
 
-  const playerHand = sortHand(hands['player-human-001'])
+  // Default to normalspiel sort. Will be re-sorted if Vorbehalt is declared later.
+  const playerHand = sortHandByGameType(hands['player-human-001'], 'normalspiel')
   const ai1Hand = hands['ai-1']
   const ai2Hand = hands['ai-2']
   const ai3Hand = hands['ai-3']
@@ -218,16 +398,17 @@ function createGameState(gameId, playerName) {
     },
   ]
 
+  // Phase 'finding': Vorbehalt-Frage reihum, starting with position 1 (links vom Geber)
   return {
     gameId,
-    phase: 'playing',
+    phase: 'finding',
     gameType: 'normalspiel',
     round: 1,
     players,
-    currentPlayerId: 'player-human-001', // Human starts for demo
-    currentPlayerPosition: 4,
+    currentPlayerId: 'ai-1', // Position 1 starts in finding phase
+    currentPlayerPosition: 1,
     hand: playerHand,
-    validCardIds: playerHand.map((c) => c.id), // All cards valid for demo
+    validCardIds: [], // No cards playable in finding phase
     tricks: [],
     currentTrick: {
       id: 'trick-1',
@@ -238,6 +419,7 @@ function createGameState(gameId, playerName) {
     announcements: [],
     score: { re: 0, kontra: 0 },
     isFinished: false,
+    vorbehaltActivePlayerId: undefined,
     // Hidden state (not sent to client)
     _hands: {
       'ai-1': ai1Hand,
@@ -458,6 +640,136 @@ function endGame(game, ws) {
 }
 
 // ============================================================================
+// VORBEHALT PHASE LOGIC
+// ============================================================================
+
+/**
+ * Triggers AI vorbehalt decisions automatically.
+ * For MVP, all AIs just declare 'gesund'.
+ * Should be called whenever we advance to a new player in the finding phase.
+ */
+function progressVorbehaltPhase(game, ws) {
+  // If everyone has decided, move to next phase
+  const allDecided = game.players.every((p) => p.vorbehaltDecision !== undefined)
+  if (allDecided) {
+    const vorbehaltPlayer = game.players.find(
+      (p) => p.vorbehaltDecision === 'vorbehalt'
+    )
+    if (vorbehaltPlayer) {
+      // Phase 2: vorbehalt player chooses type
+      game.phase = 'finding-vorbehalt-type'
+      game.currentPlayerId = vorbehaltPlayer.id
+      game.currentPlayerPosition = vorbehaltPlayer.position
+      game.vorbehaltActivePlayerId = vorbehaltPlayer.id
+      sendGameState(game, ws)
+      // If AI declared vorbehalt → auto-choose hochzeit (for MVP)
+      if (vorbehaltPlayer.isAI) {
+        const v = game._version
+        setTimeout(() => aiChooseVorbehaltType(game, vorbehaltPlayer, ws, v), 1200)
+      }
+      return
+    }
+    // All gesund → start playing as normalspiel
+    startPlayingPhase(game, ws)
+    return
+  }
+
+  // Move to next player and trigger AI decision if applicable
+  if (game.currentPlayerId !== 'player-human-001') {
+    const v = game._version
+    setTimeout(() => aiDeclareVorbehalt(game, ws, v), 800)
+  }
+  sendGameState(game, ws)
+}
+
+/**
+ * AI automatic vorbehalt decision.
+ * MVP: all AIs declare 'gesund'.
+ */
+function aiDeclareVorbehalt(game, ws, gameVersion) {
+  if (gameVersion !== undefined && game._version !== gameVersion) return
+  if (game.phase !== 'finding') return
+
+  const player = game.players.find((p) => p.id === game.currentPlayerId)
+  if (!player || !player.isAI) return
+
+  player.vorbehaltDecision = 'gesund'
+  console.log(`[AI ${player.id}] declared: gesund`)
+
+  // Move to next player (clockwise: pos 1 → 2 → 3 → 4)
+  advanceToNextVorbehaltPlayer(game)
+  progressVorbehaltPhase(game, ws)
+}
+
+/**
+ * AI auto-choose vorbehalt type (only triggered if AI declared 'vorbehalt').
+ * For MVP this won't happen (all AIs declare gesund), but the function exists for safety.
+ */
+function aiChooseVorbehaltType(game, player, ws, gameVersion) {
+  if (gameVersion !== undefined && game._version !== gameVersion) return
+  if (game.phase !== 'finding-vorbehalt-type') return
+
+  player.vorbehaltDecision = 'hochzeit'
+  game.gameType = 'hochzeit'
+  console.log(`[AI ${player.id}] chose vorbehalt type: hochzeit`)
+  startPlayingPhase(game, ws)
+}
+
+/**
+ * Advance to the next player in clockwise order (positions 1 → 2 → 3 → 4 → end).
+ * In the finding phase we go through all 4 players in order.
+ */
+function advanceToNextVorbehaltPlayer(game) {
+  const currentPos = game.currentPlayerPosition
+  if (currentPos >= 4) {
+    // All have decided; the progressVorbehaltPhase function will handle the transition.
+    return
+  }
+  const nextPos = currentPos + 1
+  const nextPlayer = game.players.find((p) => p.position === nextPos)
+  if (nextPlayer) {
+    game.currentPlayerId = nextPlayer.id
+    game.currentPlayerPosition = nextPos
+  }
+}
+
+/**
+ * Start the actual playing phase after vorbehalt is resolved.
+ * Sort the human hand according to the chosen gameType.
+ */
+function startPlayingPhase(game, ws) {
+  // Re-sort human hand if game type changed
+  game.hand = sortHandByGameType(game.hand, game.gameType)
+  game._hands['player-human-001'] = game.hand
+
+  game.phase = 'playing'
+
+  // First player to play: player at position 1 (links vom Geber)
+  // If solo, the soloist plays first (not implemented for hochzeit MVP)
+  const firstPlayer = game.players.find((p) => p.position === 1)
+  if (firstPlayer) {
+    game.currentPlayerId = firstPlayer.id
+    game.currentPlayerPosition = 1
+  }
+
+  // Set valid cards if human starts
+  if (game.currentPlayerId === 'player-human-001') {
+    game.validCardIds = game.hand.map((c) => c.id)
+  } else {
+    game.validCardIds = []
+  }
+
+  console.log(`▶ Starting playing phase (gameType: ${game.gameType})`)
+  sendGameState(game, ws)
+
+  // If AI starts, trigger their move
+  if (game.currentPlayerId !== 'player-human-001') {
+    const v = game._version
+    setTimeout(() => makeAIMove(game, game.currentPlayerId, ws, v), 1000)
+  }
+}
+
+// ============================================================================
 // MESSAGE HANDLING
 // ============================================================================
 
@@ -500,6 +812,76 @@ function handleMessage(ws, data) {
           gameState: stripPrivateFields(game),
         },
       })
+
+      // Start the vorbehalt phase: position 1 is AI, will auto-declare gesund
+      // (humans get a chance to decide when it's their turn at position 4)
+      const v = game._version
+      setTimeout(() => aiDeclareVorbehalt(game, ws, v), 1200)
+      break
+    }
+
+    case 'game:declare-vorbehalt': {
+      const game = games.get(ws._gameId)
+      if (!game) return
+      if (game.phase !== 'finding') {
+        send(ws, {
+          type: 'game:error',
+          payload: {
+            code: 'wrong-phase',
+            message: 'Vorbehalt nur in finding-Phase möglich',
+          },
+        })
+        return
+      }
+      if (game.currentPlayerId !== 'player-human-001') {
+        send(ws, {
+          type: 'game:error',
+          payload: { code: 'not-your-turn', message: 'Nicht am Zug' },
+        })
+        return
+      }
+
+      const humanPlayer = game.players.find((p) => p.id === 'player-human-001')
+      const { decision } = message.payload
+      if (humanPlayer) {
+        humanPlayer.vorbehaltDecision = decision === 'gesund' ? 'gesund' : 'vorbehalt'
+      }
+      console.log(`[Human] declared: ${decision}`)
+
+      advanceToNextVorbehaltPlayer(game)
+      progressVorbehaltPhase(game, ws)
+      break
+    }
+
+    case 'game:choose-vorbehalt-type': {
+      const game = games.get(ws._gameId)
+      if (!game) return
+      if (game.phase !== 'finding-vorbehalt-type') {
+        send(ws, {
+          type: 'game:error',
+          payload: {
+            code: 'wrong-phase',
+            message: 'Vorbehalt-Typ nur nach Vorbehalt-Anmeldung wählbar',
+          },
+        })
+        return
+      }
+      if (game.vorbehaltActivePlayerId !== 'player-human-001') {
+        send(ws, {
+          type: 'game:error',
+          payload: { code: 'not-your-turn', message: 'Nicht dein Vorbehalt' },
+        })
+        return
+      }
+
+      const { type } = message.payload
+      const humanPlayer = game.players.find((p) => p.id === 'player-human-001')
+      if (humanPlayer) {
+        humanPlayer.vorbehaltDecision = type
+      }
+      game.gameType = type
+      console.log(`[Human] chose vorbehalt type: ${type}`)
+      startPlayingPhase(game, ws)
       break
     }
 

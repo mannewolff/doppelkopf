@@ -67,9 +67,27 @@
 }
 
 .playing-card--selected {
-  transform: translateY(-15px);
-  box-shadow: 0 0 0 3px var(--color-card-selected),
-    0 12px 24px rgba(0, 255, 0, 0.7);
+  transform: translateY(-22px);
+  box-shadow: 0 0 0 4px var(--color-card-selected),
+    0 16px 28px rgba(0, 255, 0, 0.75);
+  z-index: 3;
+  animation: selectedPulse 1.6s ease-in-out infinite;
+}
+
+.playing-card--selected:hover {
+  /* Override hover translate to keep selected pose */
+  transform: translateY(-22px) !important;
+}
+
+@keyframes selectedPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px var(--color-card-selected),
+      0 16px 28px rgba(0, 255, 0, 0.75);
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--color-card-selected),
+      0 20px 36px rgba(0, 255, 0, 0.95);
+  }
 }
 
 .playing-card--in-trick {

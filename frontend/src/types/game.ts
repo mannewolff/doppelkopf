@@ -40,6 +40,11 @@ export interface Player {
   isAI: boolean
   announcements: Announcement[]
   cardsRemaining: number
+  /**
+   * Decision in Vorbehalt phase ('gesund' or specific vorbehalt type).
+   * undefined = has not decided yet
+   */
+  vorbehaltDecision?: VorbehaltDecision
 }
 
 // ============================================================================
@@ -63,8 +68,47 @@ export interface Trick {
 // GAME STATE (Server → Client)
 // ============================================================================
 
-export type GameType = 'normalspiel' | 'solo' | 'hochzeit'
-export type GamePhase = 'waiting' | 'playing' | 'finished'
+export type GameType =
+  | 'normalspiel'
+  | 'hochzeit'
+  | 'damen-solo'
+  | 'buben-solo'
+  | 'fleischlos'
+  | 'farbsolo-clubs'
+  | 'farbsolo-spades'
+  | 'farbsolo-hearts'
+  | 'farbsolo-diamonds'
+
+/**
+ * Spielphasen:
+ *  - waiting: Spielsetup, Karten werden verteilt
+ *  - finding: Vorbehalt-Frage reihum (Phase 1)
+ *  - finding-vorbehalt-type: Spieler mit Vorbehalt wählt Typ (Phase 2)
+ *  - playing: Spiel läuft
+ *  - finished: Spiel beendet
+ */
+export type GamePhase =
+  | 'waiting'
+  | 'finding'
+  | 'finding-vorbehalt-type'
+  | 'playing'
+  | 'finished'
+
+/**
+ * Entscheidung in der Vorbehalt-Phase.
+ * 'gesund' = kein Vorbehalt, Normalspiel
+ * Andere = konkreter Vorbehalt-Typ
+ */
+export type VorbehaltDecision =
+  | 'gesund'
+  | 'hochzeit'
+  | 'damen-solo'
+  | 'buben-solo'
+  | 'fleischlos'
+  | 'farbsolo-clubs'
+  | 'farbsolo-spades'
+  | 'farbsolo-hearts'
+  | 'farbsolo-diamonds'
 
 export interface GameState {
   gameId: string
@@ -85,6 +129,10 @@ export interface GameState {
   tricks: Trick[]
   currentTrick: Trick | null
   playHistory: TrickCard[] // All plays in order
+
+  // Vorbehalt phase tracking
+  /** Player ID who declared "Vorbehalt" (during phase 'finding-vorbehalt-type') */
+  vorbehaltActivePlayerId?: string
 
   // Status
   announcements: Announcement[]
@@ -114,6 +162,10 @@ export type ClientMessage =
   | { type: 'game:announce'; payload: { announcementType: AnnouncementType } }
   | { type: 'game:state-request'; payload: { gameId: string } }
   | { type: 'game:leave'; payload: { reason?: string } }
+  /** Phase 1: declare gesund or vorbehalt */
+  | { type: 'game:declare-vorbehalt'; payload: { decision: 'gesund' | 'vorbehalt' } }
+  /** Phase 2: choose specific vorbehalt type */
+  | { type: 'game:choose-vorbehalt-type'; payload: { type: VorbehaltDecision } }
 
 export type ServerMessage =
   | { type: 'game:state-updated'; payload: GameState }

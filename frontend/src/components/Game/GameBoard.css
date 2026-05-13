@@ -224,6 +224,45 @@
   animation: turnIndicatorPulse 1.5s ease-in-out infinite;
 }
 
+/* "Karte spielen" button next to the turn-indicator */
+.play-card-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-party-re);
+  color: #000000;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.play-card-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.5);
+}
+
+.play-card-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-muted);
+}
+
+.play-card-button:not(:disabled) {
+  animation: playButtonReady 1.6s ease-in-out infinite;
+}
+
+@keyframes playButtonReady {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(76, 175, 80, 0);
+  }
+}
+
 @keyframes turnIndicatorPulse {
   0%,
   100% {
@@ -312,6 +351,114 @@
 
 .score-panel__points.score-kontra .score-value {
   color: var(--color-party-kontra);
+}
+
+/* ========================================================================
+   VORBEHALT PHASE (Finding-Phase)
+   ======================================================================== */
+
+.vorbehalt-phase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  flex: 1;
+  background-color: rgba(255, 193, 7, 0.08);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.vorbehalt-phase__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+}
+
+.vorbehalt-phase__prompt {
+  color: var(--color-announcement-active);
+}
+
+.vorbehalt-phase__waiting {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.vorbehalt-phase__buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.vorbehalt-phase__buttons--types {
+  /* Phase 2: more buttons - allow wrapping */
+  gap: var(--spacing-xs);
+}
+
+.vorbehalt-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.vorbehalt-button:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+
+.vorbehalt-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.vorbehalt-button--gesund {
+  background-color: var(--color-party-re);
+  color: #000000;
+}
+
+.vorbehalt-button--gesund:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.5);
+}
+
+.vorbehalt-button--vorbehalt {
+  background-color: var(--color-party-kontra);
+  color: #000000;
+}
+
+.vorbehalt-button--vorbehalt:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.5);
+}
+
+.vorbehalt-button--type {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  font-size: var(--font-size-sm);
+  min-width: 100px;
+}
+
+.vorbehalt-button--type:hover:not(:disabled) {
+  background-color: var(--color-announcement-active);
+  color: #000000;
+  border-color: var(--color-announcement-active);
+}
+
+/* Status badge in PlayerInfo */
+.player-info__vorbehalt-status {
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
+  padding: 2px var(--spacing-sm);
+  background-color: rgba(255, 193, 7, 0.2);
+  color: var(--color-announcement-active);
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
 }
 
 /* ========================================================================
