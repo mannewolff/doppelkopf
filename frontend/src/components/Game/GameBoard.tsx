@@ -164,14 +164,24 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
 
   // Determine which trick to show on the table:
   //  1. If showLastTrick is on → last completed trick (peek)
-  //  2. Else if frozenTrick is set → the trick we're holding to show 4th card
-  //  3. Else → the current trick from server state
+  //  2. Else if current trick has cards → the running trick wins
+  //     (otherwise the frozen old trick would hide the new cards)
+  //  3. Else if frozenTrick is set → the just-finished trick (2 s hold)
+  //  4. Else → the empty current trick from server state
   const lastCompletedTrick: Trick | null =
     gameState.tricks.length > 0 ? gameState.tricks[gameState.tricks.length - 1] : null
 
-  const displayedTrick: Trick | null = showLastTrick
-    ? lastCompletedTrick
-    : frozenTrick ?? gameState.currentTrick
+  const hasRunningTrick = (gameState.currentTrick?.cards.length ?? 0) > 0
+  let displayedTrick: Trick | null
+  if (showLastTrick) {
+    displayedTrick = lastCompletedTrick
+  } else if (hasRunningTrick) {
+    displayedTrick = gameState.currentTrick
+  } else if (frozenTrick) {
+    displayedTrick = frozenTrick
+  } else {
+    displayedTrick = gameState.currentTrick
+  }
 
   // "Last trick" button is enabled whenever a completed trick exists.
   // Peeking is allowed even mid-trick - it just overlays the table.

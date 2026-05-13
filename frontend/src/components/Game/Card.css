@@ -55,15 +55,10 @@
   z-index: 2;
 }
 
+/* No visual "valid" hint by design: in real Doppelkopf nothing suggests
+   which card you should play. Only invalid cards are subtly disabled. */
 .playing-card--valid {
-  box-shadow: 0 0 0 3px var(--color-card-valid),
-    0 4px 12px rgba(0, 255, 0, 0.4);
-  border-radius: 6px;
-}
-
-.playing-card--valid:hover {
-  box-shadow: 0 0 0 3px var(--color-card-valid),
-    0 12px 20px rgba(0, 255, 0, 0.6) !important;
+  /* intentionally empty */
 }
 
 .playing-card--selected {
