@@ -133,18 +133,30 @@ export function useGameWebSocket(options: UseGameWebSocketOptions): UseGameWebSo
         const message: ServerMessage = JSON.parse(event.data)
 
         switch (message.type) {
-          case 'game:state-updated':
-            setState(message.payload)
+          case 'game:state-updated': {
+            const p = message.payload
+            const lastTrick = p.tricks.at(-1)
+            // eslint-disable-next-line no-console
+            console.log(
+              `[state-updated] phase=${p.phase} currentPlayer=${p.currentPlayerId} tricks=${p.tricks.length} currentTrickCards=${p.currentTrick?.cards.length ?? 0} lastTrickWinner=${lastTrick?.winnerId ?? '-'}`
+            )
+            setState(p)
             setError(null)
             break
+          }
 
           case 'game:card-played':
-            // Update UI to show card was played
-            console.log(`${message.payload.playerId} played:`, message.payload.card)
+            // eslint-disable-next-line no-console
+            console.log(
+              `[card-played] ${message.payload.playerId} played ${message.payload.card.suit}-${message.payload.card.rank}`
+            )
             break
 
           case 'game:trick-won':
-            console.log(`${message.payload.winnerId} won trick ${message.payload.trickId}`)
+            // eslint-disable-next-line no-console
+            console.log(
+              `[trick-won] winner=${message.payload.winnerId} trickId=${message.payload.trickId} points=${message.payload.points}`
+            )
             break
 
           case 'game:announcement':
