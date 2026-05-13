@@ -28,8 +28,23 @@ export function VorbehaltPhase({
   const isYourTurn = gameState.currentPlayerId === playerId
   const isYourVorbehalt = gameState.vorbehaltActivePlayerId === playerId
 
+  // Has the human already declared in this phase?
+  const humanPlayer = gameState.players.find((p) => p.id === playerId)
+  const humanAlreadyDecided = humanPlayer?.vorbehaltDecision !== undefined
+
   // Phase 1: Vorbehalt-Frage
   if (gameState.phase === 'finding') {
+    // Once the human has decided, hide the action buttons entirely and
+    // show only a waiting label until the round transitions phase.
+    if (humanAlreadyDecided) {
+      return (
+        <div className="vorbehalt-phase">
+          <span className="vorbehalt-phase__waiting">
+            ⏳ Warten auf {getCurrentPlayerName(gameState)}…
+          </span>
+        </div>
+      )
+    }
     return (
       <div className="vorbehalt-phase">
         <div className="vorbehalt-phase__label">

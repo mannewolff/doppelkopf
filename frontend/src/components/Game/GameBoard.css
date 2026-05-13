@@ -53,20 +53,57 @@
   min-height: 100px;
 }
 
+/**
+ * Tisch arrangement: each card appears in the table slot pointing to its
+ * player's seat (oben / rechts / unten / links). Empty slots stay invisible.
+ *
+ *    ┌──────┬──────┬──────┐
+ *    │      │ pos1 │      │   pos1 = top  (gegenüber)
+ *    ├──────┼──────┼──────┤
+ *    │ pos3 │ ctr  │ pos2 │   pos2 = right
+ *    ├──────┼──────┼──────┤   pos3 = left
+ *    │      │ pos4 │      │   pos4 = bottom (Mensch)
+ *    └──────┴──────┴──────┘
+ */
 .tisch__current-trick {
-  display: flex;
-  gap: var(--spacing-sm);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    '.    top    .'
+    'left center right'
+    '.    bottom .';
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  min-height: 60px;
+  justify-items: center;
+  gap: var(--spacing-xs);
+  min-height: 140px;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  position: relative;
 }
 
+.tisch__slot {
+  /* slot reserves space even when empty so the layout doesn't jump */
+  min-width: 50px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tisch__slot--pos1 { grid-area: top; }
+.tisch__slot--pos2 { grid-area: right; }
+.tisch__slot--pos3 { grid-area: left; }
+.tisch__slot--pos4 { grid-area: bottom; }
+
 .tisch__placeholder {
+  grid-area: center;
   color: var(--color-text-muted);
   font-style: italic;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   text-align: center;
+  pointer-events: none;
 }
 
 /* ========================================================================

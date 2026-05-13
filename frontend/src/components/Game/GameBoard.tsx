@@ -6,7 +6,7 @@ import { Card } from './Card'
 import { VorbehaltPhase } from './VorbehaltPhase'
 import { GameStartOverlay } from './GameStartOverlay'
 import { GameEndScreen } from './GameEndScreen'
-import { getValidCardIds, sortHandByGameType } from '../../lib/cardLogic'
+import { getRevealedParties, getValidCardIds, sortHandByGameType } from '../../lib/cardLogic'
 import './GameBoard.css'
 
 /** Time (ms) the finished trick stays visible on the table before being cleared. */
@@ -86,6 +86,12 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     )
   }, [gameState, isYourTurnEarly])
 
+  // Revealed parties: who's Re / Kontra has been clarified by Kreuz-Damen plays?
+  const revealedParties = useMemo(
+    () => (gameState ? getRevealedParties(gameState) : {}),
+    [gameState]
+  )
+
   // Track trick completion: whenever a NEW trick lands in tricks[], freeze it
   // for TRICK_HOLD_MS so the player sees all 4 cards (especially the 4th).
   const tricksLength = gameState?.tricks?.length ?? 0
@@ -110,6 +116,15 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
+
+  // When a new game starts (gameId changes, e.g. after game:next-game),
+  // wipe local trick state so we don't show the last trick of the previous game.
+  const currentGameId = gameState?.gameId
+  useEffect(() => {
+    setFrozenTrick(null)
+    lastSeenTrickIdRef.current = null
+    setShowLastTrick(false)
+  }, [currentGameId])
 
   /**
    * Single-click card play: a click immediately plays the card.
@@ -214,6 +229,7 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
             player={player1}
             position="top"
             isActive={gameState.currentPlayerId === player1.id}
+            revealedParty={revealedParties[player1.id]}
           />
         )}
       </div>
@@ -229,11 +245,12 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
               player={player3}
               position="left"
               isActive={gameState.currentPlayerId === player3.id}
+              revealedParty={revealedParties[player3.id]}
             />
           )}
         </div>
 
-        {/* Tisch (Mittlere Stich-Karten) */}
+        {/* Tisch (Mittlere Stich-Karten — räumlich zugeordnet zu Spielerpositionen) */}
         <div className={`game-board__tisch ${showLastTrick ? 'game-board__tisch--peek' : ''}`}>
           {showLastTrick && (
             <div className="tisch__peek-label">
@@ -242,19 +259,25 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
             </div>
           )}
           <div className="tisch__current-trick">
-            {displayedTrick === null || displayedTrick.cards.length === 0 ? (
+            {/* Always render 4 positioned slots; cards appear in the slot of the
+                player who played them. Empty slots stay invisible. */}
+            {[1, 2, 3, 4].map((pos) => {
+              const trickCard = displayedTrick?.cards.find((tc) => {
+                const cardPlayer = gameState.players.find((p) => p.id === tc.playerId)
+                return cardPlayer?.position === pos
+              })
+              return (
+                <div key={pos} className={`tisch__slot tisch__slot--pos${pos}`}>
+                  {trickCard && (
+                    <Card card={trickCard.card} isInTrick size="small" />
+                  )}
+                </div>
+              )
+            })}
+            {(displayedTrick === null || displayedTrick.cards.length === 0) && (
               <div className="tisch__placeholder">
-                {isYourTurn ? '🎴 Du bist am Zug!' : 'Warten...'}
+                {isYourTurn ? '🎴 Du bist am Zug!' : 'Warten…'}
               </div>
-            ) : (
-              displayedTrick.cards.map((tc) => (
-                <Card
-                  key={`${tc.playerId}-${tc.card.id}`}
-                  card={tc.card}
-                  isInTrick
-                  size="small"
-                />
-              ))
             )}
           </div>
         </div>
@@ -266,6 +289,7 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
               player={player2}
               position="right"
               isActive={gameState.currentPlayerId === player2.id}
+              revealedParty={revealedParties[player2.id]}
             />
           )}
         </div>
@@ -278,9 +302,9 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
         {playerHuman && (
           <div className="hand-area__header">
             <span className="hand-area__name">{playerHuman.name}</span>
-            {playerHuman.party && (
-              <span className={`hand-area__party party-${playerHuman.party}`}>
-                {playerHuman.party.toUpperCase()}
+            {revealedParties[playerHuman.id] && (
+              <span className={`hand-area__party party-${revealedParties[playerHuman.id]}`}>
+                {revealedParties[playerHuman.id] === 're' ? 'RE-Partei' : 'KONTRA-Partei'}
               </span>
             )}
             {isYourTurn && <span className="hand-area__turn-indicator">👈 DU BIST AM ZUG</span>}
@@ -396,9 +420,11 @@ interface PlayerInfoProps {
   player: Player
   position: 'top' | 'left' | 'right'
   isActive: boolean
+  /** Party shown to the human (Re/Kontra), or undefined if still hidden. */
+  revealedParty?: 're' | 'kontra'
 }
 
-function PlayerInfo({ player, position, isActive }: PlayerInfoProps) {
+function PlayerInfo({ player, position, isActive, revealedParty }: PlayerInfoProps) {
   const vorbehaltBadge = renderVorbehaltBadge(player.vorbehaltDecision)
   return (
     <div
@@ -408,9 +434,9 @@ function PlayerInfo({ player, position, isActive }: PlayerInfoProps) {
         {isActive && <span className="player-info__active-icon">👉</span>}
         {player.name}
       </div>
-      {player.party && (
-        <div className={`player-info__party party-${player.party}`}>
-          {player.party.toUpperCase()}
+      {revealedParty && (
+        <div className={`player-info__party party-${revealedParty}`}>
+          {revealedParty === 're' ? 'RE-Partei' : 'KONTRA-Partei'}
         </div>
       )}
       <div className="player-info__cards">

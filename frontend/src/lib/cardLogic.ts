@@ -9,7 +9,7 @@
  * to spoonfeed `validCardIds`.
  */
 
-import type { Card, GameType, Suit, Trick } from '../types/game'
+import type { Card, GameState, GameType, Suit, Trick } from '../types/game'
 
 // ============================================================================
 // TRUMP & SORT DEFINITIONS
@@ -246,4 +246,65 @@ export function getValidCardIds(
   }
   // No same-suit fail cards → free choice (trump or any other suit)
   return hand.map((c) => c.id)
+}
+
+// ============================================================================
+// REVEALED PARTIES (Re / Kontra Klärung über Kreuz-Damen)
+// ============================================================================
+
+/**
+ * Compute which player parties (Re / Kontra) are currently revealed to the
+ * human, based on Kreuz-Dame plays in the playHistory.
+ *
+ * Rules (Normalspiel):
+ *  - As soon as a player plays a Kreuz-Dame, they're revealed as Re-Partei.
+ *  - Once two distinct players have played a Kreuz-Dame, the remaining two
+ *    players are by elimination revealed as Kontra-Partei.
+ *  - Until then, other players' party stays hidden (returned as undefined).
+ *
+ * Edge case: Hochzeit (both Kreuz-Damen at one player) — only one player
+ * gets revealed as Re; the others stay hidden until the Klärungsstich is
+ * played (out of MVP scope, backend handles that).
+ *
+ * At game end (`isFinished`), all parties are revealed via this same
+ * mechanism plus a fallback to `player.party` from the server.
+ */
+export function getRevealedParties(
+  gameState: GameState
+): Record<string, 're' | 'kontra'> {
+  const revealed: Record<string, 're' | 'kontra'> = {}
+
+  const kreuzDamePlayers = new Set<string>()
+  for (const tc of gameState.playHistory) {
+    if (tc.card.suit === 'clubs' && tc.card.rank === 'queen') {
+      kreuzDamePlayers.add(tc.playerId)
+    }
+  }
+
+  for (const pid of kreuzDamePlayers) {
+    revealed[pid] = 're'
+  }
+
+  // Once both Kreuz-Damen are revealed at different players, the other two
+  // must be Kontra. (Hochzeit case: only one player → others stay hidden.)
+  if (kreuzDamePlayers.size >= 2) {
+    for (const p of gameState.players) {
+      if (!kreuzDamePlayers.has(p.id) && !(p.id in revealed)) {
+        revealed[p.id] = 'kontra'
+      }
+    }
+  }
+
+  // After the game ends, the server has authoritative knowledge of all
+  // parties. Fall back to the server-supplied player.party for any player
+  // still unrevealed by the Kreuz-Dame logic.
+  if (gameState.isFinished) {
+    for (const p of gameState.players) {
+      if (!(p.id in revealed) && (p.party === 're' || p.party === 'kontra')) {
+        revealed[p.id] = p.party
+      }
+    }
+  }
+
+  return revealed
 }
