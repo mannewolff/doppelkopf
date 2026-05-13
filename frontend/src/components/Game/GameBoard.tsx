@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useGameWebSocket } from '../../hooks/useGameWebSocket'
 import { useViewport } from '../../hooks/useViewport'
-import type { Player } from '../../types/game'
+import type { Player, Trick, Card as CardType } from '../../types/game'
 import { Card } from './Card'
 import { VorbehaltPhase } from './VorbehaltPhase'
+import { getValidCardIds, sortHandByGameType } from '../../lib/cardLogic'
 import './GameBoard.css'
+
+/** Time (ms) the finished trick stays visible on the table before being cleared. */
+const TRICK_HOLD_MS = 2000
 
 interface GameBoardProps {
   gameId: string
@@ -44,23 +48,59 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   })
 
   const [isLoading, setIsLoading] = useState(!connected)
-  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+  const [showLastTrick, setShowLastTrick] = useState(false)
+
+  /**
+   * Frozen trick: when a trick completes, we hold it on the table for
+   * TRICK_HOLD_MS so the player sees the 4th card. We trigger this off the
+   * `tricks` array growing (most reliable signal) rather than off the
+   * currentTrick reaching 4 cards (which the server may overwrite instantly).
+   */
+  const [frozenTrick, setFrozenTrick] = useState<Trick | null>(null)
+  const lastSeenTrickIdRef = useRef<string | null>(null)
 
   useEffect(() => {
     setIsLoading(!connected)
   }, [connected])
 
-  // Reset card selection when hand changes (after playing a card or new deal)
-  const handLength = gameState?.hand?.length ?? 0
-  useEffect(() => {
-    setSelectedCardId(null)
-  }, [handLength])
+  // Client-side sorted hand (trumps left → fail suits right)
+  const sortedHand: CardType[] = useMemo(() => {
+    if (!gameState?.hand) return []
+    return sortHandByGameType(gameState.hand, gameState.gameType)
+  }, [gameState?.hand, gameState?.gameType])
 
-  // ESC key deselects card
+  const isYourTurnEarly = gameState?.currentPlayerId === playerId
+
+  // Client-side validity (we ignore server's validCardIds and compute our own)
+  const validCardIds: string[] = useMemo(() => {
+    if (!gameState) return []
+    return getValidCardIds(
+      gameState.hand,
+      gameState.currentTrick,
+      gameState.gameType,
+      isYourTurnEarly
+    )
+  }, [gameState, isYourTurnEarly])
+
+  // Track trick completion: whenever a NEW trick lands in tricks[], freeze it
+  // for TRICK_HOLD_MS so the player sees all 4 cards (especially the 4th).
+  const tricksLength = gameState?.tricks?.length ?? 0
+  useEffect(() => {
+    if (!gameState || tricksLength === 0) return
+    const lastTrick = gameState.tricks[tricksLength - 1]
+    if (!lastTrick || lastTrick.id === lastSeenTrickIdRef.current) return
+    lastSeenTrickIdRef.current = lastTrick.id
+    setFrozenTrick(lastTrick)
+    setShowLastTrick(false) // close peek if open
+    const timer = setTimeout(() => setFrozenTrick(null), TRICK_HOLD_MS)
+    return () => clearTimeout(timer)
+  }, [tricksLength, gameState])
+
+  // ESC closes last-trick overlay
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
-        setSelectedCardId(null)
+        setShowLastTrick(false)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
@@ -68,29 +108,19 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   }, [])
 
   /**
-   * Two-step card play:
-   *   1st click on a card → select it (visual highlight)
-   *   2nd click on same card → play it
-   *   Click on different card → switch selection
+   * Single-click card play: a click immediately plays the card.
+   * Optimized for mobile (one tap = play).
+   * Invalid cards are not clickable (disabled) so misclicks are blocked.
    */
   const handleCardClick = (cardId: string) => {
-    if (!gameState?.validCardIds.includes(cardId)) return
-    if (selectedCardId === cardId) {
-      sendPlayCard(cardId)
-      setSelectedCardId(null)
-    } else {
-      setSelectedCardId(cardId)
-    }
+    if (!validCardIds.includes(cardId)) return
+    setShowLastTrick(false)
+    sendPlayCard(cardId)
   }
 
-  /**
-   * "Karte spielen" button: plays the currently selected card
-   */
-  const handlePlaySelected = () => {
-    if (!selectedCardId) return
-    if (!gameState?.validCardIds.includes(selectedCardId)) return
-    sendPlayCard(selectedCardId)
-    setSelectedCardId(null)
+  /** Toggle "show last trick" overlay */
+  const handleToggleLastTrick = () => {
+    setShowLastTrick((prev) => !prev)
   }
 
   // Loading / Waiting States
@@ -123,6 +153,21 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
   const playerHuman = gameState.players.find((p) => p.id === playerId) // unten
 
   const isYourTurn = gameState.currentPlayerId === playerId
+
+  // Determine which trick to show on the table:
+  //  1. If showLastTrick is on → last completed trick (peek)
+  //  2. Else if frozenTrick is set → the trick we're holding to show 4th card
+  //  3. Else → the current trick from server state
+  const lastCompletedTrick: Trick | null =
+    gameState.tricks.length > 0 ? gameState.tricks[gameState.tricks.length - 1] : null
+
+  const displayedTrick: Trick | null = showLastTrick
+    ? lastCompletedTrick
+    : frozenTrick ?? gameState.currentTrick
+
+  // "Last trick" button is enabled whenever a completed trick exists.
+  // Peeking is allowed even mid-trick - it just overlays the table.
+  const canShowLastTrick = lastCompletedTrick !== null
 
   // Game End State
   if (gameState.isFinished && gameState.gameEndResult) {
@@ -169,14 +214,20 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
         </div>
 
         {/* Tisch (Mittlere Stich-Karten) */}
-        <div className="game-board__tisch">
+        <div className={`game-board__tisch ${showLastTrick ? 'game-board__tisch--peek' : ''}`}>
+          {showLastTrick && (
+            <div className="tisch__peek-label">
+              👁 Letzter Stich (gewonnen von{' '}
+              {gameState.players.find((p) => p.id === lastCompletedTrick?.winnerId)?.name ?? '?'})
+            </div>
+          )}
           <div className="tisch__current-trick">
-            {gameState.currentTrick?.cards.length === 0 ? (
+            {displayedTrick === null || displayedTrick.cards.length === 0 ? (
               <div className="tisch__placeholder">
                 {isYourTurn ? '🎴 Du bist am Zug!' : 'Warten...'}
               </div>
             ) : (
-              gameState.currentTrick?.cards.map((tc) => (
+              displayedTrick.cards.map((tc) => (
                 <Card
                   key={`${tc.playerId}-${tc.card.id}`}
                   card={tc.card}
@@ -215,25 +266,27 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
             {isYourTurn && <span className="hand-area__turn-indicator">👈 DU BIST AM ZUG</span>}
             <button
               type="button"
-              className="play-card-button"
-              disabled={!selectedCardId || !isYourTurn}
-              onClick={handlePlaySelected}
-              title="Selektierte Karte spielen (oder zweimal klicken)"
+              className="last-trick-button"
+              disabled={!canShowLastTrick}
+              onClick={handleToggleLastTrick}
+              title={
+                canShowLastTrick
+                  ? 'Letzten Stich anzeigen (Klick wieder = schließen, ESC schließt)'
+                  : 'Noch kein abgeschlossener Stich vorhanden'
+              }
             >
-              🎴 Karte spielen
+              {showLastTrick ? '✕ Schließen' : '👁 Letzter Stich'}
             </button>
           </div>
         )}
         <div className={`game-board__hand game-board__hand--${viewport}`}>
-          {gameState.hand.map((card) => {
-            const isValid = gameState.validCardIds.includes(card.id)
-            const isSelected = selectedCardId === card.id
+          {sortedHand.map((card) => {
+            const isValid = validCardIds.includes(card.id)
             return (
               <Card
                 key={card.id}
                 card={card}
                 isValid={isValid}
-                isSelected={isSelected}
                 disabled={!isValid}
                 size="medium"
                 onClick={() => handleCardClick(card.id)}

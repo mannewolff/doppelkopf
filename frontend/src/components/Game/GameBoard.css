@@ -224,6 +224,45 @@
   animation: turnIndicatorPulse 1.5s ease-in-out infinite;
 }
 
+/* "Letzter Stich" button - peek at last completed trick */
+.last-trick-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.last-trick-button:hover:not(:disabled) {
+  background-color: var(--color-border);
+  transform: scale(1.04);
+}
+
+.last-trick-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* When peek mode is active, frame the tisch differently */
+.game-board__tisch--peek {
+  border-color: var(--color-announcement-active);
+  box-shadow: 0 0 16px rgba(255, 193, 7, 0.4);
+  background-color: rgba(255, 193, 7, 0.08);
+}
+
+.tisch__peek-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-announcement-active);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+  text-align: center;
+}
+
 /* "Karte spielen" button next to the turn-indicator */
 .play-card-button {
   padding: var(--spacing-sm) var(--spacing-md);
