@@ -134,17 +134,22 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
     setShowLastTrick(false)
   }, [currentGameId])
 
-  // Lock in the seat assignment on first load. The human is always seat 4;
-  // the three AIs take seats 1/2/3 in the order their initial server-side
-  // `position` puts them. After this, dealer rotation on the server may
-  // change `position` between games, but the visual seat stays put.
+  // Lock in the seat assignment on first load. Doppelkopf plays
+  // **clockwise** around the table. From the human's point of view:
+  //   linker Nachbar (next position) → sits on the LEFT  (seat 3)
+  //   gegenüber                       → sits at the TOP   (seat 1)
+  //   rechter Nachbar (prev position) → sits on the RIGHT (seat 2)
+  //   self                            → sits at the BOTTOM (seat 4)
+  //
+  // We compute these relative to the human's initial `position` so it
+  // works regardless of whether the human starts as dealer (pos 4) or
+  // any other position.
   useEffect(() => {
     if (seatMap) return
     if (!gameState || gameState.players.length !== 4) return
 
-    // Sanity: the prop playerId must actually exist in the players array.
-    const humanExists = gameState.players.some((p) => p.id === playerId)
-    if (!humanExists) {
+    const human = gameState.players.find((p) => p.id === playerId)
+    if (!human) {
       // eslint-disable-next-line no-console
       console.warn(
         '[seatMap-init] playerId not found in players, skipping init',
@@ -153,36 +158,53 @@ export function GameBoard({ gameId, playerId, playerName }: GameBoardProps) {
       return
     }
 
-    const aiPlayers = gameState.players
-      .filter((p) => p.id !== playerId)
-      .sort((a, b) => a.position - b.position)
+    const humanPos = human.position
+    // Positions clockwise after the human
+    const leftPos = ((humanPos % 4) + 1) as 1 | 2 | 3 | 4 // linker Nachbar
+    const oppositePos = ((leftPos % 4) + 1) as 1 | 2 | 3 | 4 // gegenüber
+    const rightPos = ((oppositePos % 4) + 1) as 1 | 2 | 3 | 4 // rechter Nachbar
 
-    if (aiPlayers.length !== 3) {
+    const findId = (pos: number) =>
+      gameState.players.find((p) => p.position === pos)?.id
+
+    const oppositeId = findId(oppositePos)
+    const rightId = findId(rightPos)
+    const leftId = findId(leftPos)
+    if (!oppositeId || !rightId || !leftId) {
       // eslint-disable-next-line no-console
-      console.warn(
-        '[seatMap-init] expected exactly 3 AI players, got',
-        aiPlayers.length
-      )
+      console.warn('[seatMap-init] could not resolve seat occupants', {
+        humanPos,
+        leftPos,
+        oppositePos,
+        rightPos,
+        players: gameState.players,
+      })
       return
     }
 
     const map: Record<1 | 2 | 3 | 4, string> = {
-      1: aiPlayers[0].id,
-      2: aiPlayers[1].id,
-      3: aiPlayers[2].id,
-      4: playerId,
+      1: oppositeId, // top = gegenüber
+      2: rightId, // right = rechter Nachbar
+      3: leftId, // left = linker Nachbar
+      4: playerId, // bottom = Mensch
     }
 
     // eslint-disable-next-line no-console
     console.log('[seatMap-init]', {
       playerId,
+      humanPos,
       players: gameState.players.map((p) => ({
         id: p.id,
         name: p.name,
         position: p.position,
         isAI: p.isAI,
       })),
-      map,
+      mapping: {
+        seat1_top_gegenüber: `${oppositeId} (pos ${oppositePos})`,
+        seat2_right_rechterNachbar: `${rightId} (pos ${rightPos})`,
+        seat3_left_linkerNachbar: `${leftId} (pos ${leftPos})`,
+        seat4_bottom_selbst: `${playerId} (pos ${humanPos})`,
+      },
     })
 
     setSeatMap(map)

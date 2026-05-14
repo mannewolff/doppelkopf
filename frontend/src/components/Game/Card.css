@@ -113,9 +113,12 @@
     height: 57px;
   }
 
+  /* On mobile, medium cards are used both on the tisch and in the hand.
+     Keep them small enough that the trick layout fits *and* the hand
+     stays touch-friendly. */
   .playing-card--medium {
-    width: 50px;
-    height: 75px;
+    width: 44px;
+    height: 66px;
   }
 
   .playing-card--large {
