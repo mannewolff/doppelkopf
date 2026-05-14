@@ -107,7 +107,7 @@
 }
 
 /* Responsive sizing */
-@media (max-width: 812px) {
+@media (max-width: 1279px) {
   .playing-card--small {
     width: 38px;
     height: 57px;

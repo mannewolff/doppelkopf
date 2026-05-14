@@ -145,7 +145,7 @@
 }
 
 /* Mobile landscape: compact table so the hand below stays fully visible */
-@media (max-width: 812px) {
+@media (max-width: 1279px) {
   .tisch__current-trick {
     width: 150px;
     height: 185px;
@@ -875,7 +875,7 @@
    RESPONSIVE: MOBILE LANDSCAPE (375-812px)
    ======================================================================== */
 
-@media (max-width: 812px) {
+@media (max-width: 1279px) {
   .game-board {
     padding: var(--spacing-xs);
     gap: var(--spacing-xs);
