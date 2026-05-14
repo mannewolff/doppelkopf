@@ -10,8 +10,8 @@
 .game-board {
   display: grid;
   /* Reserve enough for the hand below: middle (Tisch) takes its content,
-     the hand row gets at least 170px so cards aren't clipped. */
-  grid-template-rows: auto auto minmax(170px, auto) auto;
+     the hand row gets at least 200px so cards aren't clipped. */
+  grid-template-rows: auto auto minmax(200px, auto) auto;
   gap: var(--spacing-md);
   width: 100%;
   min-height: 100%;
@@ -278,9 +278,10 @@
   background-color: var(--color-bg-tertiary);
   border-radius: var(--border-radius-md);
   border: 1px solid var(--color-border);
-  padding: var(--spacing-md);
-  /* enough for header (~30) + card height (98) + hover-raise (~12) + padding */
-  min-height: 170px;
+  /* Top padding is bigger so the hover-raise (-15px) on cards has room */
+  padding: 24px var(--spacing-md) var(--spacing-md);
+  /* Generous height: header 32 + gap 8 + card 98 + hover raise + ample buffer */
+  min-height: 200px;
 }
 
 .hand-area__header {
@@ -417,13 +418,15 @@
 .game-board__hand {
   display: flex;
   gap: var(--spacing-sm);
-  align-items: center;
+  /* flex-end: cards rest on the bottom of the hand-area;
+     the hover-raise (translateY -10) lifts them into the buffer above */
+  align-items: flex-end;
   justify-content: center;
   flex-wrap: nowrap;
   flex: 1;
   overflow-x: auto;
   overflow-y: visible;
-  padding: var(--spacing-sm);
+  padding: 12px var(--spacing-sm) 0;
 }
 
 /* ========================================================================
@@ -911,9 +914,9 @@
   }
 
   .game-board__hand-area {
-    padding: var(--spacing-sm);
-    /* mobile: card 66 + header 24 + hover ~10 + padding 16 ≈ 120 */
-    min-height: 130px;
+    padding: 16px var(--spacing-sm) var(--spacing-sm);
+    /* mobile: card 66 + header 24 + hover ~10 + padding ≈ 130; with buffer */
+    min-height: 150px;
   }
 
   .hand-area__name {
