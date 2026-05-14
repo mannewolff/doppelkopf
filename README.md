@@ -17,11 +17,11 @@ So startest du Backend und Frontend in zwei Terminal-Fenstern (Shells) und spiel
 ## Voraussetzungen (einmalig)
 
 - **Node.js ≥ 20** muss installiert sein (`node --version` prüfen)
-- Im Projekt-Ordner: `/Users/manfredwolff/ki-projects/doppelkopf/`
+- Im Projekt-Ordner: `<Dein Folder>/doppelkopf/`
 - Dependencies sind installiert:
   ```bash
-  cd /Users/manfredwolff/ki-projects/doppelkopf/backend && npm install
-  cd /Users/manfredwolff/ki-projects/doppelkopf/frontend && npm install
+  cd <Dein Folder>/backend && npm install
+  cd <Dein Folder>/frontend && npm install
   ```
   (musst du nur machen, wenn du frisch gecloned hast oder wenn Pakete geändert wurden)
 
@@ -30,7 +30,7 @@ So startest du Backend und Frontend in zwei Terminal-Fenstern (Shells) und spiel
 ## Shell 1: Backend starten
 
 ```bash
-cd /Users/manfredwolff/ki-projects/doppelkopf/backend
+cd <Dein Folder>/backend
 npm run dev
 ```
 
@@ -49,7 +49,7 @@ Der Server lauscht auf **Port 3001**. Im laufenden Spiel siehst du Logs wie `[ws
 ## Shell 2: Frontend starten
 
 ```bash
-cd /Users/manfredwolff/ki-projects/doppelkopf/frontend
+cd <Dein Folder>/frontend
 npm run dev
 ```
 
@@ -139,7 +139,7 @@ lsof -ti tcp:3001,5174 | xargs kill -9 2>/dev/null
 Es gibt auch noch einen alten Mock-Server unter `/mock-server/`. **Nur für Notfälle / Frontend-Testing ohne Backend.** Achtung: der Mock-Server hat keine echte Regelvalidierung und sollte normalerweise nicht laufen, weil er sich denselben Port 3001 schnappen würde wie das echte Backend.
 
 ```bash
-cd /Users/manfredwolff/ki-projects/doppelkopf/mock-server
+cd <Dein Folder>/mock-server
 npm start
 ```
 
