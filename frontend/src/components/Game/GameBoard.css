@@ -159,8 +159,8 @@
 /* Desktop landscape: roomier table */
 @media (min-width: 1280px) {
   .tisch__current-trick {
-    width: 280px;
-    height: 360px;
+    width: 250px;
+    height: 320px;
   }
   .tisch__slot {
     width: 80px;
@@ -995,11 +995,16 @@
 
   .game-board__middle {
     gap: var(--spacing-lg);
-    min-height: 380px;
+    min-height: 340px;
   }
 
   .game-board__tisch {
-    min-height: 380px;
+    min-height: 340px;
+  }
+
+  /* Hand on desktop needs more room because card-medium is 80x120 */
+  .game-board__hand-area {
+    min-height: 230px;
   }
 
   .player-info {
