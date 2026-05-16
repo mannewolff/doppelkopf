@@ -3,7 +3,8 @@
 **Für:** Alle (Workflow & Prozesse)  
 **Status:** ✅ Aktiv  
 **Länge:** ~250 Zeilen  
-**Cross-Referenzen:** → [CLAUDE.md](CLAUDE.md), [CLAUDE-security.md](CLAUDE-security.md), [CLAUDE-code-guide.md](CLAUDE-code-guide.md)
+**Wiederverwendbar:** ✅ Ja (allgemeiner Prozess-Guide)
+**Cross-Referenzen:** → [CLAUDE-security.md](CLAUDE-security.md), [CLAUDE-code-guide.md](CLAUDE-code-guide.md)
 
 ---
 

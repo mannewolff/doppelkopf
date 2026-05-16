@@ -3,7 +3,8 @@
 **Für:** Claude Code & andere KI-Assistenten  
 **Status:** ✅ Aktiv  
 **Länge:** ~150 Zeilen  
-**Cross-Referenzen:** → [CLAUDE.md](CLAUDE.md), [CLAUDE-workflow.md](CLAUDE-workflow.md)
+**Wiederverwendbar:** ✅ Ja (allgemeine KI-Regeln)
+**Cross-Referenzen:** → [CLAUDE-workflow.md](CLAUDE-workflow.md), [CLAUDE-security.md](CLAUDE-security.md)
 
 ---
 

@@ -1,9 +1,20 @@
-# CLAUDE-security.md — Security & Compliance
+# CLAUDE-security.md — Security & Compliance (OWASP 2025)
 
 **Für:** Alle Entwickler (Frontend, Backend, KI-Assistenten)  
 **Status:** ✅ Aktiv  
-**Länge:** ~300 Zeilen  
-**Cross-Referenzen:** → [CLAUDE-react.md](CLAUDE-react.md), [CLAUDE-php.md](CLAUDE-php.md), [CLAUDE-nodejs.md](CLAUDE-nodejs.md)
+**Länge:** ~350 Zeilen  
+**Wiederverwendbar:** ✅ Ja (OWASP-basiert, allgemein)
+**Cross-Referenzen:** → [CLAUDE-react.md](CLAUDE-react.md), [CLAUDE-nodejs.md](CLAUDE-nodejs.md)
+
+---
+
+## 📖 Quellen & References
+
+Diese Standards basieren auf OWASP 2025 Security Guidelines:
+- [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/)
+- [OWASP Top 10:2025 Guide for Developers](https://medium.com/@itz.aman.av/owasp-top-10-2025-a-complete-guide-for-developers-2d44fa1dadd8)
+- [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
+- [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/)
 
 ---
 
@@ -14,6 +25,22 @@
 3. **Defense in depth** — Mehrere Sicherheitsebenen, nicht nur eine
 4. **Least Privilege** — Nur minimale Rechte für jede Komponente
 5. **Secrets sind kritisch** — Niemals im Code, Git, Logs oder URLs
+
+---
+
+## 🆕 OWASP Top 10:2025 Highlights
+
+**Neue/Geänderte Kategorien (2025):**
+- **A01: Broken Access Control** — Bleibt #1 Priorität
+- **A02: Security Misconfiguration** — Häufig unterschätzt
+- **A03: Software Supply Chain Failures** — NEU! Malicious packages, compromised maintainers, tampered builds
+- **A04-A10:** Weitere Critical Risks (Injection, Sensitive Data Exposure, etc.)
+
+**Was bedeutet das für dich?**
+- ✅ `npm audit` bei jedem CI-Lauf (Supply Chain!)
+- ✅ Dependencies regelmäßig reviewen (Typosquatting-Check)
+- ✅ Keine ungeprüften Packages installieren
+- ✅ Post-install Scripts inspizieren
 
 ---
 

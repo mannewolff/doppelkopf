@@ -1,150 +1,167 @@
-# CLAUDE.md — Projektstandards Doppelkopf
+# CLAUDE.md — Doppelkopf Projektspezifische Standards
 
-**Willkommen!** Dieses Projekt hat hohe Engineering-Standards. Um sie lesbar zu halten, sind die Regeln in spezialisierte Guides aufgeteilt.
+**Willkommen zum Doppelkopf Projekt!** 
+
+Dieses Projekt baut ein WebSocket-basiertes Echtzeit-Kartenspiel. Diese Datei dokumentiert **Doppelkopf-spezifische** Standards und Anforderungen. Allgemeine Engineering-Regeln findest du in den Spezialdateien.
 
 ---
 
 ## 🎯 Schnelleinstieg
 
-- **Neu im Projekt?** Lies diese Datei + CLAUDE-workflow.md
-- **React arbeiten?** → [CLAUDE-react.md](CLAUDE-react.md)
-- **PHP arbeiten?** → [CLAUDE-php.md](CLAUDE-php.md)
-- **Security fragen?** → [CLAUDE-security.md](CLAUDE-security.md) (zentral, alle lesen)
-- **Workflow/Git/Deploy?** → [CLAUDE-workflow.md](CLAUDE-workflow.md)
+- **Neu im Projekt?** Lies diese Datei + [CLAUDE-workflow.md](CLAUDE-workflow.md)
+- **React Frontend arbeiten?** → [CLAUDE-react.md](CLAUDE-react.md)
+- **Node.js Backend arbeiten?** → [CLAUDE-nodejs.md](CLAUDE-nodejs.md)
+- **Security fragen?** → [CLAUDE-security.md](CLAUDE-security.md) (zentral!)
+- **Deployment/Git Workflow?** → [CLAUDE-workflow.md](CLAUDE-workflow.md)
 - **KI-Assistent?** → [CLAUDE-code-guide.md](CLAUDE-code-guide.md)
 
 ---
 
-## 📚 Alle Guides
+## 📚 Verfügbare Guides
 
-| Guide | Für | Größe | Status |
-|-------|-----|-------|--------|
-| **CLAUDE.md** (diese Datei) | Überblick + Allgemein | ~200 ZL | ✅ Aktiv |
-| [CLAUDE-security.md](CLAUDE-security.md) | Security & Compliance (zentral!) | ~300 ZL | ✅ Aktiv |
-| [CLAUDE-react.md](CLAUDE-react.md) | React/Vite/Frontend-Dev | ~450 ZL | ✅ Aktiv |
-| [CLAUDE-php.md](CLAUDE-php.md) | PHP Backend-Dev | ~250 ZL | ✅ Aktiv |
-| [CLAUDE-nodejs.md](CLAUDE-nodejs.md) | Node.js Backend | ~650 ZL | ⏳ Zukünftig (nach PHP-Migration) |
-| [CLAUDE-workflow.md](CLAUDE-workflow.md) | Prozesse, Git, Deployment | ~250 ZL | ✅ Aktiv |
-| [CLAUDE-code-guide.md](CLAUDE-code-guide.md) | Was KI-Assistenten tun/lassen | ~150 ZL | ✅ Aktiv |
-
----
-
-## 🏗️ Projektstandard
-
-- Dieses Projekt verwendet **React**, **Vite**, **TypeScript** (Frontend) und **PHP** (Backend).
-- Schreibe ausschließlich moderne funktionale React-Komponenten.
-- Verwende TypeScript **strikt**. Kein `any`, keine ungeprüften Type Assertions.
-- Folge bestehenden Projektmustern. Erfinde keine zweite Architektur neben der vorhandenen.
-- Ändere nur Dateien, die für die Aufgabe erforderlich sind.
-- Keine Demo-Abkürzungen, keine Platzhalterlogik, keine TODOs im Produktivcode.
-- **Wenn eine Anforderung fachlich, technisch oder sicherheitsrelevant unklar ist → frage nach.**
+| Guide | Fokus | Wiederverwendbar |
+|-------|-------|-----------------|
+| **CLAUDE.md** | Doppelkopf-spezifisch | ❌ Projekt |
+| [CLAUDE-react.md](CLAUDE-react.md) | React/Vite/TypeScript | ✅ Allgemein |
+| [CLAUDE-nodejs.md](CLAUDE-nodejs.md) | Node.js Backend | ✅ Allgemein |
+| [CLAUDE-security.md](CLAUDE-security.md) | Security (OWASP 2025) | ✅ Allgemein |
+| [CLAUDE-workflow.md](CLAUDE-workflow.md) | Git, Deployment, Prozess | ✅ Allgemein |
+| [CLAUDE-code-guide.md](CLAUDE-code-guide.md) | KI-Assistenten-Regeln | ✅ Allgemein |
 
 ---
 
-## ⭐ Erwartete Qualitätsstufe
+## 🎮 Doppelkopf Projekt Übersicht
 
-Jede Änderung muss so geschrieben sein, als würde sie direkt in Produktion gehen.
+**Stack:**
+- **Frontend:** React 19 + Vite + TypeScript
+- **Backend:** Node.js + TypeScript + WebSocket (ws)
+- **Game State:** In-Memory (WebSocket-Server)
+- **Deployment:** Railway (Docker)
 
-- Code ist klein, klar und explizit.
-- Komponenten/Funktionen haben eindeutige Verantwortungen.
-- Fehlerzustände sind behandelt.
-- Loading-, Empty-, Disabled-, Success-Zustände berücksichtigt (wenn relevant).
-- Kritische Logik ist getestet.
-- Build, Typecheck, Linting bleiben grün.
-- **Keine Secrets, Tokens, API Keys oder internen Details im Frontend/Code.**
+**Ziel:** Echtzeit-Kartenspiel mit mehreren Spielern, keine externe Datenbank nötig, stateless Design für Skalierung.
 
 ---
 
-## 📝 Content Management (bindend)
+## 📝 Content Management (Doppelkopf-spezifisch)
 
-**Alle textuellen Inhalte gehören in JSON-Dateien, NICHT in Komponenten-Code.**
+**ALLE Spielregeln, Texte und Labels MÜSSEN in JSON-Dateien liegen, nicht im Code.**
 
-- Seitentexte, Labels, Beschreibungen → `src/content/*.json`
-- Komponenten laden Daten: `import data from "@/content/...json"`
-- So kann der Nutzer Texte später ändern, ohne Code anzufassen
-- Vorhandene Struktur: `pages.json`, `services.json`, `about.json`, `contact.json`, `faq.json`, `links.json`, `imprint.json`
+**Struktur:** `src/content/*.json`
 
-**Falsch:**
-```tsx
-<p>Diese Website wurde mit Claude Code entwickelt</p> // ❌
+```
+src/content/
+├── pages.json          # Seiten-Texte
+├── game-rules.json     # Spielregeln (neu!)
+├── cards.json          # Kartendefinitionen (neu!)
+├── game-states.json    # Game State Labels
+└── ...
 ```
 
-**Richtig:**
+**Beispiel (FALSCH):**
 ```tsx
-import content from "@/content/imprint.json"
-<p>{content.development.text}</p> // ✅
+<p>Ein Herz ist die stärkste Farbe</p> // ❌ Hardcoded
+```
+
+**Beispiel (RICHTIG):**
+```tsx
+import gameRules from "@/content/game-rules.json"
+<p>{gameRules.cardRanking.hearts.description}</p> // ✅
+```
+
+**Warum?** Spielregeln können später geändert werden, ohne Code zu berühren. Wichtig für Game Balance!
+
+---
+
+## 🎯 Doppelkopf Spezifische Anforderungen
+
+### Game Architecture
+- ✅ **WebSocket-Server** ist Single Source of Truth für Game State
+- ✅ **Frontend ist stateless** — alles von Server abholen
+- ✅ **No External DB** für MVP (später möglich)
+- ✅ **Graceful Disconnect** — Spiele müssen Reconnects handhaben
+
+### Game State Management
+- ✅ **Game State auf Server** (Node.js Backend)
+- ✅ **Frontend synct nur** via WebSocket Events
+- ✅ **Race Conditions** müssen vermieden werden (Server-Authoritative)
+- ✅ **Replay-Safe** — Spielzüge müssen idempotent sein (Reconnect-Fall)
+
+### Frontend Components
+- ✅ **Hand Component** — Responsive, Touch-freundlich (Mobile!)
+- ✅ **Game Board** — Zeigt 4 Spielerpositionen
+- ✅ **Card Rendering** — SVG Karten aus `/karten` Verzeichnis
+- ✅ **Turn Indicator** — Wer ist dran?
+
+### Testing
+- ✅ **Game Logic Tests** müssen existieren
+- ✅ **WebSocket Integration Tests** notwendig
+- ✅ **Manuell testen:** Mehrere Spieler, Reconnect, Invalid Moves
+
+---
+
+## 📂 Projekt-Dateistruktur
+
+```
+/
+├── backend/                  # Node.js WebSocket Server
+│   ├── src/
+│   │   ├── index.ts         # Server Entry
+│   │   ├── game/            # Game Logic
+│   │   └── websocket/       # WebSocket Handler
+│   └── dist/                # Build Output
+├── frontend/                 # React App
+│   ├── src/
+│   │   ├── components/      # React Components
+│   │   ├── hooks/           # Custom Hooks
+│   │   ├── content/         # JSON Daten (bindend!)
+│   │   └── main.tsx
+│   └── dist/                # Build Output
+├── karten/                   # SVG Card Assets
+└── mock-server/             # Fallback (lokal)
 ```
 
 ---
 
-## 🔤 Code-Stil (Generisch)
+## 🚀 Railway Deployment
 
-- **Funktionslänge:** Max. 40 Zeilen. Darüber → aufteilen.
-- **Dateilänge:** Max. 300 Zeilen. Darüber → Module/Refactoring.
-- **Naming:** 
-  - `camelCase` für Variablen/Funktionen
-  - `PascalCase` für Klassen/Types/Interfaces
-  - `kebab-case` für Dateinamen
-  - Keine Abkürzungen außer Standard (`id`, `url`, `http`)
-- **Kommentare:** Erklären das **Warum**, nicht das Offensichtliche.
-- **Frühe Rückgaben:** Bevorzugte Struktur statt tiefer Verschachtelung.
-- **Magische Werte:** Nie. Nutze benannte Konstanten.
-- **Entfernen:** Debug-Code, ungenutzte Imports, tote Pfade.
+**Prod:** https://doppelkopf.railway.app (oder ähnlich)
 
----
+**Environment Variablen:**
+```bash
+# Backend
+NODE_ENV=production
+PORT=3001                    # Railway injiziert automatisch
 
-## 📂 Dateistruktur
+# Frontend
+VITE_WS_URL=wss://doppelkopf.railway.app  # Nach Backend-Deploy setzen!
+```
 
-Folge der bestehenden Struktur:
+**Services:**
+- `backend` — Node.js WebSocket Server (Port 3001)
+- `frontend` — Nginx Static + Proxy (Port 3000)
 
-- Feature-spezifische Komponenten, Hooks, Tests & Typen bleiben im Feature
-- Wiederverwendbare UI-Bausteine → Shared-/Components-Bereich
-- Generische Utilities nur wenn wirklich allgemein nutzbar
-- Vermeide unscharfe Dateien wie `utils.ts` (besser: `string-helpers.ts`)
-- Barrel Exports nur wenn Projekt üblich + keine Zyklen
+Siehe [CLAUDE-workflow.md](CLAUDE-workflow.md) für Details.
 
 ---
 
-## 📦 Dependencies
+## ✅ Vor Deployment
 
-- **Keine neue Dependency ohne klaren technischen Grund.**
-- Prüfe zuerst: Reichen React, Browser APIs, vorhandene Libraries?
-- Neue Dependency muss sein: aktiv gepflegt, verbreitet, passend zum Projekt
-- Keine großen Libraries für kleine Hilfsfunktionen
-- Keine zweite Library für ein Problem, das bereits gelöst ist
-
----
-
-## ⚠️ Prioritäten bei Zielkonflikten
-
-Wenn Anforderungen kollidieren, gilt diese Reihenfolge:
-
-1. **Sicherheit** (Keine Kompromisse)
-2. **Korrektheit** (Funktioniert nicht = Problem)
-3. **Datenintegrität** (Keine Datenverluste)
-4. **Accessibility** (Für alle nutzbar)
-5. **Wartbarkeit** (Lange zu lesen ist schlecht)
-6. **Performance** (Zählt, aber Sicherheit > Perf)
-7. **Visuelle Präferenz** (Nice-to-have)
-8. **Bequemlichkeit der Implementierung** (Für wen? Nicht wichtig)
-
-**Keine kurzfristige Bequemlichkeit rechtfertigt unsicheren, untypisierten oder schwer wartbaren Code.**
+- [ ] Alle Spielregeln in `src/content/game-rules.json`
+- [ ] WebSocket Test: 4 Spieler verbinden & spielen
+- [ ] Reconnect Test: Spieler disconnect + reconnect
+- [ ] Build erfolgreich: `npm run build` in both
+- [ ] No Secrets in `.env` oder Code
+- [ ] `npm audit` clean (kein high/critical)
 
 ---
 
-## 🚀 Nächste Schritte
+## 🔗 Weiterführende Guides
 
-- **React Dev?** Lese [CLAUDE-react.md](CLAUDE-react.md) komplett
-- **PHP Dev?** Lese [CLAUDE-php.md](CLAUDE-php.md) komplett
-- **Security?** Lese [CLAUDE-security.md](CLAUDE-security.md) (zentral, alle!)
-- **Arbeitsweise?** Lese [CLAUDE-workflow.md](CLAUDE-workflow.md)
-- **Fragen?** → Frag lieber einmal zu viel als zu wenig
-
----
-
-**Faustregel:** 
-> Lies die relevanten Guides, frag bei Unklarheiten, implementiere typisiert & sauber, teste, commit lokal. Auf "push main" oder "GO" warten.
+- **React Details:** [CLAUDE-react.md](CLAUDE-react.md)
+- **Backend Details:** [CLAUDE-nodejs.md](CLAUDE-nodejs.md)
+- **Security Checkliste:** [CLAUDE-security.md](CLAUDE-security.md)
+- **Git & Workflow:** [CLAUDE-workflow.md](CLAUDE-workflow.md)
 
 ---
 
-**Bei Zweifel:** Siehe [CLAUDE-security.md](CLAUDE-security.md) oder [CLAUDE-workflow.md](CLAUDE-workflow.md).
+**Tl;dr:** Game Logic in Code. Game Texts in JSON. Server ist Boss. Teste mit mehreren Spielern. Deploy zu Railway.

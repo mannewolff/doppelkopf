@@ -1,22 +1,33 @@
 # CLAUDE-nodejs.md — Node.js Backend Development
 
-**Für:** Node.js Backend-Developer (nach PHP-Migration)  
-**Status:** ⏳ Zukünftig  
+**Für:** Node.js Backend-Developer  
+**Status:** ✅ Aktiv  
 **Länge:** ~650 Zeilen  
+**Wiederverwendbar:** ✅ Ja (allgemeine Node.js Guidelines)
 **Cross-Referenzen:** → [CLAUDE.md](CLAUDE.md), [CLAUDE-security.md](CLAUDE-security.md), [CLAUDE-workflow.md](CLAUDE-workflow.md)
 
 ---
 
-## ⚠️ Status
+## ✅ Status
 
 ```
-Dieses Dokument definiert die ZUKÜNFTIGEN Standards für Node.js Backend.
+AKTIV: Dieses Projekt ist vollständig auf Node.js + TypeScript.
 
-AKTUELL: Backend ist noch PHP. Diese Sektion ist der Plan.
-Folge heute: → CLAUDE-php.md
-
-Nach PHP-Migration wird diese Sektion primär, und CLAUDE-php.md wird gelöscht.
+Basiert auf Best Practices 2025:
+- Modern Node.js Patterns (siehe Quellen unten)
+- OWASP Security Guidelines
+- Production-Ready Architecture
 ```
+
+---
+
+## 📖 Quellen & References
+
+Diese Standards basieren auf aktuellen Best Practices:
+- [Node.js in 2025: Modern Practices](https://medium.com/@chirag.dave/node-js-in-2025-modern-practices-you-should-be-using-65f202c6651d)
+- [Master Node.js Backend Architecture 2025](https://expertdevelopers.in/blog/master-modern-backend-architecture-with-nodejs-advanced-strategies-for-2025)
+- [Top Node.js Design Patterns 2025](https://www.geeksforgeeks.org/node-js/top-nodejs-design-patterns/)
+- [Scaling Node.js in 2025](https://medium.com/@sakshamverma7844/scaling-your-node-js-backend-in-2025-c7cbc45ad807)
 
 ---
 

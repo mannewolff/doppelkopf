@@ -2,8 +2,19 @@
 
 **Für:** React und Frontend-Developer  
 **Status:** ✅ Aktiv  
-**Länge:** ~450 Zeilen  
-**Cross-Referenzen:** → [CLAUDE.md](CLAUDE.md), [CLAUDE-security.md](CLAUDE-security.md), [CLAUDE-workflow.md](CLAUDE-workflow.md)
+**Länge:** ~500 Zeilen  
+**Wiederverwendbar:** ✅ Ja (allgemeine React Guidelines)
+**Cross-Referenzen:** → [CLAUDE-security.md](CLAUDE-security.md), [CLAUDE-workflow.md](CLAUDE-workflow.md)
+
+---
+
+## 📖 Quellen & References
+
+Diese Standards basieren auf React/TypeScript Best Practices 2025:
+- [React 19 & TypeScript Best Practices 2025](https://medium.com/@CodersWorld99/react-19-typescript-best-practices-the-new-rules-every-developer-must-follow-in-2025-3a74f63a0baf)
+- [TypeScript Best Practices 2025](https://dev.to/mitu_mariam/typescript-best-practices-in-2025-57hb)
+- [React TypeScript: 10 Patterns for Better Code](https://blog.logrocket.com/react-typescript-10-patterns-writing-better-code/)
+- [React + TypeScript Style Guide](https://react-typescript-style-guide.com/)
 
 ---
 
@@ -16,7 +27,7 @@
 
 ---
 
-## 📘 TypeScript im Frontend
+## 📘 TypeScript im Frontend (2025 Standards)
 
 - ✅ **`any` ist VERBOTEN** außer zwingende Gründe mit Kommentar
 - ✅ **`unknown` verwenden** wenn externe Daten zunächst unbekannt
@@ -25,8 +36,23 @@
 - ❌ **`as` zur Umgehung von Type-Errors verhindern** → Fix das Datenmodell stattdessen
 - ✅ **`satisfies` verwenden** zur präzisen Objektform-Prüfung
 - ❌ **Non-null Assertion `!` vermeiden** außer lokal offensichtlich sicher
-- ✅ **Props explizit typisieren**
+- ✅ **Props explizit typisieren** (nicht via `React.FC` — deprecated!)
 - ✅ **API-Responses an der Systemgrenze typisieren** + auf interne Modelle mappen
+
+**2025 Update:** `React.FC` ist deprecated. Definiere Props als `interface` und typisiere die Funktion direkt:
+
+```tsx
+// ❌ Deprecated
+const MyComponent: React.FC<Props> = ({ title }) => ...
+
+// ✅ Modern 2025
+interface MyComponentProps {
+  title: string;
+  onClick?: () => void;
+}
+
+const MyComponent = ({ title, onClick }: MyComponentProps) => ...
+```
 
 ---
 
